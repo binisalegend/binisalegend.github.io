@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Binisalegend">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Binisalegend">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="本篇文章是BIT人工智能专业的限选课Java语言程序设计相匹配的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java程序设计学习笔记">
+<meta property="og:url" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Binisalegend的博客">
+<meta property="og:description" content="本篇文章是BIT人工智能专业的限选课Java语言程序设计相匹配的学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230920191440.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020231026235908.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020231027085858.png">
+<meta property="article:published_time" content="2023-11-07T15:58:22.000Z">
+<meta property="article:modified_time" content="2023-11-08T03:32:08.051Z">
+<meta property="article:author" content="Binisalegend">
+<meta property="article:tag" content="Java语言学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230920191440.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>Java程序设计学习笔记 · Binisalegend&#39;s Studio</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>锅中冰's Studio.</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">锅中冰&#39;s Studio.</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">Java程序设计学习笔记</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+    
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                Java程序设计学习笔记
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java语言学习">Java语言学习</a>
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/11/07</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <p>本篇文章是BIT人工智能专业的限选课Java语言程序设计相匹配的学习笔记</p>
+<span id="more"></span>
+
+<h1 id="Class1"><a href="#Class1" class="headerlink" title="Class1"></a>Class1</h1><p>如果一个类被声明为 <code>public</code> 那么当前文件名必须与其相同，这并不是说java程序中只能包含一个类，只是只能包含一个共有类 <code>public class</code><br>Java程序从 <code>main</code> 开始执行，且 <code>main</code> 方法声明必须是共有且静态的 <code>public static</code><br><code>System(类名).out(类字段).println(标准输出对象方法)()</code> 可以直接打印一个空行</p>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>字符</th>
+<th>转义字符</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\\</code></td>
+<td>反斜杠</td>
+<td><code>\f</code></td>
+<td>换页</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>退格</td>
+<td><code>\t</code></td>
+<td>跳出一个Tab</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>回车</td>
+<td><code>\n</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>双引号</td>
+<td><code>\&#39;</code></td>
+<td>单引号</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Java类中的核心包以 <code>java</code> 开头（无需引用即可直接使用，如 <code>System</code>），扩展包以 <code>javax</code> 开头，第三方包以反写网址开头(如 <code>com.exanple</code>表示 <code>www.example.com</code> 的包)</li>
+<li>以下是一个包含多个类的程序，以此演示调用静态和实例类型类的不同<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** MultipleClassesJavaProgram.java */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Class1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">outputInt</span><span class="params">(<span class="type">int</span> x)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1024</span> + x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Class2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printInfo</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;调用Class2的printInfo方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MultipleClassesJavaProgram</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">Class1</span> <span class="variable">c1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Class1</span>();</span><br><span class="line">        Class2.printInfo();</span><br><span class="line">        <span class="type">int</span> <span class="variable">v1</span> <span class="operator">=</span> c1.outputInt(<span class="number">6</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;调用了Class1的main方法&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;%d\n&quot;</span>, v1);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+即静态类可以直接调用类函数，而实例类需要先实例化一个变量，再对变量进行赋值操作（可以看一下[[CS61B学习笔记#^9a36d4]]</li>
+</ul>
+<h1 id="Class2"><a href="#Class2" class="headerlink" title="Class2"></a>Class2</h1><h2 id="Lesson3-Java程序设计语法基础"><a href="#Lesson3-Java程序设计语法基础" class="headerlink" title="Lesson3: Java程序设计语法基础"></a><em>Lesson3: Java程序设计语法基础</em></h2><hr>
+<ul>
+<li>利用关键词 <code>final</code> 声明常量相当于 <code>public</code> 一个 <code>const</code> 类型变量，如果常量仅在本类使用就要定义为 <code>private</code> 类型</li>
+<li><code>enum</code> 为枚举类型，具体调用方法有 <code>&lt;枚举变量&gt;.&lt;变量名&gt; = &lt;枚举变量&gt;.枚举元素 (如Size s = Size.SMALL)</code> 或 <code>Size t = Size.valueOf(&quot;SMALL&quot;)</code> ，也可以通过类似 <code>MyEnum &lt;变量名&gt; : MyEnum.values()</code> 来遍历枚举中的元素</li>
+<li><code>JOptionPane.showInputDialog</code> 可以在显示的输入框中显示我们想显示的内容，同时可以使用 <code>JOptionPane.showMessageDialog(Component parentComponent, Object message, String title, int messageType)</code> 来控制输出形式，具体的可以看看官方文档</li>
+<li>数据类型转化中精度问题：<img src="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230920191440.png"></li>
+<li><code>Integer.parseInt()</code> 可以将字符串类型变量转化为整型变量，而 <code>String.valueOf(variable)</code> 则可以将变量转化为字符串类型，结合 <code>write</code> 方法可以将内容输出到终端</li>
+<li>Java中可以直接将 <code>String + 其他类型变量</code> ，最终输出的是一个 <code>String</code> 类型变量</li>
+</ul>
+<h2 id="Lesson4-Java中的方法"><a href="#Lesson4-Java中的方法" class="headerlink" title="Lesson4: Java中的方法"></a><em>Lesson4: Java中的方法</em></h2><hr>
+<ul>
+<li>在调用类似 <code>Math</code> 库时可以使用 <code>import static java.lang.Math.*;</code> 命令，使得在代码中只写静态方法名而省略函数名</li>
+<li>对于较大数的运算可以考虑用 <code>BigInteger</code> 变量，相比于 <code>double BigDecimal</code> 能避免精度丢失问题<br>注意 <code>BigInteger</code> 的运算方式要调用 <code>.add .multiply</code> 等方法来进行</li>
+<li>在Java中将一个方法放入类中，相当于C语言中定义一个函数，具体的语法格式为<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">访问权限 [<span class="keyword">static</span>] 返回值类型 方法名(参数列表)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> 表达式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>生成随机数的一个惯用语句：<code>Random ran = new Random(System.currentTimeMills());</code>,这个语句使用当前时间作为“种子”来生成随机数</li>
+<li>从JDK5.0开始，Java支持可变参数，基本代码如 <code>&lt;variables class&gt;... &lt;variables name&gt;</code>,注意当函数具有多个参数时，可变参数只能放在所有参数的最后（放前面识别不出来结束）<br>在调用可变参数方法时系统自动为可变参数创造一个数组，在函数中以数组形式调用可变参数</li>
+<li>对于 <code>System.out.println()</code> 可以输出不同类型参数，实际上调用了 <code>write(String.valueOf(&lt;variable&gt;))</code> 来将不同变量转化为String类型，再由write方法输出到终端</li>
+<li>看PPT突然发现读取输入的另一种方式 <code>int x = Integer.parseInt(args[0]);</code> 可以直接读取第一行的数据（尤其是对于只有一个数输入的情况很好用）</li>
+<li>在这里就已经能发现引用类内方法的迹象了 <code>Class ClassName = new Class()</code> ,具体的解释在[[#^bea8b9]]</li>
+<li>计算机不能精确的比较浮点数，因此在执行 <code>0.00001 == 0.00000000000001</code> 时会返回true，因此应该比较其差的绝对值是否在某个范围之内 <code>Math.Abs(i-j) &lt; 1e-10</code></li>
+</ul>
+<h2 id="Lesson5-Java中的类和对象"><a href="#Lesson5-Java中的类和对象" class="headerlink" title="Lesson5: Java中的类和对象"></a><em>Lesson5: Java中的类和对象</em></h2><hr>
+<ul>
+<li>Java中的类和对象可以理解成每个类都是为了某些特定对象而服务的方法集，在一个类中封装了面向一类对象的处理方法，而面向用户只开放特定的简单接口</li>
+</ul>
+<ol>
+<li>编写类的方法如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>/<span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">class_name</span>&#123;</span><br><span class="line">	<span class="keyword">public</span>/<span class="keyword">private</span> &lt;variable class&gt; variable_name;</span><br><span class="line">	<span class="keyword">public</span>/<span class="keyword">private</span> &lt;<span class="keyword">return</span> value variable class&gt; function_name(parameter List)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>调用一个自定义类可以使用 <code>Class class_name = new Class()</code> 的语法，在调用类中的具体方法或者变量时使用 <code>class_name.&lt;variable_name&gt;()</code>  ^bea8b9</li>
+<li>我们在定义一个原始类型的变量时Java会要求立刻显式初始化变量，并且JDK会直接为该变量分配内存，如 <code>int value = 100;</code> ,而当我们声明一个对象类型的变量时系统不会立刻为变量分配内存，而是会让这个对象类型变量初始化为null，即 <code>Class obj = null;</code> ，如果一个对象变量不引用一个真实存在的已定义对象，就必须初始化为null</li>
+<li>在对象类型变量的赋值上，对于像如下这种类型的赋值，相当于把<code>other</code>类的指针也指向了<code>obj</code>类型的地址，因此当我们更改other类中的方法或者变量时，会导致obj类型中的变量同时发生改变，这个可以和[[CS61B学习笔记#^14da37]]类比着看<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">    &#123;</span><br><span class="line">       <span class="type">MyClass</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyClass</span>(); </span><br><span class="line">       <span class="type">MyClass</span> <span class="variable">other</span> <span class="operator">=</span> obj;</span><br><span class="line">       other.x = <span class="number">19</span>;</span><br><span class="line">       System.out.println(obj.x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">19</span>;</span><br><span class="line">&#125;</span><br><span class="line">&gt;&gt;&gt; <span class="number">19</span></span><br></pre></td></tr></table></figure></li>
+<li>相似的，在判断两个对象类型变量是否相等时尽量不要用 <code>==</code> ,这样比较的是两个对象的地址是否相同（对于上面那个情况是可以的，但是如果是重新<code>new</code>了一个对象变量就不行了），尽量使用 <code>.equals()</code> 方式来比较(代码在这里<a href="D:\大学资料\Road-To-CSAI\Java-Programming-for-Scientific-Problems\Class3Lesson5Code\ObjectEquals.java">ObjectEquals</a>)<ul>
+<li><input disabled type="checkbox"> 对于这个 <code>.equals()</code> 的调用有点没看懂，讲义里写道有重写(override)和重载(overload)两种方式: 重写方式在方法前要加上 <code>@Override</code> 表示此方法是重写 <code>Object</code> 基类的的同名方法（这种以“@”打头的标记被称为“Annotation”），在方法中的对象类型参数为 <code>Object</code> 类型；而如果直接重载 <code>.equals()</code> 方法就不需要附加 <code>@Override</code> 标记，同时由于重载中 <code>.equals()</code> 的父类已经是最顶层的 <code>Object</code> 类，所以参数类型为当前方法所处的类名<br>在代码的这一部分：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="title function_">MyTestClass</span> <span class="params">(<span class="type">int</span> initValue)</span>&#123;</span><br><span class="line">   Value = initValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 以上位于类中的定义被称作类的构造方法（也被称作构造函数），构造方法的名称与类相同，没有返回值；同一个类可以有很多个构造函数，具体的构造函数由参数来区分，并且可以通过 <code>this</code> 来进行相互调用</li>
+</ul>
+</li>
+<li>可以在类中直接使用 <code>&#123;&#125;</code> 将一个字段包裹起来，直接作为这个类的一个字段，作为类的“初始化块”，前面加上 <code>static</code> 就是静态初始化字段</li>
+<li>在类中可以定义静态字段 <code>static int total_employee_id</code>，在调用时需要以类名为前缀进行调用（用对象变量也行但不推荐）</li>
+<li>代码在这里<a href="D:\大学资料\Road-To-CSAI\Java-Programming-for-Scientific-Problems\Class3Lesson5Code\TestStaticInitializeBlock.java">TestStaticInitializeBlock</a><ul>
+<li><code>extends</code> 表示继承，在定义一个类 <code>class &lt;class_name&gt; extends &lt;father_class_name&gt;</code> 表示一个类继承了一个父类的属性，在执行当前新定义类之前一定会先执行父类的初始化；同时，静态初始优先于所有的初始，因此静态初始化模块会优先执行</li>
+<li><code>super</code> 关键字代表当前对象的父类型特征，可以和 <code>this</code> 类比来看，当子类构造方法第一行中没有 <code>super</code> 定义时系统会自动加上无参数的 <code>super()</code> 方法，详细的解释可以看这个帖子<a target="_blank" rel="noopener" href="https://blog.csdn.net/pipizhen_/article/details/107165618">Java中super关键字及super()的使用</a> ^1f05af</li>
+</ul>
+</li>
+<li>类的静态方法只能访问类的静态成员，静态初始化块只执行一次，同时创建子类型的对象时，父类型中的静态初始化块也会被执行</li>
+<li>Java中提供了一系列的包装类（引用类型，可以创建相应对象），简单来说就是把基本变量类型首字母大写，具体作用是为基本数据类型提供了一些方法和字段，可以使用 <code>import package.class</code> 来引用一个包，也可以在文件前使用 <code>package &lt;包的路径(把/换成.)&gt;</code> 语句来将类加入到指定的包中<br>在对上述这种进行将类放入自定义包中操作的文件进行编译时，使用 <code>javac -d 文件相对路径 文件名.java</code> 命令，系统会自动按照 <code>package</code> 语句中的路径创建文件夹并将 <code>.class</code> 文件放在文件夹中，但注意执行可执行文件时需要在根目录执行类似这样 <code>java Try.test.Hello</code> 的命令才能偶正确运行</li>
+<li>学到了一个新的类：<code>StringBuffer / StringBuilder</code> 可以直接用 <code>.append() .insert() .delete()</code> 来对字符串进行一系列操作</li>
+</ol>
+<h1 id="Class3"><a href="#Class3" class="headerlink" title="Class3"></a>Class3</h1><h2 id="Lesson6-Java程序设计中的字符串"><a href="#Lesson6-Java程序设计中的字符串" class="headerlink" title="Lesson6: Java程序设计中的字符串"></a><em>Lesson6: Java程序设计中的字符串</em></h2><hr>
+<ol>
+<li>上来就是老生常谈好吧：<code>String</code> 类型比较相同不能使用 <code>==</code> ,用string自带的判定方式 <code>.equals()</code> 来进行判断（Java自带的内存压缩机制导致相同的变量可能被指向同一个地址，而如果 <code>new</code> 一个变量会导致指向一个全新分配的地址，<code>==</code> 比较的不是元素值而是地址，所以会返回 <code>false</code>）</li>
+<li><code>compareTo</code> :使用字典法进行比较,返回0表两字串相等,小于返回负值,大于返回正值</li>
+<li>这些方法记录在这，用的时候自己查吧(bushi): <ol>
+<li><code>regionMatches</code>: 比较两字串的某一部分是否相等</li>
+<li><code>startsWith</code>和<code>endsWith</code>: 查询字符串是否以某字符串开始或结尾</li>
+<li><code>indexOf</code>和<code>lastIndexOf</code>: 在字串中查找字符或子串</li>
+<li>操作函数</li>
+</ol>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>功能函数</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.substring(StartIndex, EndIndex)</code></td>
+<td>查找字符串中某一段的内容(经典含前不含后)</td>
+</tr>
+<tr>
+<td><code>str1.concat(str2)</code></td>
+<td>将str2接到str1后</td>
+</tr>
+<tr>
+<td><code>.replace(OldChar, NewChar)</code></td>
+<td>将旧字符替换为新字符</td>
+</tr>
+<tr>
+<td><code>.trim()</code></td>
+<td>去除头尾空格</td>
+</tr>
+<tr>
+<td><code>.toUpperCase() .toLowerCase()</code></td>
+<td>大小写转换</td>
+</tr>
+<tr>
+<td><code>.getChars(srcstart, srcend, string, strIndex)</code></td>
+<td>获取从指定位置起的子串复制到字符数组中</td>
+</tr>
+<tr>
+<td>4. <code>StringBuffer/StringBuilder</code>类的常用使用方法：<code>StringBuilder</code> 相较 <code>StringBuffer</code> 有速度优势</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>构造方法：<code>StringBuffer string = new StringBuffer(String str)</code></li>
+<li>操作函数</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>功能函数</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.capacity()</code></td>
+<td>不另外分配内存情况下 <code>StringBuffer</code> 还能存放的字符个数</td>
+</tr>
+<tr>
+<td><code>.ensureCapacity(int capacity)</code></td>
+<td>明确 <code>StringBuffer</code> 的最小容量</td>
+</tr>
+<tr>
+<td><code>.setLength(int length)</code></td>
+<td>指定 <code>StringBuffer</code> 变量的长度</td>
+</tr>
+<tr>
+<td><code>.charAt(int index)</code></td>
+<td>返回 <code>StringBuffer</code> 中位于 <code>index</code> 位的字符</td>
+</tr>
+<tr>
+<td><code>.setCharAt(int index, char ch)</code></td>
+<td>替换 <code>StringBuffer</code> 中位于 <code>index</code> 位的字符为 <code>ch</code></td>
+</tr>
+<tr>
+<td><code>.getChars(int IndexOfPrevious, int length, char[] str, IndexOfNew)</code></td>
+<td>将 <code>StringBufffer</code> 中的字符片段拷贝到字符数组中</td>
+</tr>
+<tr>
+<td><code>.reverse()</code></td>
+<td>倒转 <code>StringBuffer</code></td>
+</tr>
+<tr>
+<td><code>.append(char[]/String str)</code></td>
+<td>在 <code>StringBuffer</code> 后加上一段字符串</td>
+</tr>
+<tr>
+<td><code>.insert(int index, string/char[] str)</code></td>
+<td>从第 <code>index</code> 位开始插入字符串</td>
+</tr>
+<tr>
+<td><code>.deleteCharAt(int index)</code> &amp; <code>delete(int StartIndex, int EndIndex)</code></td>
+<td>删除 <code>StringBuffer</code> 中的某一个(段)字符</td>
+</tr>
+</tbody></table>
+<h2 id="Lesson7-Java中的正则表达式"><a href="#Lesson7-Java中的正则表达式" class="headerlink" title="Lesson7: Java中的正则表达式"></a><em>Lesson7: Java中的正则表达式</em></h2><p>^b2609e</p>
+<hr>
+<ul>
+<li>PS：当初听[[Missing-Semester学习笔记]]里面[[Missing-Semester学习笔记#^cd331a]]数据整理这一节的时候一点都没听懂，倒是没想到现在还是得学hhh<br>正则表达式：对字符串本身具有特性的形式化表达，用来描述字符串“模式”<br><strong>正则表达式主要由普通字符和元字符(meta character)组成</strong></li>
+</ul>
+<ol>
+<li>字串字面量匹配(literal)<br><code>/abc/</code>匹配“abc”字符串(但不会匹配到像<code>&quot;a bc&quot;</code>的字符串，空格会影响到字串匹配)，但是这样的方式只会匹配到文档中最前面的那个匹配字符串，在命令中选择global模式 <code>/abc/g</code> 可以匹配文档中全部匹配字串</li>
+<li>“元字符”匹配<ol>
+<li>元字符指正则表达式中具有一些特殊含义的字符，主要有 <code>\ . * + - &#123;&#125; [] ^ $ | ? () : ! =</code> 等，例如 <code>.</code> 代表任意一个单个字符，<code>*</code> 代表任意一段字串</li>
+<li>当我们想把元字符当作普通字符使用时，就需要使用 <code>&#39;\&#39; + 元字符</code> 来对元字符进行转义</li>
+<li>其他的特殊字符</li>
+</ol>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>要匹配的字符</th>
+<th>在正则表达式中应该写…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tab</td>
+<td><code>\t</code></td>
+</tr>
+<tr>
+<td>回车，换行</td>
+<td><code>\r</code>(代表回车)，<code>\n</code>(代表换行)，<code>\r\n</code>(代表回车换行)</td>
+</tr>
+<tr>
+<td>ESC</td>
+<td><code>\e</code></td>
+</tr>
+<tr>
+<td>ASC码字符</td>
+<td>如<code>0xA9</code>要写作:<code>\xA9</code></td>
+</tr>
+<tr>
+<td>Unicode字符</td>
+<td>如<code>4e00</code>要写作：<code>\u4e00</code></td>
+</tr>
+<tr>
+<td>3. 定义可选字符集合</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>使用 <code>[</code> 和 <code>]</code> 定义字符串中某个位置（注意是单个位置）的“候选字符集合”</li>
+<li>例如 <code>[aeiou]</code> 表示搜索这五个字符; <code>gr[ea]t</code> 表示搜索 <code>gret</code> 和 <code>grat</code>，即在第四位是e或a的字符</li>
+<li>同时使用 <code>-</code> 可以定义一个字符区间，如 <code>[0-9]</code> 可以表示10个数字，<code>[A-Z]</code> 表示26个大写字母</li>
+<li>特例：<code>[50-99]</code> 真实的意义并不表示50-99这个数字区间，而是相当于 <code>[5][0-9][9]</code> 实际上就是0-9的区间；如果要表示50-99则应该分位进行搜索，即 <code>[5-9][0-9]</code></li>
+</ul>
+<ol start="4">
+<li>定义例外字符集合<ul>
+<li>使用 <code>^</code> 定义在某文档中排除的字符，如 <code>see[^mn]</code> 表示排除掉以mn结尾的单词，<code>[^a-z]</code> 表示排除掉所有小写字母</li>
+</ul>
+</li>
+<li>处理特殊的字符<br>对于 <code>] - ^ \</code> 包围在 <code>[]</code> 中有时候需要进行转义，如 <code>/var [[(] [0-9] [\])]/</code> 表示数字由 <code>[]</code> 或 <code>()</code> 包围（后边的 <code>]</code> 为了不与可选字符集合边界混淆需要进行转义）</li>
+<li>字符集合的缩写 <img src="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020231026235908.png"><ul>
+<li>浅总结一下：小写 <code>d w s</code> 分别表示数字、数字和大小写、空白(包括空格、Tab、回车（\r）和换行（\n）)，大写的 <code>D W S</code> 就表示非前面说的字符</li>
+</ul>
+</li>
+<li>处理重复的“贪婪量词”<ul>
+<li><code>*</code> 表示指定字符重复0次或n词，<code>+</code> 表示指定字符出现1次或n次，<code>?</code> 表示指定字符出现0次或一次。(注意：如果不加括号的话贪婪量词都只作用于紧跟着的前一个字符)</li>
+</ul>
+</li>
+<li>指定次数的重复<br>使用 <code>&#123;min, max&#125;</code> 来指定重复次数，其中min必填且最小为0，而max可选<ul>
+<li>如 <code>\d&#123;4,&#125;</code> 表示最小四位的的数字字串，<code>\d&#123;4&#125;</code> 表示4位数字字串 </li>
+<li>注意默认情况下系统会自动匹配尽可能多的字符，而可以使用一种叫“Lazy Expression”的表达方式使其匹配尽可能少的字符—<code>*? &#123;min, max&#125;? +? ??</code>(其实就是重复量词后面加个？)</li>
+</ul>
+</li>
+<li>分组<br><code>()</code> 把若干个字符当作一个整体进行处理</li>
+<li>多选一<ul>
+<li>使用 <code>|</code> 从多个选项中选择一个进行匹配，左边的选项具有高优先级。如 <code>w(ie|ei)rd</code> 匹配weird和wierd</li>
+</ul>
+</li>
+<li>字符串的开头与结尾<ul>
+<li>使用 <code>^</code> 来指定起始字符，如 <code>^\d+[a-z]*</code> 表示以至少一个数字开头，后面接任意个数的小写字母</li>
+<li>使用 <code>$</code> 来指定结束字符，如 <code>^\d\-[a-z]+$</code> 表示至少以一个小写字母为结尾的字符串，如 <code>5-adfjk</code><br>!!要注意的是正则表达式默认引擎都是singleline，即对于所行文本只会匹配最开头和最结尾的字符；想要匹配多行首尾字符则需要切换Multline anchors模式!!  <img src="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020231027085858.png"></li>
+</ul>
+</li>
+<li>处理单词的边界<ul>
+<li>使用 <code>\b</code> 和 <code>\B</code> 来代表单词的边界和非单词的边界，如匹配段落中的所有单词可以使用 <code>\b\w+\b</code></li>
+</ul>
+</li>
+<li>反向引用<ol>
+<li>可以使用 <code>\1 \2 ...</code> 来引用前面出现过的已经被 <code>()</code> 分组的字符组</li>
+<li>由于一般正则表达式引擎都只能处理9个反向引用，我们使用 <code>?:</code> 来指定某字符组不参与反向引用；如 <code>(?:orange) and (peach) to \1</code> 会匹配到 <code>orange and peach to peach</code> 而不是 <code>orange and peach to orange</code></li>
+</ol>
+</li>
+<li>断言<ul>
+<li>可以使用 <code>?=</code> 给字符串加上条件判断以影响匹配进程，要注意的点是，<code>?=</code> 后的正则表达式并不会出现在匹配字符串中，他们只用来影响匹配进程</li>
+<li>同时，使用判断后能够回到起点的断言，可以对一个字符串根据多个标准进行判断</li>
+<li>可以使用 <code>?!</code> 表示一个“否”断言，如 <code>?!.*4321</code> 表示不包含4321的字串</li>
+<li>使用 <code>?&lt;=</code> 和 <code>?&lt;!</code> 可以明确告知正则引擎进行断言回退，如 <code>/(?&lt;=base)ball/</code> 表示如果发现了ball，就应回退检查其前面是不是base，若是则匹配</li>
+</ul>
+</li>
+<li>Java中对正则表达式的编译(pattern)和匹配(matcher)方法<ol>
+<li>在 <code>String</code> 类中，<code>matches()</code> 方法可以验证字符串是否符合指定的正则表达式，<code>replaceAll()</code> 方法可以将符合正则表达式的字符串替换为指定的字符串，<code>split()</code> 可以以正则表达式进行分割</li>
+<li>如果某正则表达式需要用很多次，则可以先调用java.util.regex包中的 <code>Pattern</code> 类的 <code>compile</code> 方法得到一个“编译后”的 <code>Pattern</code> 对象，再调用其 <code>matcher</code> 方法得到一个 <code>Matcher</code> 对象，对 <code>Matcher</code> 对象调用它的 <code>matches()</code> 方法进行正则表达式验证，模板如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="type">Pattern</span> <span class="variable">expression</span> <span class="operator">=</span> Pattern.compile(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="type">Matcher</span> <span class="variable">matcher</span> <span class="operator">=</span> expression.matcher(str1);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (matcher.find())</span><br><span class="line"> System.out.println(matcher.group());</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h2 id="Lesson8-Java中的继承、抽象类与接口"><a href="#Lesson8-Java中的继承、抽象类与接口" class="headerlink" title="Lesson8: Java中的继承、抽象类与接口"></a><em>Lesson8: Java中的继承、抽象类与接口</em></h2><hr>
+<ul>
+<li>继承<br>  <strong>指既具有父类的一切特性，同时又具有自己的独有特性，通常称为 <code>IS_A</code> 关系</strong><ol>
+<li><p>继承的语法：<code>class &lt;child class&gt; extends &lt;parent class&gt; &#123;&#125;</code>，其中parent class和super class通常指某一类的直接上级，而base class通常指公共的基类</p>
+</li>
+<li><p>子类自动拥有父类声明为 <code>public</code> 和 <code>protected</code> 的成员，这也是继承特性的体现之一（下附继承条件下类的访问权限表）</p>
+<table>
+<thead>
+<tr>
+<th>声明</th>
+<th>访问权限规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>public</code></td>
+<td>外界自由访问</td>
+</tr>
+<tr>
+<td><code>private</code></td>
+<td>外界不可访问</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>同一包中的子类、派生于同一父类的包的子类都可以访问</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>如果不指明任何权限，默认同一包中的类可以访问</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>使用继承类时，其实系统都会默认在第一行有一个 <code>super()</code>,而我们可以在第一行使用 <code>super(variables)</code> 来调用父类中参数匹配的其他功能；但无论如何，<strong>子类的构造方法在运行之前，必须调用父类的构造方法。</strong> 具体可以康康这个[[#^1f05af]]</p>
+</li>
+<li><p>以 <code>final</code> 声明的类不允许覆盖和更改，可以更加方便的用于多线程环境中</p>
+</li>
+<li><p>父类与子类之间的关系可以有以下三种：</p>
+<ol>
+<li><code>Extends</code>(扩充): 子类中定义的方法在父类中没有同名方法</li>
+<li><code>Override</code>(覆盖&#x2F;重写): 子类和父类定义了完全一样的方法<br>在“+”运算中，当一个变量和String类型变量执行操作时，系统会自动隐式调用其 <code>toString()</code> 方法将其转化为字符串类型变量；默认情况下该方法返回 <code>&lt;class name&gt; + hashnode</code>，而如果需要其输出其他有意义信息则可以在当前类中重写该 <code>toString()</code> 方法 <strong>注意一定要和父类方法一模一样！！否则就是重载(overload)了</strong></li>
+<li><code>Overload</code>(重载): 子类和父类的方法名相同，但两者的参数类型或数不一样</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>抽象类<br>  <strong>有abstract修饰的类称为抽象类;在方法前加上abstract就形成了抽象方法</strong><ol>
+<li>抽象类只定义了什么方法应该存在，不能创建对象，必须派生出一个子类，并在子类中实现其未实现的方法之后，才能使用new关键字创建对象；抽象方法只有方法声明，没有实现代码。例：  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">person</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">getDesCription</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  抽象类中可以包含非抽象方法和静态变量，即包含抽象方法的类一定是抽象类，但是抽象类中的方法不一定都是抽象方法</li>
+<li>抽象类的三种类型<ol>
+<li>直接定义抽象方法</li>
+<li>继承一个抽象父类，但没有包含所有父类中的抽象方法（如果包含了所有抽象方法就可以作为一个子类创建对象了，不再是抽象类）</li>
+<li>实现了一个接口，但没有完全包含该接口所包含的抽象方法</li>
+</ol>
+</li>
+<li>抽象类的使用<br>抽象类不能直接创建对象，通常用来引用子类对象，语法格式如下：<code>&lt;abstract class&gt; &lt;abstract class variable&gt; = new &lt;child class from abstract class&gt;</code></li>
+<li>抽象类的作用<br>在我们进行程序设计时，可以先思考项目需要实现什么功能，这些功能步骤就相当于是抽象的行为，即抽象类；然后我们可以再通过继承方法，实现对应更为细致功能的类，以此实现模块化的程序设计</li>
+</ol>
+</li>
+<li>接口<ol>
+<li>定义一个接口使用关键字 <code>interface</code>，实现一个接口采用关键字 <code>implements</code>;接口的成员函数自动成为public的，数据成员自动成为static和final的。</li>
+<li>接口使用语法：<code>接口类型 接口类型的变量 = new 实现了接口的具体类型();</code></li>
+<li>接口的扩充：使用 <code>extends</code> 继承来扩充已有接口并实现一个新的接口；需要注意的是，实现子接口的类，必须实现“父”“子”接口所定义的所有方法，才能被实例化（即new出一个对象）</li>
+<li>接口中定义常量：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ArrayBound</span>&#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">lower_bound</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">upper_bound</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+以这种方式定义的接口常量，只要被一个类声明实现，就可以直接使用这些常量(<strong>变量必须被初始化</strong>)</li>
+<li>接口可以理解为，面向符合该接口设定类的一组需求<blockquote>
+<p><strong>接口与抽象类的区别</strong>：</p>
+<ol>
+<li>抽象类是一个不完全的类；接口则只表明类有哪些外部特征但不涉及具体实现细节</li>
+<li>接口不具备继承特点，只是承诺了外部可调用的方法</li>
+<li>一个类可以包含多个接口，但是只能继承一个父类</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Lesson9-Java程序设计之多态"><a href="#Lesson9-Java程序设计之多态" class="headerlink" title="Lesson9: Java程序设计之多态"></a><em>Lesson9: Java程序设计之多态</em></h2><hr>
+<ul>
+<li><strong>多态(polymorphism)：指相同的一条语句在不同的类中进行不同的解释，在不同的运行环境中能够运行出不同的结果</strong></li>
+</ul>
+<ol>
+<li>多态的最本质特征即父类（或接口）变量可以引用子类对象（或实现了接口的类），即将子类对象当作基类对象来使用，可以让更一般的对象容纳更具体化的对象：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Parent</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">child</span>();</span><br></pre></td></tr></table></figure></li>
+<li>基类变量与子类变量之间的赋值<ol>
+<li>子类对象可以直接赋给基类对象变量</li>
+<li>基类对象赋给子类对象变量需要进行变量类型转换，语法为 <code>&lt;child class variable&gt; = (child class)&lt;base class&gt;</code>；可以使用 <code>classA instanceof classB</code> 来判断一个对象是否能转换成指定的类型，转换失败会抛出 <code>ClassCastException</code> 异常</li>
+</ol>
+</li>
+<li>当子类和父类具有同名方法，并且让一个父类变量引用一个子类变量时，具体调用哪个方法取决于对象本身的类型是父类还是子类</li>
+<li>如果父类和子类中具有相同的字段，子类中访问方法会访问子类本身的方法，父类中的方法会被隐藏（如果确实需要访问使用 <code>super</code> 关键字）；而如果子类被当作父类使用时则会调用父类中的方法</li>
+<li>当多个类实现同一接口中的方法时，针对这些类所创建的对象调用接口所定义的方法时，会分别调用相应的类的具体实现代码。同时，编译器在编译上述代码时采取“滞后绑定”(late bind)方法，即编译器在编译时并不知道调用了哪个方法<br>如果没有进行强制转换，编译器会将所有都识别为父类的方法和字段值，因此在TestPolymorphism示例中输出的 <code>value</code> 值都是父类的100，而当我们进行强制转换后，经反编译我们可以看出编译器会进行 <code>checkcast</code> 操作识别出字符串值的具体归属</li>
+<li>使用多态最大的好处即修改程序或是扩充系统时修改代码较少，且对其他代码部分的影响较小<br><strong>面向对象编程的思想就是，先构思过程，再细化每个过程涉及的相关数据，最后再针对具体数据完善对应的操作</strong></li>
+</ol>
+<h2 id="小专题之快速幂和矩阵快速算法"><a href="#小专题之快速幂和矩阵快速算法" class="headerlink" title="小专题之快速幂和矩阵快速算法"></a>小专题之快速幂和矩阵快速算法</h2><hr>
+<ol>
+<li>快速幂算法基本步骤：<ol>
+<li>将指数n表示为其二进制形式。例如，将n表示为二进制数 $n &#x3D; b_k * 2^k + b_{k-1} * 2^{k-1} + … + b_1 * 2 + b_0$，其中 $b_i$ 表示二进制位的值（0或1），k 是二进制位数。</li>
+<li>初始化一个变量 result 为 1，用于存储最终的计算结果。 </li>
+<li>从最高位开始，从左向右遍历二进制位。对于每一位 $b_i$，进行以下操作：</li>
+</ol>
+<ul>
+<li>如果 $b_i$ &#x3D; 1，将 result 乘以底数（要求的数的幂），即 result &#x3D; result * base。</li>
+<li>将底数 base 自乘一次，即 base &#x3D; base * base。</li>
+</ul>
+<ol start="4">
+<li>继续遍历下一位，重复步骤3，直到遍历完所有二进制位。  </li>
+<li>当遍历完所有位后，result 就包含了底数的n次幂的值。</li>
+<li>快速幂代码示例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">FastNthRoot</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> sqrt)</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> <span class="variable">base</span> <span class="operator">=</span> num;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (sqrt &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((sqrt&amp;<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            result *= base;</span><br><span class="line">        &#125;</span><br><span class="line">        base *= base;</span><br><span class="line">        sqrt = sqrt &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>矩阵快速乘法(斐波那契数列)：</li>
+</ol>
+<ul>
+<li>使用矩阵来表示斐波那契数列关系式 <code>F(n) = F(n-1) + F(n-2)</code> 如下：$$\begin{bmatrix}F(n) \F(n-1)\end{bmatrix}&#x3D;\begin{bmatrix}1 &amp; 1 \1 &amp; 0\end{bmatrix}\times\begin{bmatrix}F(n-1) \F(n-2)\end{bmatrix}$$  利用快速幂算法计算矩阵 $\begin{bmatrix}1 &amp; 1 \1 &amp; 0\end{bmatrix}$ 的n-1次幂，结果矩阵的第<code>[0][0]</code>项就是斐波那契数列的第n项</li>
+</ul>
+<h2 id="小专题之位运算相关"><a href="#小专题之位运算相关" class="headerlink" title="小专题之位运算相关"></a>小专题之位运算相关</h2><hr>
+<ol>
+<li>位运算符号概览</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+<th>运算规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>与(且)运算</td>
+<td>两位都为1时才返回1</td>
+</tr>
+<tr>
+<td>|</td>
+<td>或运算</td>
+<td>两位都为0时才返回0</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或运算</td>
+<td>两位相同为0，不同为1</td>
+</tr>
+<tr>
+<td>~</td>
+<td>取反运算</td>
+<td>0变1，1变0</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移运算</td>
+<td>各二进位全部左移若干位，高位丢弃，低位补0</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移运算</td>
+<td>各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的补0（逻辑右移）</td>
+</tr>
+<tr>
+<td>2. 按位与 <code>&amp;</code> 运算符</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>例如：<code>3 &amp; 5 = 0011 &amp; 0101 = 0001</code>, 故 3&amp;5 返回1</li>
+<li>用途<ol>
+<li>清零：将各位与0进行相与操作，均返回为0</li>
+<li>判断奇偶：只需根据二进制末位是0还是1来判断，即 <code>if((a&amp;1)==0)</code> 来判断是不是偶数(1的前几位都是0只有最后一位能产生效果)</li>
+</ol>
+</li>
+<li>按位或 <code>|</code> 运算符<ol>
+<li>例如：<code>3 | 5 = 0011 | 0101 = 0111</code>, 故 3|5 返回7</li>
+</ol>
+</li>
+<li>异或 <code>^</code> 运算符<ol>
+<li>交换律、结合律、自反性均成立</li>
+<li>用途<ol>
+<li>与0相异或值不变</li>
+<li>交换两个数(代码示例如下)<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Swap</span><span class="params">(<span class="type">int</span> &amp;a, <span class="type">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (a != b)</span><br><span class="line"> &#123;</span><br><span class="line">  a ^= b;</span><br><span class="line">  b ^= a;</span><br><span class="line">  a ^= b;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>左移 <code>&lt;&lt;</code> 右移 <code>&gt;&gt;</code> 运算符<ol>
+<li>左移相当于各二进制位全部左移若干位，左边的位丢弃，右边补0；如 <code>a = 10101110; a = a &lt;&lt; 2</code> 执行操作后相当于 <code>a = 10111000</code><br><strong>若舍弃的高位不含1，则每左移一位都相当于该数乘2</strong></li>
+<li>将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃；如 <code>a = a &gt;&gt; 2</code> 执行操作后相当于 <code>a = 00101011(a &gt; 0)</code> 或 <code>a = 11101011(a &lt; 0)</code><br><strong>操作数每右移一位相当于该数除二</strong></li>
+</ol>
+</li>
+</ol>
+<h1 id="Class4"><a href="#Class4" class="headerlink" title="Class4"></a>Class4</h1><h2 id="Lesson10-泛型程序设计"><a href="#Lesson10-泛型程序设计" class="headerlink" title="Lesson10: 泛型程序设计"></a><em>Lesson10: 泛型程序设计</em></h2><hr>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><ol>
+<li>使用泛型的目的：限制集合能接收的数据类型，并且避免了类型转换的需要。语法一般为如 <ul>
+<li><input checked disabled type="checkbox"> <code>ArrayList&lt;String&gt; strList = new ArrayList&lt;String&gt;();</code></li>
+</ul>
+</li>
+<li>相关术语<ol>
+<li><code>ArrayList&lt;E&gt;</code> 定义了一个泛型类型，<code>E</code> 称为“类型变量”或“类型参数”</li>
+<li><code>ArrayList&lt;Integer&gt;</code> 称为“参数化的类型”，<code>Integer</code> 称为“实际类型参数”。</li>
+<li><code>ArrayList</code> 称为泛型类型 <code>ArrayList&lt;E&gt;</code> 的“原始类型(raw type)”</li>
+</ol>
+</li>
+<li>使用泛型可以减少类的数目，同时能在编译中检查代码中的类型错误</li>
+<li>注意：Java7后语法变为：<code>ArrayList&lt;String&gt; strList = new ArrayList&lt;&gt;();</code></li>
+<li>泛型对象具有自动装箱特性，即如 <code>ArrayList&lt;Integer&gt; IntList = new ArrayList&lt;&gt;();  IntList.add(3);</code> 实际上是按照 <code>IntList.add(Integer.valueOf(3));</code> 来进行的；<code>int n = IntList.get(0)</code> 将被按照 <code>int n = IntList.get(0).intValue()</code> 来执行。因此在使用泛型类时应尽可能明确数据类型，防止在循环中过多出现装拆箱现象</li>
+<li>泛型使用须知：<ol>
+<li>泛型参数必须是引用类型而不能是基本数据类型，即只能为 <code>Double String Integer</code> 等</li>
+<li>不能定义泛型化数组<ul>
+<li><input checked disabled type="checkbox"> 像 <code>Pair&lt;String&gt;[] strPair = new Pair&lt;String&gt;[10]</code> 是不可接受的</li>
+</ul>
+</li>
+<li>泛型类型不能直接创建实例</li>
+<li>泛型类不能继承自 <code>Throwable</code> 类(Java中所有错误或异常的超类)，所以我们也不能直接捕获或抛出泛型类型的异常对象</li>
+<li>不能定义静态 <code>static</code> 泛型成员</li>
+</ol>
+</li>
+<li>从泛型类中派生子类<ol>
+<li>不允许基类中具有泛型参数，即 <code>class MyChild extends MyClass&lt;String&gt;</code> 可以编译但<ul>
+<li><input checked disabled type="checkbox"> <code>class MyChild extends MyClass&lt;T&gt;</code> 是错误的</li>
+</ul>
+</li>
+<li>如果继承自泛型类的子类不指定实际类型参数，则泛型参数类型默认为 <code>Object</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h3><ol>
+<li>泛型方法的定义<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">class</span> <span class="title class_">ArrayAlg</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">getMiddle</span><span class="params">(T[ ] a)</span> &#123;</span><br><span class="line">                  <span class="keyword">return</span> a[a.length / <span class="number">2</span>];</span><br><span class="line">          &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   String[] names = ...</span><br><span class="line"><span class="comment">/*下面的两句代码等价，编译器能自动推断传入参数的实际类型*/</span></span><br><span class="line">   <span class="type">String</span> <span class="variable">middle</span> <span class="operator">=</span> ArrayAlg.&lt;String&gt;getMiddle(names);</span><br><span class="line">   <span class="type">String</span> <span class="variable">middle</span> <span class="operator">=</span> ArrayAlg.getMiddle(names);</span><br></pre></td></tr></table></figure></li>
+<li>泛型类同样可以接收 <code>...</code> 定义的可变参数类型</li>
+</ol>
+<h3 id="泛型的多态特性"><a href="#泛型的多态特性" class="headerlink" title="泛型的多态特性"></a>泛型的多态特性</h3><ol>
+<li>泛型多态特性实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenericPolymorphism</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		List&lt;Number&gt; nums=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Number&gt;();</span><br><span class="line">		nums.add(<span class="number">2</span>);</span><br><span class="line">		nums.add(<span class="number">3.14</span>);</span><br><span class="line">		<span class="keyword">for</span> (Number number : nums) &#123;</span><br><span class="line">			System.out.println(number.getClass());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>一个值得注意的点是，<code>ArrayList&lt;Number&gt;</code> 对象可以直接赋值给 <code>List&lt;Number&gt;</code> 变量</li>
+<li><code>add()</code> 方法奏效的原因是因为 <code>Integer</code> 和 <code>Double</code> 类都是 <code>Number</code> 类的子类</li>
+<li><code>List&lt;Number&gt;</code> 不是 <code>List&lt;Integer&gt;</code> 的基类型，所以</li>
+</ol>
+</li>
+</ol>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://binisalegend.github.io">Binisalegend</a>
+            <p>原文链接：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+            <p>发表日期：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 7th 2023, 11:58:22 pm</a>
+            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 11:32:08 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Missing-Semester学习笔记">
+                    <div class="nextTitle">Missing-Semester学习笔记</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2446479002@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/binisalegend" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/WeChat.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/QQ.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Class1"><span class="toc-number">1.</span> <span class="toc-text">Class1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class2"><span class="toc-number">2.</span> <span class="toc-text">Class2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson3-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.</span> <span class="toc-text">Lesson3: Java程序设计语法基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson4-Java%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">Lesson4: Java中的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson5-Java%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.</span> <span class="toc-text">Lesson5: Java中的类和对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class3"><span class="toc-number">3.</span> <span class="toc-text">Class3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson6-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.1.</span> <span class="toc-text">Lesson6: Java程序设计中的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson7-Java%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">Lesson7: Java中的正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson8-Java%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.3.</span> <span class="toc-text">Lesson8: Java中的继承、抽象类与接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson9-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B9%8B%E5%A4%9A%E6%80%81"><span class="toc-number">3.4.</span> <span class="toc-text">Lesson9: Java程序设计之多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E4%B8%93%E9%A2%98%E4%B9%8B%E5%BF%AB%E9%80%9F%E5%B9%82%E5%92%8C%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95"><span class="toc-number">3.5.</span> <span class="toc-text">小专题之快速幂和矩阵快速算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E4%B8%93%E9%A2%98%E4%B9%8B%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3"><span class="toc-number">3.6.</span> <span class="toc-text">小专题之位运算相关</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class4"><span class="toc-number">4.</span> <span class="toc-text">Class4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson10-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.1.</span> <span class="toc-text">Lesson10: 泛型程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="toc-number">4.1.1.</span> <span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text">泛型方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7"><span class="toc-number">4.1.3.</span> <span class="toc-text">泛型的多态特性</span></a></li></ol></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 3
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/CS61A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">CS61A学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Missing-Semester学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span>
+            <a class="archive-post-title" href="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java程序设计学习笔记</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="Python">
+                <span class="iconfont-archer">&#xe606;</span>
+                Python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Java语言学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                Java语言学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="杂技学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                杂技学习
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://binisalegend.github.io",
+        root: siteMetaRoot,
+        author: "Binisalegend"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>

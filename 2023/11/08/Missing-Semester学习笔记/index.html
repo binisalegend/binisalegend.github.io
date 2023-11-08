@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Binisalegend">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Binisalegend">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="本文是一些零散的如命令行、Git、vim的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Missing-Semester学习笔记">
+<meta property="og:url" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Binisalegend的博客">
+<meta property="og:description" content="本文是一些零散的如命令行、Git、vim的学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-08T02:28:04.000Z">
+<meta property="article:modified_time" content="2023-11-08T02:30:28.711Z">
+<meta property="article:author" content="Binisalegend">
+<meta property="article:tag" content="杂技学习">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>Missing-Semester学习笔记 · Binisalegend&#39;s Studio</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>锅中冰's Studio.</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">锅中冰&#39;s Studio.</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">Missing-Semester学习笔记</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+    
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                Missing-Semester学习笔记
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="杂技学习">杂技学习</a>
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/11/08</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <p>本文是一些零散的如命令行、Git、vim的学习笔记</p>
+<span id="more"></span>
+
+<h1 id="1-课程概览与shell"><a href="#1-课程概览与shell" class="headerlink" title="1. 课程概览与shell"></a>1. 课程概览与shell</h1><h2 id="使用shell"><a href="#使用shell" class="headerlink" title="使用shell"></a><em>使用shell</em></h2><h3 id="教材部分"><a href="#教材部分" class="headerlink" title="教材部分"></a>教材部分</h3><ul>
+<li>shell根据空格分割命令并进行解i析，如果要传入的参数中包含空格，一种方式是应用单双引号，另一种方法是应用转义字符<code>\</code>进行处理（<code>My\ Photos</code>）</li>
+</ul>
+<h3 id="课程视频部分"><a href="#课程视频部分" class="headerlink" title="课程视频部分"></a>课程视频部分</h3><h2 id="在shell中导航"><a href="#在shell中导航" class="headerlink" title="在shell中导航"></a><em>在shell中导航</em></h2><h3 id="教材部分-1"><a href="#教材部分-1" class="headerlink" title="教材部分"></a>教材部分</h3><ol>
+<li>shell中的路径是被分割的目录，在Linux和MacOS中使用 <code>/</code> 分割，而在Windows上是 <code>\</code> </li>
+<li><code>pwd</code>：获取当前工作目录</li>
+<li><code>cd</code>：切换目录</li>
+<li><code>.</code> 表示当前目录， <code>..</code> 表示上级目录(在使用<code>cd</code>和<code>ls</code>命令时都可以用)</li>
+<li><code>ls</code>：查看指定目录下含有哪些文件</li>
+<li>大多数的命令都可以接受标记选项，通常以<code>-&lt;命令字母&gt;</code>的形式表示，例如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">missing:~$ <span class="built_in">ls</span> --<span class="built_in">help</span></span><br><span class="line">-l				使用较长格式列出信息</span><br><span class="line"></span><br><span class="line">missing:~$ <span class="built_in">ls</span> -l /home</span><br><span class="line">总用量 4</span><br><span class="line">drwxr-xr-x 29 binisalegend binisalegend 4096 8月  11 00:05 binisalegend</span><br></pre></td></tr></table></figure>
+其中，<code>d</code>表示<code>missing</code>是一个目录，而后面的字母三个为一组。<code>rwx</code>、<code>r-x</code>、<code>r-x</code>分别表示文件所有者(<code>missing</code>)、用户组(<code>user</code>)以及其他所有人所具有的权限：即只有<code>missing</code>作为文件所有者具有可写(<code>write</code>)权限，用户组和其他访问者均只有可读(<code>read</code>)和可执行(<code>execute</code>)权限</li>
+<li>其他命令：<code>mv</code> -&gt; 重命名或移动文件、<code>cp</code> -&gt; 拷贝文件、<code>mkdir</code> -&gt; 新建文件夹</li>
+<li>如果想了解一个函数或者是指令的输入输出形式和工作信息，可以<code>man &lt;指令&gt;</code>(manual的缩写)，并用<code>q</code>退出</li>
+</ol>
+<h3 id="课程视频部分-1"><a href="#课程视频部分-1" class="headerlink" title="课程视频部分"></a>课程视频部分</h3><ol>
+<li><code>cd ~</code>可以直接返回到home目录下，<code>cd -</code>可以快速返回到上一步所在的目录</li>
+<li><code>rm &lt;文件路径&gt;</code>：只能删除单个文件；<code>rmdir &lt;文件目录路径&gt;</code>： 删除一个目录(dictionary)</li>
+<li>类似<code>mkdir my photos</code>这样的指令会创建两个文件夹分别问my和photos，如果想要创建一个名为my photos的文件夹则需要用双引号引用<code>mkdir &quot;my photos&quot;</code>或者使用转义空格<code>mkdir my\ photos</code></li>
+</ol>
+<h2 id="在程序间创建连接"><a href="#在程序间创建连接" class="headerlink" title="在程序间创建连接"></a><em>在程序间创建连接</em></h2><h3 id="教材部分-2"><a href="#教材部分-2" class="headerlink" title="教材部分"></a>教材部分</h3><ol>
+<li><code>&lt; 文件名</code> 和 <code>&gt; 文件名</code> 可以将程序的输入输出重定义到文件，具体如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">missing:~$ <span class="built_in">echo</span> hello &gt; hello.txt</span><br><span class="line">missing:~$ <span class="built_in">cat</span> hello.txt</span><br><span class="line">hello</span><br><span class="line">missing:~$ <span class="built_in">cat</span> &lt; hello.txt</span><br><span class="line">hello</span><br><span class="line">missing:~$ <span class="built_in">cat</span> &lt; hello.txt &gt; helloooootxt</span><br><span class="line">missing:~$ <span class="built_in">cat</span> hellooooo.txt</span><br><span class="line">hello</span><br></pre></td></tr></table></figure></li>
+<li>可以借助 <code>|</code> 将一个程序的输出与另外一个程序的输入联系起来，例如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">missing:~$ <span class="built_in">ls</span> -l / | <span class="built_in">tail</span> -n1  <span class="comment">#第一个命令输出所包含全部文件夹的详细信息，第二个命令则输出文件中的最后&lt;number&gt;行</span></span><br><span class="line">drwxr-xr-x   2 root root       4096 12月 18  2022 work</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="课程视频部分-2"><a href="#课程视频部分-2" class="headerlink" title="课程视频部分"></a>课程视频部分</h3><ol>
+<li><code>&gt;</code> 相当于在进行一个覆盖操作，而 <code>&gt;&gt;</code> 则是在进行追加操作，具体演示如下：![[Pasted image 20230812001054.png]]</li>
+<li>吐了吐了…老是看到老师在讲课的时候突然命令行里就能出现上一步的命令内容，查了半天发现最后就是一个上键…直接人傻掉，不过也顺便查到了很多常用的linux快捷键：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. Ctrl + L：清空终端中所有的内容并返回当前的目录</span><br><span class="line">2. Ctrl + C：强制中断某个程序的执行</span><br><span class="line">3. Ctrl + D：结束键盘输入（不知道和上面那个有啥区别）</span><br><span class="line">4. !!：重复执行上一步的命令</span><br><span class="line">5. Ctrl Shift C/V：复制粘贴</span><br><span class="line">6. Ctrl + A：快速回到当前行最左一个字符</span><br></pre></td></tr></table></figure></li>
+<li><code>|</code> 被称作”pipe characater”(管道字符)：将程序的输出放在左侧，将程序的输入放在右侧。这也可以对前面的<code>ls -l / | tail -n1</code>进行解释，即<code>ls -l</code>产生了一个输出，而<code>tail -2</code>则是一个需要输入的命令</li>
+</ol>
+<h2 id="一个功能全面又强大的工具"><a href="#一个功能全面又强大的工具" class="headerlink" title="一个功能全面又强大的工具"></a><em>一个功能全面又强大的工具</em></h2><h3 id="教材部分-3"><a href="#教材部分-3" class="headerlink" title="教材部分"></a>教材部分</h3><ol>
+<li>对于类Unix系统，根用户(root user)几乎不受任何限制，需要应用<code>sudo</code>(super do)命令来执行。而有一些操作是只有根用户才能够进行的，例如向<code>sysfs</code>文件中写入内容</li>
+</ol>
+<h3 id="课程视频部分-3"><a href="#课程视频部分-3" class="headerlink" title="课程视频部分"></a>课程视频部分</h3><ol>
+<li><code>/sys</code>目录中存放着电脑的各种内核参数，只有root用户才能对这些内核参数进行更改，除去<code>sudo</code>命令之外，我们也可以应用<code>sudo su</code>进入root命令行界面来进行操作与更改</li>
+</ol>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a><em>课后练习</em></h2><ol>
+<li><code>touch &lt;新文件名&gt;</code>：本质上是改变一个文件的时间戳（修改时间），也可以新建一个文件</li>
+<li>如果直接访问一个文件夹要用完整的路径例如<code>/home/binisalegend/missing/semester</code>，但是实际上发现好像<code>./semester</code>就可以</li>
+<li>~~写入文件的时候可以使用<code>&gt;&gt;</code>来写入文件，暂时看起来的作用是换行</li>
+<li><code>rm -rf &lt;文件路径&gt;</code>：删除文件</li>
+<li>在执行文件遇到权限不足的情况时可以用<code>ls -l &lt;文件名&gt;</code>来查看文件权限，然后用 <code>chmod [权限名称] &lt;文件名&gt;</code> 来更改文件权限，其中可读权限为4、可写权限为2、可执行权限为1，即如果想分别设置所有者、用户和其他人的权限为全部、可读可写、可读，则语句为 <code>chmod 764 semester</code>。具体相关细节详见以下：![[capture-2023-08-11-20-57-14.jpg]]</li>
+<li>之后的这个问题很有意思，相当于把smester文件执行的内容输出中的一条拷贝到last-modified文件中，具体命令如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./semester | grep last-modified &gt; last-modified.txt</span><br></pre></td></tr></table></figure>
+可以理解成<code>./semester</code>是运行这个文件，用 <code>|</code> 让后面的<code>grep last-modified</code>同时执行，即注意<code>grep</code>命令抓取last-modified所在的输出并将其添加到<code>last-modified.txt</code>文件中</li>
+</ol>
+<h1 id="2-shell工具和脚本"><a href="#2-shell工具和脚本" class="headerlink" title="2. shell工具和脚本"></a>2. shell工具和脚本</h1><ul>
+<li><input checked disabled type="checkbox"> 这节教材没看明白(听课一开始也似懂非懂 所以直接听到啥记点啥)</li>
+</ul>
+<h2 id="shell脚本"><a href="#shell脚本" class="headerlink" title="shell脚本"></a><em>shell脚本</em></h2><ol>
+<li>赋值语句的表示即为<code>foo=bar</code>，而访问变量中存储的数值的语法即为<code>$foo</code>。值得注意的是，在bash种如果输入命令<code>foo = bar</code>是不能正确执行命令的，因为系统会调用<code>foo</code>并把<code>=</code>和<code>bar</code>作为函数的参数。这是本人第一次遇到在语句中<strong>增添空格会导致程序执行失败</strong>的例子，务必多加小心</li>
+<li>同时要注意双引号<code>&quot;&quot;</code>和单引号<code>&#39;&#39;</code>的区别，即双引号中会访问变量实际存储的数据值，而单引号则会全部保留原有的数据格式(变量不会被转义)，演示如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~/missing$ <span class="built_in">echo</span> <span class="string">&quot;Value is <span class="variable">$foo</span>&quot;</span></span><br><span class="line">Value is bar</span><br><span class="line">~/missing$ <span class="built_in">echo</span> <span class="string">&#x27;value is $foo&#x27;</span></span><br><span class="line">Value is <span class="variable">$foo</span></span><br></pre></td></tr></table></figure></li>
+<li>一种在权限不足的情况下重新尝试命令的方法是运用 <code>!!</code> 命令，即可以在执行某个命令系统提示”Permission denied”后，使用<code>sudo !!</code>来快速运用sudo权限来再一次执行命令</li>
+<li>在Linux中Vim文本编辑器中，想要对文本进行修改可以使用”Esc“或者”Ctrl + 【“ 快捷键进入编辑模式（我的不知道为什么好像要再按一下A才能开始编辑），其中<code>-w</code>为保存命令，<code>-wq</code>为保存并退出编辑器</li>
+<li>在bash脚本中有很多特殊的参数来表示参数，错误代码和相关变量，其中一些如下：<ul>
+<li><code>$0</code> - 脚本名</li>
+<li><code>$1</code> 到 <code>$9</code> - 脚本的参数。 <code>$1</code> 是第一个参数，依此类推。</li>
+<li><code>$@</code> - 所有参数</li>
+<li><code>$#</code> - 参数个数</li>
+<li><code>$?</code> - 前一个命令的返回值</li>
+<li><code>$$</code> - 当前脚本的进程识别码</li>
+<li><code>$_</code> - 上一条命令的最后一个参数。如果你正在使用的是交互式 shell，你可以通过按下 <code>Esc</code> 之后键入 . 来获取这个值。</li>
+</ul>
+</li>
+<li>使用<code>echo $?</code>检查错误命令时，输出0表示一切正常没有错误，输出1表示前面的命令语句出现了问题，其中<code>true</code>后<code>echo $?</code>返回始终为0，<code>false</code>后始终返回1(这个感觉有点奇怪好像Linux里面true和false是小写)</li>
+<li>在bash中也有”或”和”与”运算符，它们都属于短路运算符。其中<code>||</code>或运算符在符号前语句没有0错误代码时(即<code>echo $?</code>返回不为0，语句有问题)便会执行符号后的语句，反之，如果符号前语句错误代码为0，则符号后语句会被短路不会被执行，同时如果错误代码均不为0则不输出且错误代码返回1；而<code>&amp;&amp;</code>与运算符则只在前后错误代码均为0时才会执行语句。示例如下：![[Pasted image 20230813222634.png]]</li>
+<li>可以使用分号在一行中打印多个语句，不管执行什么都会全部执行所有语句：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; false ; echo &quot;This will always print&quot;</span><br><span class="line">This will always print</span><br></pre></td></tr></table></figure></li>
+<li>我们可以以变量的形式获取一个命令的输出，这种方式通常被称作命令替换(command substitution), 例如：![[Pasted image 20230813232317.png]]<br> 其中，有一些点值得注意：在扩展字符串的时候记得用双引号而不是单引号，原因详见2.2；同时在调用的时候要使用<code>$ &lt;变量名称&gt;</code>，可以类比一下C语言中格式化赋予变量值的操作。 ^1f484b<br>  同时，还有一种相对冷门的类似特性被称为进程替换(process substitution)。其通过<code>&lt;(&lt;命令语句&gt;)</code>来将执行命令的结果保存到一个临时文件中，同时可以将两个命令所得结果进行串联，例如<code>cat &lt;(ls) &lt;(ls ..)</code>会打印当前文件目录和上级文件目录中的全部内容名称<br>  下面是一组应用命令替换和进程替换的例子：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/missing/example.sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Starting program at <span class="subst">$(date)</span>&quot;</span> <span class="comment"># date会被替换成日期和时间</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Running program <span class="variable">$0</span> with <span class="variable">$#</span> arguments with pid $$&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    grep foobar <span class="string">&quot;<span class="variable">$file</span>&quot;</span> &gt; /dev/null 2&gt; /dev/null <span class="comment">#grep用于在某个文件中中搜索子字符串</span></span><br><span class="line">    <span class="comment"># 如果模式没有找到，则grep退出状态为 1</span></span><br><span class="line">    <span class="comment"># 我们将标准输出流和标准错误流重定向到Null，因为我们并不关心这些信息</span></span><br><span class="line">    <span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span>  <span class="comment"># -ne表示不等于</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;File <span class="variable">$file</span> does not have any foobar, adding one&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;# foobar&quot;</span> &gt;&gt; <span class="string">&quot;<span class="variable">$file</span>&quot;</span>  </span><br><span class="line">    <span class="keyword">fi</span>  <span class="comment"># fi表示循环语句结束</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+^4dd971</li>
+</ol>
+<p>程序运行后得到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~/missing$ ./example.sh mcd.sh</span><br><span class="line">Starting program at 2023年 08月 14日 星期一 18:12:03 CST</span><br><span class="line">Running program ./example.sh with 1 arguments with pid 20563</span><br><span class="line">File mcd.sh does not have any foobar, adding one</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>当我们需要提供形式类似的参数时，可以应用shell的通配(globbing)，它可以基于文件扩展名展开表达式，其中主要包含通配符 <code>*</code> 和 <code>?</code> 以及大括号 <code>&#123;&#125;</code> 。其中 <code>?</code>用来匹配一个任意字符，而 <code>*</code> 可以匹配任意个字符；而大括号 <code>&#123;&#125;</code> 可以展开一系列包含一段公共子串的指令，这种方式在批量移动和转换文件时非常方便。以下是一些示例：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">convert image.&#123;png,jpg&#125;</span><br><span class="line"><span class="comment"># 会展开为</span></span><br><span class="line">convert image.png image.jpg</span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> /path/to/project/&#123;foo,bar,baz&#125;.sh /newpath</span><br><span class="line"><span class="comment"># 会展开为</span></span><br><span class="line"><span class="built_in">cp</span> /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以结合通配使用</span></span><br><span class="line"><span class="built_in">mv</span> *&#123;.py,.sh&#125; folder</span><br><span class="line"><span class="comment"># 会移动所有 *.py 和 *.sh 文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> foo bar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面命令会创建foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h这些文件</span></span><br><span class="line"><span class="built_in">touch</span> &#123;foo,bar&#125;/&#123;a..h&#125;  <span class="comment"># ..表示省略中间的部分，注意不要随意添加空格</span></span><br><span class="line"><span class="built_in">touch</span> foo/x bar/y</span><br><span class="line"><span class="comment"># 比较文件夹 foo 和 bar 中包含文件的不同</span></span><br><span class="line">diff &lt;(<span class="built_in">ls</span> foo) &lt;(<span class="built_in">ls</span> bar) <span class="comment">#流程替换，相当于将两个输出共同存放到一个临时文件中进行储存比较</span></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># &lt; x</span></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"><span class="comment"># &gt; y</span></span><br></pre></td></tr></table></figure></li>
+<li>同时，脚本并不一定只有在bash中才能使用，我们也可以将其写在诸如python等文件中，通过<code>shebang</code>来为内核提供去运行脚本所需的编辑器位置，这时我们通常要在文件开头第一行使用<code>env</code>命令，通过环境变量搜索来进行定位，例如<code>#!/usr/bin/env python</code>。应用这种方式我们就可以使用任意语言来运行程序了。</li>
+</ol>
+<h2 id="shell工具"><a href="#shell工具" class="headerlink" title="shell工具"></a><em>shell工具</em></h2><ol>
+<li>有时我们在<code>man</code>一个函数时由于其雕有了Linux的官方文件，导致其通常会列出该函数的所有用法，显示过于冗长。因此我们可以应用一个<code>tldr &lt;函数名&gt;</code>来相对更简洁的获取函数的具体应用方式。</li>
+<li>在shell中，我们可以借助<code>find</code>命令在仅提供一定模糊信息的情况下来寻找一个文件(夹)所在的位置。其中，<code>-name</code> 用来指定所寻找的文件名；<code>-type</code> 用来指定所寻找的文件类型(如<code>d</code>表示文件夹。<code>f</code>表示文件等)；<code>-path</code>用来指定在何位置路径寻找(可以用* ？等符号来指定有一定相同之处的多个路径)；<code>-mtime</code>用来指定修改时间(如<code>-1</code>表示最后一天修改的文件内容)等。<br>同时，在执行结束<code>find</code>语句后可以应用 <code>-exec</code> 直接执行一些相关的命令。例如<code>find . -m &quot;*.tmp&quot; =exec rm &#123;&#125; \</code> 即寻找所有扩展名为tmp格式的文件并且删除。<br>PS: 省流简化版：<code>fd &quot;.*py&quot;</code> </li>
+<li>还有另一个查找文件的命令<code>locate &lt;文件名&gt;</code>，会输出所的文件的绝对路径，即简历路径下该文件的索引。同时还可以应用<code>sudo updatedb</code>命令来更新数据库。</li>
+<li>在试图获取文件内容时，我们可以应用 <code>grep &lt;要搜索的字符串&gt; &lt;文件名&gt;</code> 函数来执行这个操作，系统会输出包含这个字符串的行；同时我们也可以用 <code>grep -R &lt;要搜索的字符串&gt; &lt;文件目录&gt;</code> 来令程序在整个目录中遍历搜索。<br>还有很多选项如：<code>-C</code> (注意是大写) ：获取查找结果的上下文；<code>-v</code> 将对结果进行反选，也就是输出不匹配的结果。举例来说， <code>grep -C 5</code> 会输出匹配结果前后五行。</li>
+<li>同时还有一系列的获取文件内容的方式，例如 <code>rg(ripgrep) &lt;搜索内容&gt; &lt;文件名或者搜索路径&gt;</code> 等，其中<code>rg</code>会以更为清晰明了的形式(颜色突出)展现搜索结果，包括文件名、搜索内容所在的行数</li>
+<li>我们还有一系列的来查找执行过的命令的方法，一种常用的方式便是使用上箭头，另一种方式则是应用<code>history &lt;搜索的命令数&gt;</code>命令，同时也可以利用管道结合<code>grep</code>来具有目的性的搜索我们所执行过的指令，即 <code>history &lt;命令数&gt; | grep &lt;相关字符串&gt;</code>  。<br>我们也可以采用 <code>Ctrl + R</code>快捷键来对命令历史记录进行回溯搜索，在按下快捷键后可以通过输入相关字符串来进行精确搜索</li>
+<li>自己配置了一个zsh环境，个人感觉很好用吧(至少对于我这种喜欢漂亮窗口字体的人来说很好用)，同时也提供了一系列命令提示和代码高亮的功能，具体配置方法可以看下这几个帖子：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/manastudent/p/6568287.html">zsh 简单介绍 - LiuChengloong - 博客园 (cnblogs.com)</a><br><a target="_blank" rel="noopener" href="https://regding.github.io/ubuntu-zsh#:~:text=Zsh%201%20%E5%AE%89%E8%A3%85%20Zsh%20%24%20sudo%20apt-get%20install,%E8%8B%A5%E8%BE%93%E5%87%BA%E4%B8%BA%20%2Fbin%2Fzsh%20%E6%88%96%E8%80%85%20%2Fusr%2Fbin%2Fzsh%20%E5%88%99%E8%A1%A8%E7%A4%BA%E5%BD%93%E5%89%8D%E9%BB%98%E8%AE%A4%20Shell%20%E6%98%AF%20Zsh">使用 Zsh 作为 Ubuntu 的默认 Shell (regding.github.io)</a></li>
+<li>最后是一些相对零散的用来进行快速的列表导航的小工具，例如 <code>ls -R</code> 可以快速产生文件夹内的文件结构，应用 <code>tree</code> 可以以更清楚的方式来展示文件夹内的各种关系等。</li>
+</ol>
+<h2 id="课后练习-1"><a href="#课后练习-1" class="headerlink" title="课后练习"></a><em>课后练习</em></h2><ol>
+<li>Linux中以 <code>.</code> 开头的文件为隐藏文件，可以使用 <code>ls -all (ls -a)</code> 命令来显示全部隐藏文件。同时常用的几个命令有：<code>-g</code> 不显示文件的所有者，<code>--human-readable (-h)</code> 可以将文件的大小按照”MB KB GB”这样易读的形式显示出来，<code>-lt</code> 将文件按照访问时间排序并输出详细信息，<code>ls --color=auto</code> 可以根据文件类型显示出不同的颜色(如果在zsh中安装了相关的插件就不需要了)。</li>
+<li>首先，这个题一定要用到前面的命令替换[[#^1f484b]]，即以变量的形式获取一个命令的输出，在本题中如 <code>echo &quot;$(pwd)&quot;</code> 可以获取当前的地址。<br>着重理解一下下面这条语句：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;$(cat &quot;$HOME/marco_history.log&quot;)&quot;</span><br></pre></td></tr></table></figure>
+其中 <code>cd</code> 后以及 <code>cat</code> 后的 <code>&quot;&quot;</code> 均表明要进入的目录是后面这一段（需要执行引号内的命令——双引号），<code>$()</code> 表示命令执行后的内容将会以变量形式调用。<br>还有另一种感觉很神奇的思路：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> #!/bin/zsh</span><br><span class="line"> marco()&#123;</span><br><span class="line">export MARCO=$(pwd)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> polo()&#123;</span><br><span class="line">  cd &quot;$MARCO&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+自己理解的大概思路是定义一个储存当前地址的环境变量 <code>NARCO</code> ，然后直接调用</li>
+<li>这个其实个人不太理解，从网上查了一下相关的先理解一下题示代码吧，包括[[#^4dd971]]这里也有一样的东西，就是那个 <code>2&gt; 和 &gt;&amp;2</code> ，原题示代码和相关知识点理解如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/env zsh</span><br><span class="line"></span><br><span class="line">n=$(( RANDOM % 100 ))</span><br><span class="line">if [[ n -eq 42 ]];then</span><br><span class="line">     echo &quot;Somethong went wrong!&quot;</span><br><span class="line">     &gt;&amp;2 echo &quot;The error was using magic numbers&quot;</span><br><span class="line">     exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo &quot;Everything went according to the plan&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每个文件在执行后都会产生至少三个文件描述符，分别是：0–标准输入(stdin)  1–标准输出(stdout)  2–标准错误(stderr)</li>
+<li>举例来说，假如一个文件夹内只有一个文件<code>hello1.txt</code>，当输入命令 <code>ls &#123;hello1,hello2&#125;.txt</code> 就会报错 <code>ls: 无法访问 &#39;hello2.txt&#39;: 没有那个文件或目录\nhello1.txt</code> ，这时我们可以使用命令 <code>ls &#123;hello1,hello2&#125;.txt &gt;right.txt 2&gt;wrong.txt</code> ，这样终端中就不会输出内容(因为返回值都重定向到相应的文件中了)，而 <code>cat</code> 两个文件内容分别为 <code>hello1.txt</code> 和  <code>ls: 无法访问 &#39;hello2.txt&#39;: 没有那个文件或目录</code> 。</li>
+<li>而 <code>&amp;</code> 是一个描述符，如果1和2前面不加&amp;，会被zsh视作一个普通文件。在这种情况下，<code>(1)&gt;&amp;2</code> 就表示将标准输出重定向到标准错误中去，如果标准错误被定义到例如某个log文件，那么标准输出也被定义到那个log文件中去，终端上看不到任何信息。<br>然后我们可以在理解源代码的基础上思考如何解题了。又是经典的有思路但一行代码写不出来…. 首先要明确的是在一个脚本文件中可以运行另一个脚本并且将其运行结果进行重定向。然后我们可以引入一个计数器 <code>count</code> 初始化为0，应用 <code>echo &gt; out.log</code> 命令清除已有的日志；接下来，因为我们要让程序运行到直到随机数产生42才结束，故我们设置一个无限循环，在循环中让程序不断运行，并将其标准输出和错误都重定向到out.log文件中，当运行出现错误即 <code>$? -ne 0</code> 时推出新循环，返回count。于是我们得出了以下程序，注意zsh中循环的语法，可以替换为for，until等语句：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/env zsh</span><br><span class="line"></span><br><span class="line">echo &gt; out.log</span><br><span class="line">count=0</span><br><span class="line"></span><br><span class="line">while true;do</span><br><span class="line"> ./example1.sh &amp;&gt;&gt; out.log</span><br><span class="line"> if [[ $? -ne 0 ]];then</span><br><span class="line">  cat out.log</span><br><span class="line">  echo &quot;Example1 went wrong after running $count times!&quot;</span><br><span class="line">  break</span><br><span class="line"> fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>这个就不多bb了好吧，直接解释代码就行了，代码如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/missing find . -type f -name &quot;*.html&quot; | xargs -d &#x27;\n&#x27; tar -cvzf html.zip</span><br></pre></td></tr></table></figure>
+管道前面的部分都很好理解，<code>xargs</code> 通俗理解就是可以将一个命令转化传给另一个命令，<code>-d</code> 后面可以指定一个定界符；对于 <code>tar</code> 的解释可以查看这个帖子<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42862247/article/details/118031287">tar中的参数 cvf,xvf,cvzf,zxvf的区别_tar xvf_想要一百块的博客-CSDN博客</a>，重要的内容如下：</li>
+</ol>
+<ul>
+<li><p>参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c: 建立压缩档案</span><br><span class="line">-x：解压</span><br><span class="line">-t：查看内容</span><br><span class="line">-r：向压缩归档文件末尾追加文件</span><br><span class="line">-u：更新原压缩包中的文件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-z：有gzip属性的</span><br><span class="line">-j：有bz2属性的</span><br><span class="line">-Z：有compress属性的</span><br><span class="line">-v：显示所有过程</span><br><span class="line">-O：将文件解开到标准输出</span><br></pre></td></tr></table></figure>
+<p><code>–delete</code> 从存档中删除 注意是两个减号。<br>下面的参数<code>-f</code>是必须的<br><code>-f</code>: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+<h1 id="3-编辑器-Vim"><a href="#3-编辑器-Vim" class="headerlink" title="3. 编辑器(Vim)"></a>3. 编辑器(Vim)</h1><p>当这一节开始时，我开始意识到，前面的一个我看似理解的指令 <code>vim ~/.zshrc</code> 实际上便是用vim编辑器来编辑一个文件，而此时请自动忽略前面所有关于vim中快捷键的内容，包括切换模式等，她们都是在我不了解vim的时候擅自使用后产生的一些自我理解，忘掉他们！Then we start…<br>PS: 以下内容大部分都可以通过 <code>vimtutor</code> 来进行练习</p>
+<h2 id="Vim的哲学"><a href="#Vim的哲学" class="headerlink" title="Vim的哲学"></a><em>Vim的哲学</em></h2><p>Vim的思路是，在进行编程时将手从键盘移动到鼠标是一种极其繁琐费时的操作，所以在Vim中所有操作都可以通过键盘来实现。<br>因为用的不太熟练，也不明白原理，所以把可能每次都需要配置一下的命令记录在这里，可以把Esc和Ctrl键重定义到CapsLock键（借用了这位大佬的思路<a target="_blank" rel="noopener" href="https://blog.ruo-chen.wang/2020/04/map-capslock-to-esc-and-ctrl.html#%E4%B9%8B%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE">将 Caps Lock 映射为 Escape 和 Ctrl | weirane’s blog (ruo-chen.wang)</a>）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将CapsLock定义为Ctrl</span></span><br><span class="line">setxkbmap -option ctrl:nocaps</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将CapsLock定义为Esc</span></span><br><span class="line">xcape -e &#x27;Control_L=Escape&#x27;</span><br></pre></td></tr></table></figure>
+<h2 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a><em>编辑模式</em></h2><p>vim编辑器中通常处在标准模式(normal)，还有一系列其他的模式如插入模式(insert): 用来编辑插入代码(<code>i</code>)、替换模式(replace): 用于覆盖文本，将前面的代码向前推(<code>R</code>)、一般可视化模式(visual)(<code>V</code>)、可视化行模式(visual-line)(<code>shift + V</code>)、可视化块模式(visual-block)(<code>Ctrl + V</code>)、命令行模式(command-line)(<code>:</code>)等。(返回normal模式时按下<code>Esc</code>)</p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a><em>基本操作</em></h2><p>这其中的一大部分操作是通过命令行模式(command-line)来实现的，即在标准模式下按下 <code>:</code> 后输入命令。可以将其类比成上两节中的shell，只不过这个命令行窗口属于vim。命令行窗口有一系列可执行的命令，例如：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">:q(<span class="keyword">quit</span>) :<span class="keyword">qa</span> 退出 退出所有窗口</span><br><span class="line">:<span class="keyword">w</span>(<span class="keyword">write</span>) 保存</span><br><span class="line">:<span class="keyword">wq</span> 保存并退出</span><br><span class="line">:<span class="keyword">help</span> <span class="symbol">&lt;command&gt;</span> 显示对<span class="keyword">command</span>的帮助文档</span><br><span class="line">:<span class="keyword">e</span> <span class="symbol">&lt;filename&gt;</span> 打开要编辑的文件</span><br><span class="line">:<span class="keyword">ls</span> 打开现在已经打开的文件列表（缓存）</span><br><span class="line">:<span class="keyword">sp</span> 将同一个文件(缓冲区)在上下两个窗口中打开</span><br></pre></td></tr></table></figure>
+
+<h2 id="Vim接口作为编程语言的一些特性"><a href="#Vim接口作为编程语言的一些特性" class="headerlink" title="Vim接口作为编程语言的一些特性"></a><em>Vim接口作为编程语言的一些特性</em></h2><p>vim正常情况下处于标准模式，在标准模式下，有很多快捷键可以让我们很方便快捷的对文件进行移动、检索、编辑等一系列操作，具体的一些实例如下：(救命心态真的会崩太多了沃日)</p>
+<ul>
+<li>移动命令<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">h <span class="keyword">j</span> <span class="keyword">k</span> <span class="keyword">l</span>: 左下上右移动光标</span><br><span class="line"><span class="keyword">w</span>: 将光标移动到下一个单词</span><br><span class="line"><span class="keyword">b</span>: 将光标向前移动到单词开头</span><br><span class="line"><span class="keyword">e</span>: 将光标移动到单词末尾</span><br><span class="line"><span class="number">0</span> $: 将光标移动到行首和行末</span><br><span class="line">^: 将光标移动到一行中第一个非空字符</span><br><span class="line">Ctrl + U/D: 将整个页面向上或向下翻动</span><br><span class="line">gg/G: 移动到整个文件的第一行和最后一行</span><br><span class="line">L M H: 将光标移动到当前显示界面的最下方/中间和最上方</span><br><span class="line"><span class="keyword">f</span>/F&lt;字符&gt; t/T&lt;字符&gt;: 寻找到在当前光标所在位置之前/之后的第一个所求字符，<span class="keyword">f</span>在其之上，t在其之前/后</span><br><span class="line">/: 进行搜索 使用<span class="keyword">N</span>/n分别进行向上和向下的查找</span><br><span class="line">%: 用来找到如中括号等符号所对应的另一半</span><br></pre></td></tr></table></figure></li>
+<li>编辑命令<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i：插入命令，在当前位置切换到Insert模式，可以插入字符</span><br><span class="line">O/<span class="keyword">o</span>：在光标所在行上/下新建一行，并切换到输入模式</span><br><span class="line"><span class="keyword">x</span>：删除光标所在当前字符</span><br><span class="line">r/R + &lt;替换字符&gt;：用替换字符对一个或多个字符进行替换</span><br><span class="line"><span class="keyword">u</span>/Ctrl+R：撤销，分别等同于Ctrl+Z和Ctrl+Shift+Z</span><br><span class="line">~：可以将小写字母转换为大写字母(可结合可视化模式使用)</span><br></pre></td></tr></table></figure>
+ 以下的四个常用命令都可以结合可视化模式(Visual Mode)来进行，分别用v、V和Ctrl+V来进入基本、行和可视化块模式，并结合移动键来更便捷的实现选中操作。<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d + &lt;移动命令&gt;：删除(如dw表示删除一个单词，de表示删除到这个单词的末尾，dd表示删除整行)</span><br><span class="line"><span class="keyword">c</span> + &lt;移动命令&gt;：基本和上面命令效果相同，只是删除之后进入插入模式</span><br><span class="line"><span class="keyword">y</span>&amp;<span class="keyword">p</span> + &lt;移动命令&gt;: 操作方式与上面相同，分别表示复制和粘贴</span><br></pre></td></tr></table></figure></li>
+<li>计数命令<br>以上命令都可以结合数字来确定一个命令执行的次数。例如<code>4j</code>表示向下移动四行，<code>3e</code>向前移动三个单词，<code>7dw</code>表示删除7个单词等。有用的一点是vim中左侧标出了其他行与当前的差值行数，就可以根据这个应用<code>&lt;number&gt; j/k</code>来进行快速导航了。</li>
+<li>修饰命令<br>修饰符主要有 <code>i</code> 和 <code>a</code> ，分别表示“在内“和”周围“的含义。以下是一些示例：<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ci( : 改变当前括号内的内容</span><br><span class="line"><span class="keyword">di</span>[ : 删除方括号内的内容</span><br><span class="line">da<span class="string">&#x27; : 删除一个单引号字符串，包括周围的单引号</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="demo示例"><a href="#demo示例" class="headerlink" title="demo示例"></a><em>demo示例</em></h2><ol>
+<li>可以借助 <code>G</code> 命令快速跳转文件的最后一行以添加新的内容</li>
+<li>借助 <code>/</code> 搜索命令可以快速跳转到你想编辑的位置</li>
+<li><code>e</code> 移到词末，<code>w</code> 向前移动一个单词，<code>$</code> 移到行末等命令在定位并修改一些细小错误中非常有用</li>
+<li><code>.</code> 可以重复执行刚刚进行过的编辑命令等</li>
+</ol>
+<h1 id="4-数据整理"><a href="#4-数据整理" class="headerlink" title="4. 数据整理"></a>4. 数据整理</h1><p>^cd331a</p>
+<ul>
+<li><input checked disabled type="checkbox"> 破防了破防了家人们谁懂啊，真的这节课就感觉一个字没听懂我真的服辣(50分钟的课我听了37分钟我甚至不知道我该从哪里记起)，没办法，放链接吧…<br>视频链接：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=sz_dsktIjt4">Lecture 4: Data Wrangling (2020) - YouTube</a><br>教材链接：<a target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/2020/data-wrangling/">数据整理 · the missing semester of your cs education (missing-semester-cn.github.io)</a></li>
+<li>哦莫，Java课讲这个了，这下不得不听了（睡），移步那边吧~[[Java程序设计笔记#^b2609e]]</li>
+</ul>
+<h1 id="5-命令行环境"><a href="#5-命令行环境" class="headerlink" title="5. 命令行环境"></a>5. 命令行环境</h1><h2 id="任务控制-Job-Control"><a href="#任务控制-Job-Control" class="headerlink" title="任务控制(Job Control)"></a><em>任务控制(Job Control)</em></h2><h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><p>当我们在命令行环境中按下 <code>Ctrl + C</code>，shell会为我们打断一个正在进行的进程。深层来讲，终端会向程序发送一个 <code>SIGINT --&gt; signal interrupt</code> 信号告诉程序自行停止。我们可以通过 <code>man signal</code> 指令来查看这些信号以及其对应的数字表示符和简短的描述。<br>我们可以使用以下代码来简单验证一下两个信号指令 <code>SIGINT</code> 和 <code>SIGQUIT</code> ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> signal, time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handler</span>(<span class="params">signum, time</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nI got a SIGINT, but I am not stopping&quot;</span>)</span><br><span class="line"></span><br><span class="line">signal.signal(signal.SIGINT, handler)</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    time.sleep(<span class="number">.1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\r&#123;&#125;&quot;</span>.<span class="built_in">format</span>(i), end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>当我们按下 <code>Ctrl + C</code> 时，代码会捕获SIGINT指令并且返回语句，但是计数程序并不会停止运行；而当我们再次按下 <code>Ctrl + \</code> 时，程序并不会捕获到SIGQUIT指令，指令生效后程序会有如下提示并且立即停止：<br>![[Pasted image 20230826232551.png]]<br>而对于如下情况，当我们按下 <code>Ctrl + Z</code> 时，相当于终端发送了一个 SIGTSTP(Terminal Stop) 信号让正在运行的进程停止，但这个程序停止在后台并且可以通过 <code>fg</code> 让它在前台继续运行和 <code>bg</code> 让它在后台继续运行（也就是说可以通过 <code>Ctrl + Z</code> 和 <code>bg</code> 命令一起使用来让一个运行中的进程在后台运行<br>![[Pasted image 20230826233231.png]]</p>
+<h3 id="暂停和后台执行进程"><a href="#暂停和后台执行进程" class="headerlink" title="暂停和后台执行进程"></a>暂停和后台执行进程</h3><p><code>jobs</code> 命令可以显示出当前正在运行和后台运行或者暂停的进程数并将它们标号，可以通过 <code>命令 + %&lt;命令编号&gt;</code> 来对某个进程进行操作(调用最近的进程也可以用 <code>$!</code>)<br>在进程命令后加 <code>&amp;</code> 符号也可以让一个进程直接在后台启动运行，这样我们就可以继续在shell的窗口进行一系列其他的操作<br>然而，进入后台的进程依然是这个终端的子进程，也就是在关闭终端的时候这个进程也会被终止，如果想要避免这种情况可以在进程命令前加上 <code>nohup</code> 指令来实现<br>我们也可以用 <code>kill &lt;-SIGHUP&gt; / &lt;-STOP&gt; %&lt;命令编号&gt;</code> 来终止一个进程</p>
+<h2 id="终端多路复用-Terminal-Multiplexers"><a href="#终端多路复用-Terminal-Multiplexers" class="headerlink" title="终端多路复用(Terminal Multiplexers)"></a><em>终端多路复用(Terminal Multiplexers)</em></h2><p>像 <code>tmux</code> 这样的终端多路复用器可以让我们分出多个终端窗口，这样我们可以同时与多个shell对话进行交互。 <code>tmux</code> 有三个基本思想分别是 “Sessions Windows Panes –&gt; 会话 窗口 窗格”<br>在shell中直接输入 <code>tmux</code> 命令就可以新建一个tmux会话( 可以通过 <code>tmux new -t &lt;窗口名&gt;</code> 命令来新建一个会话并给tmux会话进行命名)，看起来和我们平时使用的zsh没有什么不同，但我们可以在其中运行一些相关的进程，并通过 <code>Ctrl + B</code> 后再按下 <code>D</code> 来返回到原本的zsh窗口，在zsh中使用 <code>tmux a(ttach) -t &lt;tmux会话名称&gt;</code> 命令来返回到刚刚的tmux会话，也可以在tmux中使用 <code>exit</code> 命令或者是 <code>Ctrl + D</code> 快捷键来彻底退出当前的tmux会话<br>在一个tmux会话中，我们可以使用 <code>Ctrl + B</code> 再按下 <code>C(create)</code> 来新建一个窗口，这个操作相当于tmux为我们新建了一个与shell的对话窗口，我们可以在新的窗口中执行一系列其他命令。同时，我们还可以用 <code>Ctrl + B</code> 再按下 <code>P(privious) || N(next) || &lt;窗口编号&gt;</code> 来进行窗口之间的切换<br>同时，我们可以用 <code>Ctrl + B</code> 再按 <code>&quot;</code> 或者 <code>%</code> 来新建一个窗格，实现类似于上下和左右分屏的效果，可以使用 <code>Ctrl + B</code> 加上上下左右箭头键在一系列窗格中切换。使用 <code>Ctrl + B</code> 再按 <code>Z</code> 可以切换当前面板在全屏和普通模式， <code>Ctrl + B</code> 加上空格键可以在不同窗格排布中切换</p>
+<h2 id="别名-Aliases"><a href="#别名-Aliases" class="headerlink" title="别名(Aliases)"></a><em>别名(Aliases)</em></h2><p>alias是一种相当于可以自定义快捷键的的指令，可以为一个长命令设置一个别名，它的语法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alias aliad_name=&quot;command_to_alias arg1 arg2&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">注意等号两边没有空格</span></span><br></pre></td></tr></table></figure>
+<p>alias命令可以在很多种情况发挥作用，除了直接定义像 <code>alias gs=&quot;git status&quot;</code> 这样的别名以外，我们还可以对一些我们容易打错的命令来使用它，例如 <code>alias sl=ls</code> ，包括对一个命令进行更加细致的规划如 <code>alias mv=&quot;mv -i&quot;</code> 等等。我们也可以用 <code>alias &lt;别名&gt;</code> 来查看一个别名代表了什么具体内容</p>
+<h2 id="配置文件-Dotfiles"><a href="#配置文件-Dotfiles" class="headerlink" title="配置文件(Dotfiles)"></a><em>配置文件(Dotfiles)</em></h2><p>很多程序的控制都是通过被称为点文件(Dotfiles)来控制的，例如 <code>~/.vimrc ~/.zshrc</code> 等， 他们通常是隐藏文件，<code>ls</code> 并不会显示他们<br>我们可以通过对这些文件的编辑和修改来修改相关的配置，例如添加上一小节的alias到bashrc文件中就可以在每次启动bash时都执行相关的命令</p>
+<ul>
+<li><input disabled type="checkbox"> (这部分没弄懂)我们还可以通过建立一个dotfiles文件夹来整理所有的配置文件，通过符号链接将他们链接到他们需要的位置，并将其传递到如Github这样的云端，以便我们可以在各种设备上配置我们的终端</li>
+</ul>
+<h2 id="远端设备-Remote-machines"><a href="#远端设备-Remote-machines" class="headerlink" title="远端设备(Remote machines)"></a><em>远端设备(Remote machines)</em></h2><p>我们通常使用ssh(safe shell)来远程连接服务器，ssh最基本的运行格式是</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &lt;用户名&gt; @ &lt;主机IP地址&gt; (需要远程执行的命令)</span><br></pre></td></tr></table></figure>
+<p>当然，使用这种方式需要我们每次链接都输入密码，这显然有些不太方便，我们可以通过SSH密钥来解决这个问题，首先我们需要让主机产生SSH密钥，然后将产生的密钥传递给远程主机，以我自己的虚拟机为例，具体命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519</span><br><span class="line">cat .ssh/id_ed25519.pub | ssh &lt;用户名&gt; @ &lt;主机IP地址&gt; tee .ssh/authorized_keys</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">我们还可以用以下命令来保存密钥的密码</span></span><br><span class="line">ssh-copy-id &lt;用户名&gt; @ &lt;主机IP地址&gt;</span><br></pre></td></tr></table></figure>
+<p>执行完以上命令后，我们就可以直接通过ssh命令连接主机而不用每次都输入密码了<br>我们还可以用一些和本身命令行相近的命令来使他们在ssh使用中生效，例如复制文件命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">tee</span>命令：</span></span><br><span class="line">cat 本地文件 | ssh &lt;用户名&gt; @ &lt;主机IP地址&gt; tee 远端文件</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">scp命令：</span></span><br><span class="line">scp 本地文件路径 &lt;用户名&gt; @ &lt;主机IP地址&gt;: 远端文件路径</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">以下是shell原本的命令 做个对照</span></span><br><span class="line">cp notes.md notes.md</span><br></pre></td></tr></table></figure>
+<p>如果我们想复制大量文件，则可以使用另一个更好的命令 <code>rsync</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ryscp -avP . &lt;用户名&gt; @ &lt;主机IP地址&gt;:&lt;文件夹名&gt;</span><br></pre></td></tr></table></figure>
+<p>我们还可以通过配置文件进行对ssh的自定义配置，文件及其地址为 <code>~/.ssh/config</code>，例如我们可以通过以下配置来自定义远程主机名，这样我们就不需要在每次连接时输入繁琐的主机名和地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host &lt;自定义主机名&gt;</span><br><span class="line">  HostName 主机IP地址</span><br><span class="line">  User 用户名</span><br><span class="line">  IdentityFile SSH密钥地址</span><br></pre></td></tr></table></figure>
+<p>同时，我们在远程连接的主机中如果展开了一个tmux，我们可以在其中运行程序执行命令，并且退出主机远程连接，当我们重新连接时一切都不会有变化</p>
+<h1 id="6-版本控制-Git"><a href="#6-版本控制-Git" class="headerlink" title="6. 版本控制(Git)"></a>6. 版本控制(Git)</h1><p>版本控制系统是用来追踪源代码或者其他文件或文件夹集合的更改工具，他们有助于追踪某个文件集的修改历史纪录，同时他们也能促进团队协作，因为可以有很多人共同协作更改某个文件集。同时，我们可以查看自己程序的不同版本来对比所出现的问题，可以查看有谁对某个东西提交了更改并且我们自己也可以对这些文件集进行修订；在多种版本控制工具中Git已经成为了最被大众所接受的工具之一</p>
+<h2 id="Git的数据模型"><a href="#Git的数据模型" class="headerlink" title="Git的数据模型"></a><em>Git的数据模型</em></h2><p>这一部分主要讲述了Git的工作机制，主要通过关联快照和历史记录建模，以及对象内存寻址的运行机制来实现，这一部分具体请看官方教程文档（中文文档地址：<a target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/2020/version-control/">版本控制(Git) · the missing semester of your cs education (missing-semester-cn.github.io)</a>）</p>
+<h2 id="Git的命令行接口"><a href="#Git的命令行接口" class="headerlink" title="Git的命令行接口"></a><em>Git的命令行接口</em></h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><ul>
+<li>首先我们可以使用<code>git init</code>命令来初始化一个文件夹使其变成一个Git仓库，当我们执行命令以后，系统会在该文件夹中新建一个名为<code>.git</code>的隐藏文件夹用来储存本地磁盘中的存储库(<code>repository</code>)数据</li>
+<li><code>git help &lt;命令名&gt;</code>可以对某个特定命令给出具体解释，类似Linux的 <code>man</code> 命令</li>
+<li>当我们输入 <code>git status</code> 命令时可以看到当前仓库的（快照）状态，<code>Untracked files</code> 表示该文件经过了改动或者是新建的，即Git在对比过已有的系统快照后发现了不同，没有进行记录，这时我们可以使用 <code>git add &lt;文件名/文件夹名&gt;</code> 来将这个未被追踪的文件添加到系统快照中<br>接下来，我们可以使用 <code>git commit &lt;-m &quot;备注&quot;&gt;</code> 来将我们所做的改动提交到暂存区中，注意既可以用 <code>-m</code> 命令来在后面直接添加提交备注，也可以跳转到提交界面添加备注，在提交成功后终端会显示提交的信息以及该快照的哈希值（一个Git用来记录文件上传信息的16位数字），我们可以使用 <code>git cat-file -p &lt;hash numbers&gt;</code> 来获取刚刚commit的信息内容（<code>git log</code> 也可以获取暂存日志虽然，这个好像可以输出上传文件中的内容）</li>
+<li><code>git add :/</code> 可以将所有的未追踪文件都添加到系统快照中，<code>git commit -a</code> 可以将所有没有被追踪的文件都添加到缓存区中（原谅某个笨比一次次打超长的文件名…）</li>
+<li><code>git log</code> 可以用来获取版本历史纪录，但是老师说这个扁平化的看起来很烦，推荐了一个 <code>git log --all --graph --decorate</code> 来让版本更新记录图标化显示（虽然命令很长且我没看出什么区别，但我相信zsh插件会记住它的）</li>
+<li>通常Git会默认创建一个 <code>master</code> 分支作为库中代码开发主要分支，代表着项目的<strong>最新快照版本(即最后一次commit)<strong>。我们可以将 <code>master</code> 视作一个指向当前提交的指针，当我们继续添加提交时，这个指针也会发生变化来指向新的提交；而在log中提示的 <code>HEAD</code> 则通常表示你现在</strong>正在处于</strong>的提交状态（通常是最近的提交，如果需要切换可以使用 <code>git check &lt;parts of hash numbers&gt;</code> ，这会将当前工作目录的状态切换回你所指向的提交时的状态，我们可以在最新状态之前对文件或者目录进行修改，但是在返回master目录时checkout会提示报错，此时可以用 <code>-f</code> 命令来强制执行）</li>
+<li><code>git checkout &lt;文件名&gt;</code> 是对checkout命令的另一种使用，他会丢弃掉当前对文件所做的一切更改并且将当前文件的状态返回到 HEAD 快照所在的状态 </li>
+<li><code>git diff (&lt;hash numbers&gt; &lt;hash numbers&gt;) &lt;文件名&gt;</code> 命令可以查看修改前后的不同之处，包括在不同工作目录下对文件修改前后的不同之处</li>
+</ul>
+<h3 id="分支和合并"><a href="#分支和合并" class="headerlink" title="分支和合并"></a>分支和合并</h3><ol>
+<li>使用 <code>git branch &lt;新建分支名&gt;</code> 可以查看现有的分支或者新建一个分支，这个新建的分支会指向当前提交的内容，例如如果我们新建一个名为cat的分支，我们再次应用 <code>git log --all --graph --decorate</code> 命令时就会看到当前HEAD仍然会指向原有的master分支，但是在后面会新建一个cat分支（使用 <code>git checkout &lt;分支名&gt;</code> 可以切换到新的分支，同时会发现此时HEAD指向了我们新建的分支，所显示的内容是master分支的最新提交内容）</li>
+<li><code>git commit</code> 中可以应用 <code>:x</code> 命令来快速上交暂存备注</li>
+<li><code>git branch -vv</code> 以非常详细的方式展现已有的分支信息</li>
+<li>不理解这个为什么不能早点教，害我一直看着很长一段log发愁：<code>git log --all --graph --decorate --oneline</code> 可以在一行中显示暂存日志，基本上是只显示哈希码和后面的暂存提交备注</li>
+<li>当我们在一个分支中对某个程序进行了修改，再使用 <code>git checkout &lt;分支名&gt;</code> 切换回其他分支时会发现发刚刚作出改动的内容并不会显示在当前的工作目录中，这样我们就可以实现在并行的开发线中来回跳转</li>
+<li>可以应用 <code>git branch &lt;分支名&gt; ; git checkout &lt;分支名&gt;</code> 来实现新建一个分支并且跳转到新建的工作表目录中去，简化版命令是 <code>git check -b &lt;分支名&gt;</code> （盲猜-b全拼是-branch）</li>
+<li>当我们在多个分支工作目录中对代码进行改动后，我们同通常会需要将功能进行合并，这是我们可以先切换回master分支中，应用 <code>git merge &lt;分支名&gt; ...</code> 来将不同分支中的内容进行合并，指向master的指针HEAD会指向master和cat，前后对比图如下：![[Pasted image 20230903202528.png]]<br>在执行合并操作的时候，Git可能会对一些合并不是太灵敏，这时会出现合并冲突问题（merge conflict），这是需要我们手动在文件中进行符合我们预期的修订后重新add更改，然后执行 <code>git merge --continue</code> 命令继续执行合并操作<br>![[Pasted image 20230903210606.png]]</li>
+</ol>
+<h3 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h3><p>实际上，对于Git的远程操作主要是为了能够和他人一起协作，以及将自己的本地储存库上传到像GitHub、gitee等云端仓库</p>
+<ol>
+<li><code>git remote</code> 命令可以查看当前所有已经连接的远程仓库</li>
+<li><code>git remote add &lt;远程连接名&gt; &lt;远程仓库http地址&gt;</code> 可以远程连接一个新的仓库</li>
+<li><code>git push &lt;远程连接名&gt; &lt;local branch&gt; : &lt;remote branch&gt;</code> 用来将本地仓库推送到远程仓库中去，当我们仅将一个本地分支推送到基本固定的一个远程仓库分支时，可以使用 <code>git branch --set-upstream-to=&lt;远程仓库名&gt;/&lt;分支名&gt;</code> 可以配置一个固定的本地和远程分支连接，这样下次我们只需要使用 <code>git push</code> 即可完成推送工作</li>
+<li><code>git clone &lt;URL&gt; &lt;要复制到的文件夹&gt;</code> 可以从远端仓库下载内容到本地</li>
+<li><code>git fetch</code> 可以从远端获取对象、索引、推送记录等信息，检索对远端存储库的更改并且将这些信息保存到本地计算机中；同时还有一个命令 <code>git pull</code> 可以等同于命令 <code>git fetch; git merge</code> ，即从远端拉取内容并且与本地分支进行合并</li>
+</ol>
+<h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><p><code>git commit --amend</code> 可以重新编辑提交的内容和信息<br><code>git restore</code> 可以撤销在工作区中的很多操作<br><code>git checkout &lt;文件名&gt;</code> 可以丢弃在某个文件中所做的修改</p>
+<h3 id="一些高级一点的操作"><a href="#一些高级一点的操作" class="headerlink" title="一些高级一点的操作"></a>一些高级一点的操作</h3><p><code>git clone --shallow</code> 可以用于当我们要下载一个内容较大的仓库，这样我们就不会保存一系列版本历史记录信息，能更快地从远程仓库拉取到我们本地<br><code>git add -p &lt;文件名&gt;</code> 让我们可以以交互式的方式来选择具体上传什么，例如我们可以选择只对一处更改进行上传并添加快照；<code>git diff --cached</code> 可以让我们查看到即将上传的修改是什么<br><code>git blame</code> 可以让我们查看到谁对某行或者某个文件做出了修改，以及相关的一些信息<br><code>git stash</code> 可以使我们返回到上一个操作我们所处的工作目录状态，暂时移除工作目录下的修改内容；再使用一次 <code>git stash &lt;Filename&gt;</code> 就会取消对文件修改的隐藏操作<br><code>git bisect</code>: 通过二分查找搜索历史记录，比如跳转到某个时间的提交快照<br>这个个人感觉很有用，可以通过配置 <code>.gitignore</code> 文件来忽略某些文件，例如一些系统文件、程序编译文件等，通过添加文件名或者类似 <code>*.exe*</code> 这类东西来使在查看 <code>git status</code> 时忽略他们 </p>
+<h2 id="笨狗的小记：如何上传本地文件到github-gitee库"><a href="#笨狗的小记：如何上传本地文件到github-gitee库" class="headerlink" title="笨狗的小记：如何上传本地文件到github&#x2F;gitee库"></a><em>笨狗的小记：如何上传本地文件到github&#x2F;gitee库</em></h2><ol>
+<li>初始化：<code>git init</code>：初始化，将一个新文件夹变成git可管理的仓库</li>
+<li>连接github库：<code>git remote add github &lt;Github库的https链接&gt;</code><br>连接gitee库：<code>git remote add gitee &lt;gitee库的https链接&gt;</code></li>
+<li>可以使用 <code>git remote -v</code> 查看已经连接的远程仓库</li>
+<li>本地文件修改上传：<code>git status</code>：查看当前文件夹修改的状态<ol>
+<li><code>git add &lt;文件名&gt; or &lt;文件路径&gt;</code>：将新增或者删减文件上传到本地暂存库</li>
+<li><code>git commit -m &quot;备注信息&quot;</code>：改动内容上传到本地库</li>
+</ol>
+</li>
+<li>将本地仓库拉取到GitHub：<code>git push -u &lt;远程仓库名称&gt; master</code>：拉取本地库</li>
+<li>Tips: <ol>
+<li><code>git branch</code>：查看库中的分支(前面带<code>*</code>的表示现在正处于的branch)</li>
+<li><code>git check &lt;分支名&gt;</code>：切换到其他的分支</li>
+<li>可以通过配置 <code>.git/config</code> 文件，通过添加URl来配置远程仓库</li>
+</ol>
+</li>
+</ol>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://binisalegend.github.io">Binisalegend</a>
+            <p>原文链接：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+            <p>发表日期：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 10:28:04 am</a>
+            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 10:30:28 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/11/08/CS61A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CS61A学习笔记">
+                    <div class="nextTitle">CS61A学习笔记</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Java程序设计学习笔记">
+                    <div class="prevTitle">Java程序设计学习笔记</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2446479002@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/binisalegend" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/WeChat.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/QQ.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%A7%88%E4%B8%8Eshell"><span class="toc-number">1.</span> <span class="toc-text">1. 课程概览与shell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8shell"><span class="toc-number">1.1.</span> <span class="toc-text">使用shell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E6%9D%90%E9%83%A8%E5%88%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">教材部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E9%83%A8%E5%88%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">课程视频部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8shell%E4%B8%AD%E5%AF%BC%E8%88%AA"><span class="toc-number">1.2.</span> <span class="toc-text">在shell中导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E6%9D%90%E9%83%A8%E5%88%86-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">教材部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E9%83%A8%E5%88%86-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">课程视频部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%A8%8B%E5%BA%8F%E9%97%B4%E5%88%9B%E5%BB%BA%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">在程序间创建连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E6%9D%90%E9%83%A8%E5%88%86-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">教材部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E9%83%A8%E5%88%86-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">课程视频部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%8A%9F%E8%83%BD%E5%85%A8%E9%9D%A2%E5%8F%88%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">1.4.</span> <span class="toc-text">一个功能全面又强大的工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E6%9D%90%E9%83%A8%E5%88%86-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">教材部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E9%83%A8%E5%88%86-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">课程视频部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0"><span class="toc-number">1.5.</span> <span class="toc-text">课后练习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-shell%E5%B7%A5%E5%85%B7%E5%92%8C%E8%84%9A%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">2. shell工具和脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E8%84%9A%E6%9C%AC"><span class="toc-number">2.1.</span> <span class="toc-text">shell脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E5%B7%A5%E5%85%B7"><span class="toc-number">2.2.</span> <span class="toc-text">shell工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0-1"><span class="toc-number">2.3.</span> <span class="toc-text">课后练习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%BC%96%E8%BE%91%E5%99%A8-Vim"><span class="toc-number">3.</span> <span class="toc-text">3. 编辑器(Vim)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vim%E7%9A%84%E5%93%B2%E5%AD%A6"><span class="toc-number">3.1.</span> <span class="toc-text">Vim的哲学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">编辑模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vim%E6%8E%A5%E5%8F%A3%E4%BD%9C%E4%B8%BA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7"><span class="toc-number">3.4.</span> <span class="toc-text">Vim接口作为编程语言的一些特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#demo%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.5.</span> <span class="toc-text">demo示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">4. 数据整理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">5.</span> <span class="toc-text">5. 命令行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%8E%A7%E5%88%B6-Job-Control"><span class="toc-number">5.1.</span> <span class="toc-text">任务控制(Job Control)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%BF%9B%E7%A8%8B"><span class="toc-number">5.1.1.</span> <span class="toc-text">结束进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%82%E5%81%9C%E5%92%8C%E5%90%8E%E5%8F%B0%E6%89%A7%E8%A1%8C%E8%BF%9B%E7%A8%8B"><span class="toc-number">5.1.2.</span> <span class="toc-text">暂停和后台执行进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-Terminal-Multiplexers"><span class="toc-number">5.2.</span> <span class="toc-text">终端多路复用(Terminal Multiplexers)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%AB%E5%90%8D-Aliases"><span class="toc-number">5.3.</span> <span class="toc-text">别名(Aliases)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-Dotfiles"><span class="toc-number">5.4.</span> <span class="toc-text">配置文件(Dotfiles)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%AB%AF%E8%AE%BE%E5%A4%87-Remote-machines"><span class="toc-number">5.5.</span> <span class="toc-text">远端设备(Remote machines)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-Git"><span class="toc-number">6.</span> <span class="toc-text">6. 版本控制(Git)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.1.</span> <span class="toc-text">Git的数据模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.2.</span> <span class="toc-text">Git的命令行接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">6.2.1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E5%92%8C%E5%90%88%E5%B9%B6"><span class="toc-number">6.2.2.</span> <span class="toc-text">分支和合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.3.</span> <span class="toc-text">远程操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.4.</span> <span class="toc-text">撤销操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E4%B8%80%E7%82%B9%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.5.</span> <span class="toc-text">一些高级一点的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%A8%E7%8B%97%E7%9A%84%E5%B0%8F%E8%AE%B0%EF%BC%9A%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%88%B0github-gitee%E5%BA%93"><span class="toc-number">6.3.</span> <span class="toc-text">笨狗的小记：如何上传本地文件到github&#x2F;gitee库</span></a></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 3
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/CS61A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">CS61A学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Missing-Semester学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span>
+            <a class="archive-post-title" href="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java程序设计学习笔记</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="Python">
+                <span class="iconfont-archer">&#xe606;</span>
+                Python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Java语言学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                Java语言学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="杂技学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                杂技学习
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://binisalegend.github.io",
+        root: siteMetaRoot,
+        author: "Binisalegend"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>
