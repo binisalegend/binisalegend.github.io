@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Binisalegend">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Binisalegend">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="这是BIT大二上小学期开设的程序设计方法与实践课程，主要涉及到数据结构和算法基础，本人把自己的代码存放于此作为备份，同时每道题记录自己的思路和注意点，也欢迎大家进行批评指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大二上小学期程设解题思路">
+<meta property="og:url" content="https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Binisalegend的博客">
+<meta property="og:description" content="这是BIT大二上小学期开设的程序设计方法与实践课程，主要涉及到数据结构和算法基础，本人把自己的代码存放于此作为备份，同时每道题记录自己的思路和注意点，也欢迎大家进行批评指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/Pasted%20image%2020230906233610.png">
+<meta property="article:published_time" content="2023-11-08T05:14:46.000Z">
+<meta property="article:modified_time" content="2023-11-08T05:17:19.653Z">
+<meta property="article:author" content="Binisalegend">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/Pasted%20image%2020230906233610.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>大二上小学期程设解题思路 · Binisalegend&#39;s Studio</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>锅中冰's Studio.</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">锅中冰&#39;s Studio.</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">大二上小学期程设解题思路</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+    
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                大二上小学期程设解题思路
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据结构">数据结构</a>
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">12.2k</span>阅读时长: <span class="post-count reading-time">44 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/11/08</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <p>这是BIT大二上小学期开设的程序设计方法与实践课程，主要涉及到数据结构和算法基础，本人把自己的代码存放于此作为备份，同时每道题记录自己的思路和注意点，也欢迎大家进行批评指正</p>
+<span id="more"></span>
+
+<p>本文涉及到的代码存放于<a target="_blank" rel="noopener" href="https://gitee.com/binisalegend/Road-To-CSAI/tree/master/Programming-Methods-and-Practice/code">Programming-Methods-and-Practice&#x2F;code · 郭忠滨&#x2F;Road-To-CSAI</a></p>
+<h1 id="感受算法魅力"><a href="#感受算法魅力" class="headerlink" title="感受算法魅力"></a>感受算法魅力</h1><p>这章没有太多真正的算法，主要是灌输一些类算法的思想，例如二进制、栈思想、双指针等等</p>
+<h2 id="1-猜数字看人品"><a href="#1-猜数字看人品" class="headerlink" title="1. 猜数字看人品"></a><em>1. 猜数字看人品</em></h2><ol>
+<li>解题思路：<br>这道题感觉就是栈思想的初步展现吧，通过Tom回复或高或低，记录当前状态下可能正确值的最大和最小值。即不用记录下每个数据，只需要维护 <code>too low</code> 回复时的最大值，<code>too high</code> 回复时的最小值，当回复为 <code>right on</code> 时判断当前值是否位于最小最大值之间即可</li>
+<li>代码实现<br>由于仅仅判断第二个单词 <code>high low on</code> 就能够判断回复，所以可以定义两个字符数组，仅使用 <code>strcmp</code> 函数比较第二个字符输入即可；同时，由于可能有多组游戏进行，在每组游戏结束后<strong>一定要重置变量</strong>；最后，题目要求输入0之后程序立刻终止，故 <code>scanf</code> 输入数字语句要放到循环末尾，避免输入0后程序依然等待Tom的回复</li>
+</ol>
+<h2 id="2-摘桃子"><a href="#2-摘桃子" class="headerlink" title="2. 摘桃子"></a><em>2. 摘桃子</em></h2><ol>
+<li>解题思路 + 代码实现<br>这题首先要明确的是对于每一天能摘下的桃子只有当天和前一天的，以及有多少棵树就需要计算到 树的数量+1 天才能够算出摘下桃子的总数；当天的桃子数在计算完当天能摘下的桃子数量之后直接更新成剩下的桃子数量，继续计算下一天能摘下的桃子数量即可<br>具体思路方面，当时做的时候什么算法都不会就闷头疯狂分类讨论，具体如下：<ul>
+<li>Basic Case：分第一天的桃子是否能全部摘下，更新第一天的桃子数量为 <code>0</code> 或者 <code>b[0] - v</code> </li>
+<li>Recursion：分类讨论前一天剩下的桃子数量 <code>b[n-1]</code> 和今天的桃子数量 <code>b[n]</code> 相对于每天最多能摘下数量 <code>v</code> 之间的关系：<ul>
+<li><code>b[n-1] &lt; v &amp;&amp; b[n] &lt; v</code> ：分总计大于v或者总计小于v讨论</li>
+<li><code>b[n-1] &gt;= v</code> ：当日能摘数直接为v，<code>b[n]</code> 不变（因为前一天剩下的已经烂了）</li>
+<li><code>b[n] &gt;= v</code> ：当日能摘数直接为v，前一天还没摘完 <code>b[n]</code> 就不变（上一种情况），前一天摘完了就更新成 <code>b[n] + b[n-1] - v</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-达拉崩吧的酒宴"><a href="#3-达拉崩吧的酒宴" class="headerlink" title="3. 达拉崩吧的酒宴"></a><em>3. 达拉崩吧的酒宴</em></h2><ol>
+<li>解题思路<br>这题的思路我自己理解是先拿具体的数字来试，比如6、7这样的，然后在稍微大一点的数字试验时，可以发现最基本的思路就是两个中有一个有毒，另一个就是安全的。比如1-10，就可以1-4、3-6、5-8这样每两组()包括最后的9.10都有两个数的重合,就可以再加一组判断两个的，这样就可以联想到二进制的问题，即都转化为二进制，每一位为1的都由一只小白鼠试验；只要对应位数的小白鼠死了，就说明这只小白鼠对应的位数是1。这样，最终就是根据酒的桶数转化为二进制最大位数是多少，就需要几只小白鼠。划分依据即为log2</li>
+<li>代码实现<br>有什么好实现的想明白log2就十行代码（bushi</li>
+</ol>
+<h2 id="4-北湖挖坑"><a href="#4-北湖挖坑" class="headerlink" title="4. 北湖挖坑"></a><em>4. 北湖挖坑</em></h2><ol>
+<li>解题思路 <img src="/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/Pasted%20image%2020230906233610.png"><ul>
+<li>这个本来我是直接用for循环遍历所有行的，就是如果碰到了高度高于当前行高度的说明被挡住了，但是这种做法时间复杂度直奔 O(n^2) ，可能优化一下能擦边过反正我是TLE</li>
+<li>于是打羽毛球之前求助了一波浩哥，在当时看感觉很神奇，现在看来这道题就是最一开始灌输栈的思想，也许是当时不会C++所以只能做简单的出入栈，好像如果用C++调那个 <code>deque</code> 直接秒了<br>具体思路是：设置一个变量 <code>location</code> 用于存放某个位置的高度(注意是变量而不是数组即可)，首先将第一个位置高度赋给 <code>location</code> ，进入循环后读取每个位置的高度 <code>height</code>。如果该位置高度高于 <code>location</code> 存储的值（如1 2、3 4、6 7 8、10 11），则说明当前高度与存储高度差需要被填补，所需填补次数为 <code>height - location</code> ，并将当前的 <code>location</code> 更新为 <code>height</code> 的值；反之，说明当前湖面处于下陷状态（如2 3、4 5 6、8 9 10、11 12），这时就不需要被填补，只需要把当前的 <code>location</code> 更新为 <code>height</code> 即可。</li>
+</ul>
+</li>
+<li>代码实现<br>需要注意的点有：首先不能先当然直接开始循环，因为初始化的 <code>location</code> 和 <code>height</code> 都无法和输入数据的第一个变量相匹配，应该要在循环外先将变量初始化为第一块的高度；<br>同时，在遍历完所有长度的高度后，还需要额外比较最后一块的高度，因为最后一块如果不是最大高度就始终需要被填补，因此最终需要填补的次数还要再加上 <code>MaxLength - height_last</code> 的值</li>
+</ol>
+<h2 id="5-北湖深坑"><a href="#5-北湖深坑" class="headerlink" title="5. 北湖深坑"></a><em>5. 北湖深坑</em></h2><ol>
+<li>解题思路<br>这道题用到了双指针，相当于判定并记录两边的高度比较，如果有一个“凹下去的坑”就可以蓄水（我是真的看不明白NND）<br>之所以不能从同一个方向遍历，是因为如果单方向一直下降，就会导致循环一直进行；而双指针则可以判定出某一个位置一定比最高点低，而当遍历到下一个高于最低点的时候就可以根据两者之间的高度差判断出蓄水量</li>
+<li>代码实现<br>双指针实现代码（希望我未来的某一天能看懂吧）<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (In &lt; Out)</span><br><span class="line">&#123;</span><br><span class="line">    deep = height[Out];</span><br><span class="line">    <span class="keyword">while</span> (height[In] &gt;= height[Out] &amp;&amp; In != Out)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (height[Out] &lt;= deep)</span><br><span class="line">        &#123;</span><br><span class="line">            tot_store += deep - height[Out];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            deep = height[Out];</span><br><span class="line">        &#125; </span><br><span class="line">        Out--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    deep = height[In] ;</span><br><span class="line">    <span class="keyword">while</span> (height[In] &lt; height[Out] &amp;&amp; In != Out)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (height[In] &lt;= deep)</span><br><span class="line">        &#123;</span><br><span class="line">            tot_store += deep - height[In];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            deep = height[In];</span><br><span class="line">        &#125; </span><br><span class="line">        In++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="字符串处理、枚举"><a href="#字符串处理、枚举" class="headerlink" title="字符串处理、枚举"></a>字符串处理、枚举</h1><p>本章主要讲了一些遍历枚举，以及像 <code>strcpy strcmp strchr</code> 等字符串函数的应用</p>
+<h2 id="6-A-B-I"><a href="#6-A-B-I" class="headerlink" title="6. A+B(I)"></a><em>6. A+B(I)</em></h2><ol>
+<li>解题思路<br>最一开始的时候看到这道题确实没经验，想着都转化成十进制加完再换回来只处理对齐不就行了，最后写完直接收获TLE被浩哥提醒2的100000次方还是太过荒谬<br>于是开始重写（），当然这道题思路对了以后对下面那道超级恶心的升级版有不小的帮助<br>首先当然是从末尾开始加，每一位的所得值其实可以看作是当前位置上两数相加再加上前一位的进位，当然写上去肯定不是这么写，最终位数显示应该是上面所得结果取余2的结果，而保留下的进位则是结果整除2后的所得<br>计算过程中还有一个需要注意的点是所给两个二进制数的首位均为1的情况，这样会最后比原来数多出一位，记得单独讨论</li>
+<li>代码实现<ul>
+<li>这题开始就涉及到了很多字符串操作了，特别注意 <code>int</code> 和 <code>char</code> 类型混合输入时要及时用 <code>getchar()</code> 吃掉输入末尾的回车</li>
+<li>要引入一个通用变量 <code>carry_bit</code> 用来记录进位，这个变量可以从最后一位一直应用到结果位首，每一次遍历后的进位都用它记</li>
+<li>剩下没啥好说的，个人认为这题就是只要你别怕累敢写就行</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-A-B-II"><a href="#7-A-B-II" class="headerlink" title="7. A+B(II)"></a><em>7. A+B(II)</em></h2><ol>
+<li>解题思路<br>这题是我所写行数最多的一道题，没有之一<br>题目主要的难点我认为有两点：小数点对齐和位数保留问题<br>可能我还需要感谢自己当初不会一些高级的算法，直接建了4个数组分别存两个数的整数和小数部分：但一开始还是想得太简单了，认为 <code>scanf(%s.%s)</code> 就能帮我分开整数部分和小数部分（现在想起这不是纯痴心妄想凭什么.不会被当字符存进去），后来咨询chatGPT使用了 <code>strchr</code> 函数在字符串输入中搜索小数点，将小数点所在位置替换为结束符 <code>0</code> 然后分别 <code>strcpy</code> 到两个数组里，具体代码看下面<br>计算过程思路相对简单，即从小数部分开始遍历，<code>carry_bit</code> 记录进位，具体加法实施参照上面那个简单的<br>计算过程完成，接下来才是这道题恶心的小数点对齐和删除前导0问题。<br>对于小数点对齐，我才去的策略是找到最长的那个整数长度（因为小数部分长度是固定的，不可能再比最长的小数部分长或者短了就），然后有数输数没数打空格<br>但是实际操作发现其实结果并不一定是最长的那个整数部分，因为有可能加完前面有没用的前导0，这时我采取判断是否为无用0的策略，若是就替换为空格，这样结果字符数组的长度就一定是三个字符数组最长的那个，可以作为基准<br>还要注意不能想当然都输出小数点（如果两个加数都是整数就没有，这个需要设置flag在输入时判断有没有小数点），以及注意保留小数点前紧挨着的那个0（如 <code>0.5</code> 不能输出成 <code>.5</code>）</li>
+<li>代码实现<ul>
+<li>字符数组搜索（小数点）后分区保存代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> input1[<span class="number">10000</span>];</span><br><span class="line">   <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, input1);  <span class="comment">// 读取整个输入字符串，包括小数点</span></span><br><span class="line"></span><br><span class="line">   <span class="type">char</span> *decimal_point1 = <span class="built_in">strchr</span>(input1, <span class="string">&#x27;.&#x27;</span>);  <span class="comment">// 查找小数点的位置</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (decimal_point1 != <span class="literal">NULL</span>) </span><br><span class="line">   &#123;</span><br><span class="line">       *decimal_point1 = <span class="string">&#x27;\0&#x27;</span>;  <span class="comment">// 将小数点替换为字符串结束符</span></span><br><span class="line"></span><br><span class="line">       <span class="built_in">strcpy</span>(number1_int, input1);  <span class="comment">// 复制整数部分到number1_int</span></span><br><span class="line">       <span class="built_in">strcpy</span>(number1_fra, decimal_point1 + <span class="number">1</span>);  <span class="comment">// 复制小数部分到number1_fra</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">       <span class="built_in">strcpy</span>(number1_int, input1);</span><br><span class="line">       flag1 = <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+<li>判断是否为前导0并替换为空格代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除结果里的垃圾0</span></span><br><span class="line">    <span class="keyword">if</span> (result_int[length_int_result<span class="number">-1</span>] == <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> search = length_int_result - <span class="number">1</span>; search &gt;= <span class="number">0</span>; search--)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="comment">//判断是否为0.5这种情况，就不能删除这个0</span></span><br><span class="line">            <span class="keyword">if</span> ((search == <span class="number">0</span> &amp;&amp; result_int[<span class="number">1</span>] == <span class="string">&#x27; &#x27;</span>) || (result_int[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span> &amp;&amp; length_int_result == <span class="number">1</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">		<span class="comment">//判断是前导0</span></span><br><span class="line">            <span class="keyword">if</span> (result_int[search] == <span class="string">&#x27;0&#x27;</span> &amp;&amp; result_int[search<span class="number">-1</span>] == <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                result_int[search] = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;  </span><br><span class="line">		<span class="comment">//判断前导0结束</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (result_int[search] == <span class="string">&#x27;0&#x27;</span> &amp;&amp; result_int[search<span class="number">-1</span>] != <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                result_int[search] = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="8-发言统计"><a href="#8-发言统计" class="headerlink" title="8. 发言统计"></a><em>8. 发言统计</em></h2><ol>
+<li>解题思路<br>这题就是学了二维数组动态内存分配（虽然后面都屈服直接建最大值了），再算的话就是 <code>strcmp</code> 比较字符相同了</li>
+<li>代码实现<ul>
+<li>二维数组动态内存分配代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用动态内存分配来存储多个字符串</span></span><br><span class="line">    <span class="type">char</span> **loc = (<span class="type">char</span> **)<span class="built_in">malloc</span>(n * <span class="built_in">sizeof</span>(<span class="type">char</span> *));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) </span><br><span class="line">    &#123;</span><br><span class="line">        loc[i] = (<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="built_in">sizeof</span>(<span class="type">char</span>)); </span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, loc[i]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="9-解谜游戏"><a href="#9-解谜游戏" class="headerlink" title="9. 解谜游戏"></a><em>9. 解谜游戏</em></h2><ol>
+<li>解题思路<br>NND这个直接用上DFS（深度优先搜索，请看第五章），也不知道为什么要出在这，对我当时幼小的心灵造成了极大的创伤… 不过也算是从这道题开始我后面的题目都尽量将函数功能封装<br>  具体思路上，就是我们发现某一行亮着的灯完全可以由按它正下面的灯来熄灭掉，也就是只要我们确定了第一行的灯亮灭情况，后续的按键方法就已经确定了，只需要判断最后能不能将灯全部熄灭即可<br>  所以，我们可以开始封装功能函数了，首先是按下按钮状态变化函数 <code>change()</code> 和控制周边关联灯的亮灭情况的函数 <code>convert()</code>；接下来，我们需要一个转存函数 <code>Unload()</code>，用于在每次遍历中将全部密码锁情况转存到另一个数组中，避免因为一次遍历影响到后面的搜索；接下来是根据第一行按键情况遍历后面按键情况所需按键次数，并判断最后是否能使灯全部熄灭的函数 <code>TimCalculation</code> ，按下亮灯的下一行对应的灯，并最后判断最后一行是否还有亮着的灯即可（因为前面的灯一定都熄灭了）；最后是遍历第一行可能按键情况的DFS主函数 <code>FirstLineCondition</code> ，对于每一个灯都有按或不按两个选项（不按的选项可以通过按两次但是不加按键次数来替代情况），遍历完每个灯的两个情况再继续遍历下一个灯的情况，在遍历完第一行的所有灯之后进入 <code>TimCalculation</code> 函数开始计算和验证并更新最小按键次数</li>
+<li>代码实现<ol>
+<li>首先要注意在获取输入时每一行末都需要 <code>getchar()</code> 吃空格</li>
+<li>在 <code>change()</code> 和 <code>convert()</code> 函数参数传递过程中因为 <code>change()</code> 需要通过指针来影响按键状态在全局中的变化，所以在 <code>convert()</code> 函数传递参数记得要用 <code>&amp;square[row][column]</code> 来传入具体按键位置的地址，以及及时判断关联按键位置是否合法</li>
+</ol>
+</li>
+</ol>
+<h2 id="10-肥宅快乐串"><a href="#10-肥宅快乐串" class="headerlink" title="10. 肥宅快乐串"></a><em>10. 肥宅快乐串</em></h2><ol>
+<li>解题思路<br>这题的代码回头看去感觉写的依托答辩巨乱就，感觉其实思路并不难<br>首先好像不能直接嵌套循环遍历所有字符搜索，时间复杂度太高了（虽然对于这道题只有一个用例过不去），于是参考讨论区大佬的思路换成每十个字符遍历一次，查看与fattyhappy的差异有几个字符，如果完全相同就直接换相同的字符；如果相差一个字符就在当前遍历字符左右（注意还有左哦！） 搜索有没有该位置上缺的那个字符；如果相差两个字符就直接看它俩换了是不是fattyhappy；有两个位置以上不相同就直接下一种</li>
+<li>代码实现<br>相同的点是还是要记得每次遍历后验证要把字符转存到一个新数组里，防止因为一次的交换影响后续遍历（或者换完如果不符合条件再换回来）<br>（这题真别看代码 太抽象了 我都不想仔细再看一遍）</li>
+</ol>
+<h1 id="贪心、排序"><a href="#贪心、排序" class="headerlink" title="贪心、排序"></a>贪心、排序</h1><p>这章主要应用贪心算法，快排、归并排序等方法，因为我还是用C写的所以还学了 <code>qsort</code> 函数对结构、数组中某一元素进行排序的函数方法</p>
+<h2 id="11-排兵布阵"><a href="#11-排兵布阵" class="headerlink" title="11. 排兵布阵"></a><em>11. 排兵布阵</em></h2><ol>
+<li>解题思路<br>这题感觉数学知识更多，首先是确定排队最终的纵坐标是所有纵坐标的中位数（我也不会解释，反正人家都说是中位数到一组数的距离之和最小）；对于横坐标我的理解过程是这样的，首先要找到一个类似基准点的东西，让所有横坐标都向这个基准点靠拢，并根据他们的横坐标排序来判断具体有多靠近这个基准点；这样我们就可以先按原本的横坐标进行排序，然后定义一个新的数组储存原本的坐标减去循环变量，这样相当于记下了每个变量相对于自己位置到目标点的距离，再对这个新的数组进行排序取中位数，最后算曼哈顿距离之和就好</li>
+<li>代码实现<br>按结构变量中的某一元素进行排序的 <code>cmp</code> 函数<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为qsort函数准备的排序函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">cmpx</span><span class="params">( <span class="type">const</span> <span class="type">void</span> *a ,<span class="type">const</span> <span class="type">void</span> *b)</span>  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> ((*(solider *)a)).x - ((*(solider *)b)).x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="12-任务安排"><a href="#12-任务安排" class="headerlink" title="12. 任务安排"></a><em>12. 任务安排</em></h2><ol>
+<li>解题思路<br>这个题就是最经典的贪心问题，没有任何变式直接就是套公式<br>具体算法就是先按结束时间进行从小到大排序，然后从头开始遍历，看下一个任务的开始时间是否在预存任务的结束时间之后，如果是则可完成任务数+1且预存任务更新为当前任务</li>
+<li>代码实现<br>贪心算法基本代码示例<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">qsort(loc, n, <span class="keyword">sizeof</span>(loc[<span class="number">0</span>]), cmp);</span><br><span class="line"></span><br><span class="line">   <span class="type">int</span> second = <span class="number">0</span>, first = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">for</span> (second = <span class="number">1</span>; second &lt; n; second++)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">if</span> (loc[second].start &gt;= loc[first].end) </span><br><span class="line">       &#123;</span><br><span class="line">           count++;</span><br><span class="line">           first = second;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="13-搬砖"><a href="#13-搬砖" class="headerlink" title="13. 搬砖"></a><em>13. 搬砖</em></h2><ol>
+<li>解题思路<br>这个题用到了归并排序，感觉跟二分搜索有类似之处：二分搜索是通过二分大小寻找一个符合条件的值，归并排序则是利用递归不断二分确定小部分的顺序排列最后进行合并<br>归并排序的具体思路实现主要体现在归并排序主函数 <code>Mergesort()</code>，排序后合并数组函数 <code>Merge()</code>以及将排序后函数重新放到原数组的 <code>copy()</code> 函数。（我当时看了好多讲解都没看懂原理，感觉这个虽然是java代码但是讲的很清楚<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chengxiao/p/6194356.html">图解排序算法(四)之归并排序 - dreamcatcher-cx - 博客园 (cnblogs.com)</a>）</li>
+<li>代码实现<br><code>Mergesort</code> 函数是归并思路的体现，具体来说就是完成了两步工作：分成两半+排完拼回来<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分两半</span></span><br><span class="line">	count += MergeSort(a, left, middle);</span><br><span class="line">    count += MergeSort(a, middle + <span class="number">1</span>, right);</span><br><span class="line"><span class="comment">//拼起来</span></span><br><span class="line">    count += Merge(a, loc, left, middle, right);</span><br></pre></td></tr></table></figure>
+ <code>Merge</code> 函数则是完成了将两个排序好的数组拼起来的工作，具体来说可以理解成给两个数组分别设置一个指针，指针所在的数组元素较小的一方进入新数组，并且该数组指针向前移动，继续比较，注意要加上指针与临时数组位置的差值；如果另一个数组已经为空，就直接按顺序排入新数组即可；最后记得调用 <code>copy</code> 函数重置原数组</li>
+</ol>
+<h2 id="14-水晶球"><a href="#14-水晶球" class="headerlink" title="14. 水晶球"></a><em>14. 水晶球</em></h2><ol>
+<li>解题思路<br>  感觉这道题理清思路后代码还是相对比较好实现的<br>  首先由于最后我i们要输出制作水晶球石头的编号，所以可以建立一个结构数组，直接在输入中储存这块石头的编号<br>  要明确的一点是，一块水晶能制作出水晶球的大小，取决于它三条边中最短的那条边，所以我们就很有必要在结构变量储存边长时直接把每块石头的三条边长短进行排序后再储存（如a最短边，b中等边，c最长边）因此我们在比较单个水晶石的时候，直接找出所有水晶石中，最短边大小最长的那块石头记录即可（可以结合在输入里直接维护最大值，少循环一次）<br>  而在比较合并后是否有更大的水晶，我们需要明确，只有当最长边与第二长边相同结合而成的水晶，才有可能使最短边变长进而扩大水晶球半径。因此，我们可以考虑先优先按最长边从大到小排序，再按第二长边，以此类推操作结束后，能合并且有效的水晶石就会相邻，只需要遍历一次即可。<br>  需要注意的是，合并以后之前的最短边有可能比第二长边长，所以要重新比较后再确定此时的水晶球半径，进而判断是否需要更新最大可制作半径<br>  <strong>特别提醒！！一开始进行边长先排序再储存时一定要设置临时变量！！不然会导致后面排序的时候使用了已经排序过的变量</strong></li>
+<li>代码实现<br>对结构元素进行优先级排序时的 <code>cmp</code> 函数<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">cmp</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *a, <span class="type">const</span> <span class="type">void</span> *b)</span></span><br><span class="line">&#123;</span><br><span class="line">    SideLen *c = (SideLen *)a;</span><br><span class="line">    SideLen *d = (SideLen *)b;</span><br><span class="line">    <span class="keyword">if</span> (c-&gt;c != d-&gt;c)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> d-&gt;c - c-&gt;c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (c-&gt;b != d-&gt;b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> d-&gt;b - c-&gt;b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> d-&gt;a - c-&gt;a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="15-卡牌游戏"><a href="#15-卡牌游戏" class="headerlink" title="15. 卡牌游戏"></a><em>15. 卡牌游戏</em></h2><ol>
+<li>解题思路<br>以下以n&#x3D;6举例，首先我们可以先分两种大情况：<strong>1在手牌中</strong>   <strong>1在牌堆里</strong><br> <strong>1. 当1在手上时</strong>：我们所期待的牌堆位置是234560，这样我们只需要n&#x3D;6次即可将牌堆替换成期望的格式，那么此时我们只需要计算牌堆中在期待位置之后的牌的位置与期待位置的差值（因为如果一张牌在期待位置之前，它们会更早的到我们手牌中），并取它们中的最大值max_dis，在这个最大值max_dis所代表的操作次数后我们就可以保证所有的牌在我们需要使用它的时候都在我们手上，此时的总需要操作数即为 max_dis+n（如牌堆是003020，此时max_dis便是2与期待位置的差值4，所需次数为4+6&#x3D;10）<br> <strong>2.当1不在手上时</strong>：我们在这种情况下将561234视为我们的期待情况，此时我们可以再细分成两种情况，即1后的数字是否排成像1234这样的连续数字<ol>
+<li><strong>如果1后面符合1234这样的排列</strong>，我们则比较1前面的数字是否都在期待位置之前（注意是之前！因为仔细观察可以看出此时的期待数列并不能直接放牌，只有在期待位置之前才能在我们需要放这张牌的时候确保手里有）。如果<strong>有任何一个数字在期待位置上或者之后</strong>，就说明如果直接跟在后面放牌，至少有一张牌我们在需要时手里没有，所以我们就需要把1拿出来再重新开始放牌（因为1后面符合排列所以1后面的都能满足”需要时手里有“），此时所需次数为 1的位置 + n（如牌堆为046012，期待位置是345612，4在期待位置上，如果直接放3我们接下来手里没4，所以要把1拿出来才能开始，所需次数为5+6&#x3D;11）；如果<strong>所有的数字都在期待位置之前</strong>，这样我们就可以直接放牌，所需次数就变成 n - 最后一个数（如牌堆为406012，期待位置是345612，直接放3每个数字都能顶出来，所需次数为6-2&#x3D;4）。</li>
+<li><strong>如果1后面不符合1234这样的排列</strong>，就直接表示我们不能在后面直接跟着放牌了，那么我们至少需要把1顶出来以后再放牌（即最小次数是 1的位置+n）。这时我们比较1后面的数是否在期待位置之后，如果<strong>没有任何一个数在期待位置之后</strong>，这样我们把1拿出来以后直接开始放1即可，后面所需都能顶出来，所需次数就是当前最小值 1的位置+n（如601304，期待位置是561234，把1拿出来直接放，所需次数为3+6&#x3D;9）；如果<strong>1后有数字在期待位置之后</strong>，我们只需要计算牌堆中在期待位置之后的牌的位置与期待位置的差值，并取它们中的最大值max_dis，在这个最大值max_dis所代表的操作次数后我们就可以保证所有的牌在我们需要使用它的时候都在我们手上，此时的总需要操作数即为 max_dis+n+1的位置（如601002，最大差值为2到期待位置的距离2，所以需要次数为2+3+6&#x3D;11）</li>
+</ol>
+</li>
+<li>代码实现<br>没啥好说的 别怕累</li>
+</ol>
+<h1 id="简单数据结构"><a href="#简单数据结构" class="headerlink" title="简单数据结构"></a>简单数据结构</h1><p>这一章已经开始应用栈、队列的相关知识了，但是由于我还没有强迫自己用C++，所以这一章我在数据结构的使用上还是大部分使用了自建数组和头尾指针来进行数据结构的相关操作（像出入栈、进出队），也不知道未来还会不会再使用自建数据结构了，但是也做一个记录叭</p>
+<h2 id="16-括号匹配"><a href="#16-括号匹配" class="headerlink" title="16. 括号匹配"></a><em>16. 括号匹配</em></h2><ol>
+<li>解题思路<br>说起来好笑，这题原始思路竟然是我和舍友一起在华莱士店边炫边想出来的hhh<br>一开始我们想的思路是把左右括号转换成1和-1，通过找加起来为0的就行。后来发现当然没这么简单，首先需要判断是否有根本没法匹配的字符串，一开始我以为只有 <code>)()(</code> 这样的，即第一和最后一个分别是右左括号，最后发现还可以这样 <code>()))(()</code> 也是无法匹配的…. 借鉴了一下大佬的思路解决了，即右括号只有在没有左括号的时候才会计数，如果有左括号存在就直接抵消，最后如果左右括号数均不为零就说明这个字符串匹配不了。这是我觉得这道题转化过程中最妙的一环（详见代码部分）<br>同时我们可以建立两个数组，储存等效有n个括号的字符串有几个，这样就可以匹配直接计数了</li>
+<li>代码实现<br>抵消储存括号机制代码<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">long</span> <span class="type">long</span> t = <span class="number">0</span>; t &lt; len; t++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (loc[t] == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        left++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (left &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            left--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> ((left != <span class="number">0</span>) &amp;&amp; (right != <span class="number">0</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="17-看楼房"><a href="#17-看楼房" class="headerlink" title="17. 看楼房"></a><em>17. 看楼房</em></h2><ol>
+<li>解题思路<br>一开始以为这个和前面的[[#<em>4. 北湖挖坑</em>]]很像，做起来发现受到颜色判断的影响差距还是很大的<br>有一个需要注意的点是，一开始本来想用 <code>hashset</code> 哈希函数来判断某个颜色是否出现过的，但是后来运行过程中发现有可能出现的情况是某一种颜色出现了两次但是只有一次被挡住了，但是这个颜色依然存在，所以就不能简单地通过 <code>true false</code> 来判断颜色了<br>于是换个思路，用一个数组 <code>hashset[color]</code> 来记录一种颜色对应出现的次数每次循环都加一，再单独设置一个变量 <code>count</code> ，只要出现一种没出现过的颜色就加一，然后判断是否挡住了前面的楼房，如果被挡住了对应颜色的楼房数量就减一；这时再判断该颜色是否为0，如果为0说明这种颜色彻底没了，<code>count--</code>，并且去掉被挡住的楼房（出栈，用 <code>stacksize--</code> 来实现）；最后让该遍历楼房入栈，记录下当前位置能看到的颜色 <code>count</code> 数量</li>
+<li>代码实现<br>自定义栈结构和出入栈操作示例代码<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//判断颜色是不是重复的</span></span><br><span class="line">    <span class="keyword">if</span> (hashSet[building[i].color] == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    hashSet[building[i].color] += <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//看不见的楼房出栈</span></span><br><span class="line">    <span class="keyword">while</span> (StackSize &gt; <span class="number">0</span> &amp;&amp; Stacks[StackSize - <span class="number">1</span>].height &lt; building[i].height)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (hashSet[Stacks[StackSize - <span class="number">1</span>].color] &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            hashSet[Stacks[StackSize - <span class="number">1</span>].color] -= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (hashSet[Stacks[StackSize - <span class="number">1</span>].color] == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StackSize -= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Stacks[StackSize].color = building[i].color;</span><br><span class="line">    Stacks[StackSize].height = building[i].height;</span><br><span class="line"></span><br><span class="line">    color_nums[i] = count;</span><br><span class="line">    StackSize++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="18-填坑-I"><a href="#18-填坑-I" class="headerlink" title="18. 填坑 I"></a><em>18. 填坑 I</em></h2><ol>
+<li>解题思路<br>这题大半夜写的，看了一个佬的思路直接秒了两道（向无名大佬致敬）<br>总体思路就是，计算每个位置的高度与最高值差值取余2的值（<code>(max - height[i]) % 2</code>），如果当前所得值与前一个位置所得值相同，就直接让前一个位置出栈，相当于两个相邻的是一样的高度（或者能用１Ｘ２石头补齐），如果最后栈空或者栈长为1就说明一定可以填平</li>
+<li>代码实现<br>这个学到了一个读取到文件终止条件 <code>while (scanf(&quot;%lld&quot;， &amp;n) != EOF)</code> 就可以读取到文件终止啦，现在还只有在乐学特定题目中有用<br>还是基本的出入栈自定义指针操作，可以用栈长来替代</li>
+</ol>
+<h2 id="19-填坑-II"><a href="#19-填坑-II" class="headerlink" title="19. 填坑 II"></a><em>19. 填坑 II</em></h2><ol>
+<li>解题思路<br>看完佬思路秒掉的第二题，再次感谢佬（bushi<br>这个几乎可以直接照搬上面那道题的代码来做简单改动，这次题目限制了只能水平放了，所以代码情况中需要加上一些限制条件：首先基本思路上是这次我们就不能通过取余的方式来判断能否填平了（因为没法竖着放补上高度），所以就要直接比高度，高度相同才能出栈；其次，不能有“凹下去”的位置，即如果满足当前高度与前一块高度相同，还要继续判断再前面一块是否比当前高度低，如果低就直接不可能填平；最后，这次最后不能只简单判定栈长为1就可以了，必须要剩下的那块是最高高度才可以（这样才可以补周边的，如果不是最高的就没法填平）</li>
+<li>代码实现<br>就注意一下可以边输入边维护最大值叭（）</li>
+</ol>
+<h2 id="20-选举"><a href="#20-选举" class="headerlink" title="20. 选举"></a><em>20. 选举</em></h2><ol>
+<li>解题思路<br>这题感觉是最荒谬的一题…一开始做完了没觉得有问题就是有两个过不了，自己把用例扒出来加了两个特例过了，最后发现是题目表述有问题直接改题了….感觉改完题就有点没意思，我也懒得改代码了，就直接按照原思路记记叭<br>首先对本族最有利的投票方式当然是投给离自己最近且还没投票的异族人，这样既可以票出去一个人还可以让对面少一票。于是想到了记录每一个种族有多少票，即一开始统计一共有多少个冬马族和雪菜族人，在有一族人死完之前一直循环投票，如果输入是D族人：则先判定X族是否有票数，如果X有票说明它早就应该死了活不到现在，直接族人数量减一，X族的票数减一；如果X没有票说明D成功活下来了，入栈且D族票数加一。以此类推</li>
+<li>代码实现<br>在具体代码实现方案上还有许多细节，首先要建立两个储存族人顺序的数组 <code>race[] loc[]</code> ，即在第一次遍历中入栈的族人进入到另一个数组中，这样就可以重新保存第二轮的投票顺序，再第二轮投票开始之前清空原数组，改为从另一个数组向原数组转存活下来的族人，以此类推，但是每一族剩下的票数是可以一直留存的</li>
+</ol>
+<h1 id="查找、搜索"><a href="#查找、搜索" class="headerlink" title="查找、搜索"></a>查找、搜索</h1><p>从这章开始逼自己用C++写了，所以可能会调用 <code>map deque queue vector</code> 这些C++标准库<br>这章主要是讲BFS（广度优先搜索）、DFS（深度优先搜索）、</p>
+<h2 id="21-成语接龙"><a href="#21-成语接龙" class="headerlink" title="21. 成语接龙"></a><em>21. 成语接龙</em></h2><ol>
+<li>解题思路<br>基本思路就是应用队列进出，如果第一个字符和上一个字符相同，并且该字符未被使用过，前一个字符出队，新字符入队；当搜索到结束成语时返回</li>
+<li>代码实现<br>感觉这道题思路并不难，只是代码具体实现上需要用到不少之前没用过的语法，需要注意的点如下：<ul>
+<li><code>queue &lt;变量类型&gt; 队列名</code> 可以直接建立一个队列，不需要再设置头尾指针进行出入队操作，只需要访问C++库函数如 <code>.front() .push() .pop() .empty()</code> 等</li>
+<li>应用 <code>scanf</code> 可以使用 <code>%*d</code> 来忽略一个变量的输入</li>
+<li><code>map &lt;key, value&gt;</code> 是一个key与值一一对应的结构变量，在本题中由于只需要记录成语的头尾字符，所以可以用第一个字符作为key值一一对应到该成语的结尾字符，具体绑定代码为 <code>&lt;map变量名&gt;[key].push_back(value)</code> </li>
+<li><code>auto i: &lt;变量名&gt;</code> 相当于令i在后续变量值中进行搜索，如搜索map类型变量所有key值为…的绑定值</li>
+</ul>
+</li>
+</ol>
+<h2 id="22-地下城与勇士"><a href="#22-地下城与勇士" class="headerlink" title="22. 地下城与勇士"></a><em>22. 地下城与勇士</em></h2><ol>
+<li>解题思路<br>首先建立二维数组存储所有位置的情况，随后应用bfs光度搜索。还是借助队列，当队列不为空时设置变量等于队首，出队，判断其朝四个方向分别移动一步的情况，是否超出边界或者撞墙；如果遇到怪兽，应用 <code>time % k == 0</code> 判断怪物在当前时间是否存在。如果符合要求则入队，继续循环。需要注意的点是，由于怪物仅在k时间会消失且每一秒都必须前进，所以可能需要走“回头路”，故不能简单判断某一位置是否走过</li>
+<li>代码实现<ul>
+<li>首先对于迷宫前进问题，可以建立向两方向前进的数组分别为 <code>dx[4] = &#123;1, -1, 0, 0&#125;; dy[4] = &#123;0, 0, 1, -1&#125;</code> ，这样就可以使用循环遍历朝四个方向前进的情况，步数 + 1</li>
+<li>本题在应用 bool 类型变量判断一个位置是否经过时需要建立三维数组，采用这种方式即 <code>already[x][y][time % k] == true</code> ，这样就可以包含走回头路等怪兽消失的情况，也能包含初始点 S 之后也可以走的情况</li>
+<li>由于每秒都必须走，所以可以直接用time来替代走过的步数</li>
+</ul>
+</li>
+</ol>
+<h2 id="23-带旋转的数独游戏"><a href="#23-带旋转的数独游戏" class="headerlink" title="23. 带旋转的数独游戏"></a><em>23. 带旋转的数独游戏</em></h2><ol>
+<li>解题思路<br>这题主打一个一开始一点不会，一点思路都没有那种…<br>首先既然需要判断共16个4X4的小数独的旋转情况，就可以先判断小数独四条边的情况，通过旋转次数和四条边在旋转后的相对位置，应用dfs来判断16X16数独每条边是否符合要求，同时可以给4X4小数独进行编号，通过编号也可以推断出小数独的位置，从而进行最后的旋转方式输出</li>
+<li>代码实现<br>这题主要是代码的实现问题，需要推断不同变量之间的关系，具体如下：<ol>
+<li>将A-F转化为10-16，这样在判断最后的边是否符合要求时就可以直接通过边长总和是否为120来判断</li>
+<li>通过16X16数组中数据的相对位置和4X4数组位置，推算出每个小数组四条边长的计算公式，如<code>Part_Map[i][j][1] = Map[4*i-3][4*j-3] + Map[4*i-3][4*j-2] + Map[4*i-3][4*j-1] + Map[4*i-3][4*j];</code></li>
+<li>对16个4X4数组进行1-16编号，这样可以通过编号判断出该小数独在第几行第几列</li>
+<li>应用dfs算法遍历16个小数独的旋转方式（转0-3次），累加记录当行数值之和，如果一行遍历结束后符合该行数值和等于120则清空记录数值，开始记录下一行</li>
+<li>遍历完全部小数独以后，调用check函数判断列是否符合要求，这时需要根据旋转次数判断位于同一列上的数是之前定义的小数独的哪一条边，检验其和是否为120，若满足条件则更新此时所需的最小的旋转次数和小数独的旋转情况</li>
+<li>最后在输出每个数独的具体旋转次数时可以通过遍历每个小数独之前dfs后的旋转次数来输出， 即 <code>while(FinalTurn_cnt[i][j]--)</code> 输出一次当前小数独所在的行列</li>
+</ol>
+</li>
+</ol>
+<h2 id="24-绳子切割"><a href="#24-绳子切割" class="headerlink" title="24. 绳子切割"></a><em>24. 绳子切割</em></h2><ol>
+<li>解题思路<br>这题比较抽象的地方是它不告诉你要多长的绳子问你最多有几根，而是告诉要几根绳子问最长是多长，最终看讨论区找到思路用二分搜索<br>具体思路大概是先找到一个中间长度，判断这个长度的绳子能不能剪出所要求的长度，能就继续搜索更长的一半，不能就搜索长度更短的一半</li>
+<li>代码实现<ul>
+<li>首先要考虑一下干脆没法剪的情况，即绳子总长也小于要求的根数</li>
+<li>之后就是二分搜索模板代就完了，循环遍历一直搜 ，记得考虑一下边界</li>
+</ul>
+</li>
+</ol>
+<h2 id="25-进圈"><a href="#25-进圈" class="headerlink" title="25. 进圈"></a><em>25. 进圈</em></h2><ol>
+<li>解题思路<br>这个题跟[[#<em>22. 地下城与勇士</em>]]思路很像，就是记录每个位置的信息，通过建立队列出入队，向四个方向移动的数组遍历可能的移动情况。不同的是，这道题没有怪兽（bushi）但是可以在一秒之内在同一个方向移动k步，所以也需要遍历在一个方向上走了几步，并判断是否走过、撞墙或者超出边界</li>
+<li>代码实现<ul>
+<li>由于输出的是最短需要时间，所以可以建立一个结构存放到达每个位置所需要的时间，每遍历一次行走时间+1，而同一方向的步数可以走最多k步</li>
+<li>剩下就是同样的bfs, <code>queue</code> 建立队列，符合条件入队，遍历所有的情况直到队空就行，模仿一下[[#<em>22. 地下城与勇士</em>]]就行</li>
+</ul>
+</li>
+</ol>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>这章主要就是动态规划相关的内容，其实感觉总结之前并不是太能理解，很多都是参考其他大佬的思路写完也是云里雾里，总体来说好像是找到状态转移方程，并且用内存换时间，相较于递归时间较快，因为每运行一次都会记录下生成的数据，在之后的遍历过程中就可以直接使用而不是再进行一次遍历了<br><strong>！！注意注意！！一定记得 <code>dp[i][j]</code> 中是有 <code>i</code> 个物品可供选择，背包最大承重为 <code>j</code>，而不是第 <code>i</code> 个物品！！切记！！</strong></p>
+<h2 id="26-篮球练习"><a href="#26-篮球练习" class="headerlink" title="26. 篮球练习"></a><em>26. 篮球练习</em></h2><ol>
+<li>解题思路<br>首先这道题感觉最容易想到的一定是递归，我一开始也是这么做的，本地运行没有问题，但是乐学上会TLE，没办法既然是在动态规划的专题那确实需要用动态规划做，于是乎开改。<br>思路其实大体相同，就是能走到某一个点的方案数，是能走到它上面和左面点的方案数之和，如果这两个点中有小黑子防守的点则不算，一直搜索到要走的终点即可<br>一开始使用递归做的时候我想的是如果在递归过程中遇到防守点位，就直接不算他；但是后来发现这种方式在我计算最上面一行和最左面一行会很难办，因为如果从起点到某个位置出现防守点，之前均有一种到法，出现以后就不可能到这个点。咨询了王总之后发现可以直接将防守点设置为0，初始化起点为1，然后一视同仁加就完了，这样就很好地解决了首行首列的问题</li>
+<li>代码实现<ul>
+<li>只需要注意在应用bool数组判断某个点是否为防守位置时要先判断在不在范围内，如果不在会导致无效内存引用</li>
+<li>同时，因为最后像 “20 20 19 19” 这样输入得出的路径数并不小，所以输出最终结果的数组记得要开 <code>long long</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="27-方向标"><a href="#27-方向标" class="headerlink" title="27. 方向标"></a><em>27. 方向标</em></h2><ol>
+<li>解题思路<br>这题也是弄了很久都没搞懂，拖了好几天才问别人差不多搞明白了<br>大体思路就是，对于每一个箭头所在的位置，都可以先判断一下其相对于上一行左点和右点的位置：如果在左点之左或是右点之右（例如上一行是 2 6，当前箭头在1 或 7这样的）就只有一种摆放方式（即6-&gt;1 或 2 -&gt;7），所以对于当前行的起始点的方案数量就要加上上一行的方案数（即 <code>dp[i][left/right] += dp[i-1][j]</code>）；而如果箭头的位置在上一行左右点之间（如上一行 2 6，当前行为4），那么以上一行的左右点为起始点就都可以（即 2-&gt;4, 6-&gt;4），所以就要左右两端点的方案数量都加上上一行的方案数量。最后遍历最顶端一行；所有位置的方案数量即可</li>
+<li>代码实现<br>不知道放啥，自己看代码叭</li>
+</ol>
+<h2 id="28-考试"><a href="#28-考试" class="headerlink" title="28. 考试"></a><em>28. 考试</em></h2><ol>
+<li>解题思路<br>这个就是最标准的背包问题，我一开始不理解的是我想使用贪心算法，就是我把题目价值按从大到小排序，优先做价值高的题目做，如果时间还在要求之内就继续按价值搜索题目做。但是最后发现只能过三分之二的用例，看书以后发现好像是贪心算法最后可能会剩下位置，而剩下的位置利用价值远低于本来可以应用的价值，所以导致无法保证是最优解<br>所以，没办法了，我开始学背包问题该咋做：<ul>
+<li>大概思路还是遍历，先初始化第一道试题，小于第一道试题所需时间的所给时间放不下，所以得分为0，大于第一套题所需时间的总时间得分就赋成第一道题的分数</li>
+<li>然后循环开始，比较总时间和一道题所需时间，所给时间在0到较小值的情况分数不会增加，直接与做上一个数量的题的分数一致；对于时间大于等于做题所需时间小于总时间的情况，则比较做上一个数量题的分数和减去本题所需时间情况下做上一个数量题的分数加上本题分数的大小，取其较大值</li>
+<li>感觉要说服自己的一点是，要为有N道题目、时间为T的所有情况均赋值，记录他们所得分数的情况</li>
+</ul>
+</li>
+<li>代码实现<br>因为这道题是标准的背包问题，直接放代码，大部分背包问题都需要开二维数组记录某一情况下的结果值，为后续的遍历保留结果<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">CalculateMaxScore</span><span class="params">(<span class="type">int</span> que_num, <span class="type">int</span> total_time)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> jMax = <span class="built_in">min</span>(question[<span class="number">0</span>].time<span class="number">-1</span>, total_time);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= jMax; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        score_rem[<span class="number">1</span>][i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = question[<span class="number">0</span>].time; i &lt;= total_time; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        score_rem[<span class="number">1</span>][i] = question[<span class="number">0</span>].score;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; que_num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        jMax = <span class="built_in">min</span>(question[i].time<span class="number">-1</span>, total_time);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= jMax; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            score_rem[i+<span class="number">1</span>][j] = score_rem[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = question[i].time; j &lt;= total_time; j++)</span><br><span class="line">        &#123;</span><br><span class="line">	        score_rem[i+<span class="number">1</span>][j] = <span class="built_in">max</span>(score_rem[i][j], score_rem[i][j-question[i].time] + question[i].score);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> score_rem[que_num][total_time];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="29-一道简单的背包题"><a href="#29-一道简单的背包题" class="headerlink" title="29. 一道简单的背包题"></a><em>29. 一道简单的背包题</em></h2><ol>
+<li>解题思路<br>这题一开始始终没弄明白如何表示能“恰好”放入背包，后来和大佬交流了一下其实就可以当作是普通的背包问题，特殊的点只在取余单位背包大小所得相同的物品其实可以看作是一种情况（举例来说，如果 V &#x3D; 5，那么对于8和13两种情况来说其实是等同的，因为想要恰好装下都需要取余 V 结果为2的物品大小来填补），所以就可以直接记录取余之后的值，并判断当前背包容量情况下的取法情况；而 <code>MethodCount[i][j] = MethodCount[i-1][j]</code> 语句则相当于记录背包问题中不取新增物品的情况，并在最后与取新增物品的情况数相加得到当前背包体积下所涵盖的情况</li>
+<li>代码实现<br>  取余背包问题代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">CalculateTotalMethods</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> V)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    MethodCount[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; V; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            MethodCount[i][j] = MethodCount[i<span class="number">-1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; V; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> k = (j + p[i] % V) % V;</span><br><span class="line">            MethodCount[i][k] = (MethodCount[i<span class="number">-1</span>][j] + MethodCount[i][k]) % MAX;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> MethodCount[n][<span class="number">0</span>] - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="30-有一个人前来买瓜"><a href="#30-有一个人前来买瓜" class="headerlink" title="30. 有一个人前来买瓜"></a><em>30. 有一个人前来买瓜</em></h2><ol>
+<li>解题思路<br>这题感觉也很抽象，大概是因为我还是不太明白背包问题的整体思路叭… 看到讨论区里有大佬说是相当于背包问题加了个条件，试一下（）<br>首先先遍历所有的瓜数量 <code>i</code> ，再从0开始遍历所有可能给出的最大瓜总重量 <code>j</code>， 然后从500开始向下遍历所有可能给出的成熟度最小值 <code>k</code>，分别判断当前可获得价值是否大于等于0（初始化记得均为-1）和遍历当前重量加上新增瓜重量是否小于最大值，则当前遍历下的最大价值即为 <code>max(dp[j][k] + g[i], dp[j+w[i]][min(k+v[i], 500)])</code>，个人感觉这一步就跟标准背包问题那个比较不加这个物品和加了这个物品剩余容量存之前的物品数加起来的价值哪个大有异曲同工之处</li>
+<li>代码实现<ul>
+<li>这题理论上来看是一个三维的背包问题，但是建立三维数组分别存三个变量和最大买瓜价值会TLE，所以只能用二维数组 <code>dp[weight][maturity] = value</code> 来分别对应三个值，最后通过遍历符合条件的所有 <code>dp[][]</code> 来确定最大可能获得价值</li>
+<li>个人感觉代码里 <code>min(k+v[i], 500)</code> 其实就是给出过要求成熟度的最大值为500，所以如果成熟度比500都大就没有意义了，相当于肯定能符合这个要求，所以直接按500算找最大值就行</li>
+<li>感觉一开始我建立结构存四个变量的想法应该也能实现，但是最后参考的建三个数组 <code>w[i] v[i] q[i]</code> 相对调用更为简便</li>
+<li>最后的遍历求最大可获得价值感觉有点绕，代码放下再来梳理一下叭<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">ResultOutput</span><span class="params">(<span class="type">int</span> w, <span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> result = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= w; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = v; j &lt;= <span class="number">500</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            result = <span class="built_in">max</span>(result, dp[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+通过最后多次输入给出的实际最大总重和最小总成熟度，遍历所有总重小于要求和成熟度大于要求组合情况，比较他们所得最大价值并输出最大的 <code>result</code></li>
+</ul>
+</li>
+</ol>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>写到这里，大二上半学期小学期程序设计方法与实践的课程记录就结束啦。回首望去，三周全部工作就是坐在电脑前思考每节课后的题目，倒也不失是一种新的感受。<br>也许未来的很长一段时间，我都很难再会面对这种纯粹的生活，但是每天与电脑上奇奇怪怪的代码打交道，一定会是我也许数年后的主旋律叭…<br>再近一点，也希望这一篇记录，能为我今年后续数据结构与算法设计课程打下一点基础，这也是我使用Obsidian记录真正迈入计算机领域的第一篇完结文章，特此记录其打开了我未来CSAI学习之路的大门</p>
+<p><strong><big>记于2023.9.10</big></strong></p>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://binisalegend.github.io">Binisalegend</a>
+            <p>原文链接：<a href="https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/</a>
+            <p>发表日期：<a href="https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">November 8th 2023, 1:14:46 pm</a>
+            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">November 8th 2023, 1:17:19 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/11/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="强化学习笔记">
+                    <div class="nextTitle">强化学习笔记</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2023/11/08/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Python学习笔记">
+                    <div class="prevTitle">Python学习笔记</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC81OTE3Mi8zNTYzNA==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
+    </div>
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2446479002@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/binisalegend" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/WeChat.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/QQ.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%84%9F%E5%8F%97%E7%AE%97%E6%B3%95%E9%AD%85%E5%8A%9B"><span class="toc-number">1.</span> <span class="toc-text">感受算法魅力</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8C%9C%E6%95%B0%E5%AD%97%E7%9C%8B%E4%BA%BA%E5%93%81"><span class="toc-number">1.1.</span> <span class="toc-text">1. 猜数字看人品</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%91%98%E6%A1%83%E5%AD%90"><span class="toc-number">1.2.</span> <span class="toc-text">2. 摘桃子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E7%9A%84%E9%85%92%E5%AE%B4"><span class="toc-number">1.3.</span> <span class="toc-text">3. 达拉崩吧的酒宴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8C%97%E6%B9%96%E6%8C%96%E5%9D%91"><span class="toc-number">1.4.</span> <span class="toc-text">4. 北湖挖坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%8C%97%E6%B9%96%E6%B7%B1%E5%9D%91"><span class="toc-number">1.5.</span> <span class="toc-text">5. 北湖深坑</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E3%80%81%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.</span> <span class="toc-text">字符串处理、枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-A-B-I"><span class="toc-number">2.1.</span> <span class="toc-text">6. A+B(I)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-A-B-II"><span class="toc-number">2.2.</span> <span class="toc-text">7. A+B(II)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%8F%91%E8%A8%80%E7%BB%9F%E8%AE%A1"><span class="toc-number">2.3.</span> <span class="toc-text">8. 发言统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%A7%A3%E8%B0%9C%E6%B8%B8%E6%88%8F"><span class="toc-number">2.4.</span> <span class="toc-text">9. 解谜游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E8%82%A5%E5%AE%85%E5%BF%AB%E4%B9%90%E4%B8%B2"><span class="toc-number">2.5.</span> <span class="toc-text">10. 肥宅快乐串</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83%E3%80%81%E6%8E%92%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">贪心、排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%8E%92%E5%85%B5%E5%B8%83%E9%98%B5"><span class="toc-number">3.1.</span> <span class="toc-text">11. 排兵布阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E4%BB%BB%E5%8A%A1%E5%AE%89%E6%8E%92"><span class="toc-number">3.2.</span> <span class="toc-text">12. 任务安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E6%90%AC%E7%A0%96"><span class="toc-number">3.3.</span> <span class="toc-text">13. 搬砖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%B0%B4%E6%99%B6%E7%90%83"><span class="toc-number">3.4.</span> <span class="toc-text">14. 水晶球</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F"><span class="toc-number">3.5.</span> <span class="toc-text">15. 卡牌游戏</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">简单数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="toc-number">4.1.</span> <span class="toc-text">16. 括号匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E7%9C%8B%E6%A5%BC%E6%88%BF"><span class="toc-number">4.2.</span> <span class="toc-text">17. 看楼房</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%A1%AB%E5%9D%91-I"><span class="toc-number">4.3.</span> <span class="toc-text">18. 填坑 I</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E5%A1%AB%E5%9D%91-II"><span class="toc-number">4.4.</span> <span class="toc-text">19. 填坑 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E9%80%89%E4%B8%BE"><span class="toc-number">4.5.</span> <span class="toc-text">20. 选举</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E3%80%81%E6%90%9C%E7%B4%A2"><span class="toc-number">5.</span> <span class="toc-text">查找、搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99"><span class="toc-number">5.1.</span> <span class="toc-text">21. 成语接龙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E5%9C%B0%E4%B8%8B%E5%9F%8E%E4%B8%8E%E5%8B%87%E5%A3%AB"><span class="toc-number">5.2.</span> <span class="toc-text">22. 地下城与勇士</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E5%B8%A6%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E7%8B%AC%E6%B8%B8%E6%88%8F"><span class="toc-number">5.3.</span> <span class="toc-text">23. 带旋转的数独游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E7%BB%B3%E5%AD%90%E5%88%87%E5%89%B2"><span class="toc-number">5.4.</span> <span class="toc-text">24. 绳子切割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E8%BF%9B%E5%9C%88"><span class="toc-number">5.5.</span> <span class="toc-text">25. 进圈</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E7%AF%AE%E7%90%83%E7%BB%83%E4%B9%A0"><span class="toc-number">6.1.</span> <span class="toc-text">26. 篮球练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E6%96%B9%E5%90%91%E6%A0%87"><span class="toc-number">6.2.</span> <span class="toc-text">27. 方向标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E8%80%83%E8%AF%95"><span class="toc-number">6.3.</span> <span class="toc-text">28. 考试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-%E4%B8%80%E9%81%93%E7%AE%80%E5%8D%95%E7%9A%84%E8%83%8C%E5%8C%85%E9%A2%98"><span class="toc-number">6.4.</span> <span class="toc-text">29. 一道简单的背包题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#30-%E6%9C%89%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%89%8D%E6%9D%A5%E4%B9%B0%E7%93%9C"><span class="toc-number">6.5.</span> <span class="toc-text">30. 有一个人前来买瓜</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">7.</span> <span class="toc-text">结语</span></a></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 6
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Python学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">大二上小学期程设解题思路</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">强化学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/CS61A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">CS61A学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Missing-Semester学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span>
+            <a class="archive-post-title" href="/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java程序设计学习笔记</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="Python">
+                <span class="iconfont-archer">&#xe606;</span>
+                Python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Java语言学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                Java语言学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="杂技学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                杂技学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据结构">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据结构
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="强化学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                强化学习
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://binisalegend.github.io",
+        root: siteMetaRoot,
+        author: "Binisalegend"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>

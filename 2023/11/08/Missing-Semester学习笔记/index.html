@@ -26,11 +26,20 @@
 <meta property="og:site_name" content="Binisalegend的博客">
 <meta property="og:description" content="本文是一些零散的如命令行、Git、vim的学习笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230812001054.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/capture-2023-08-11-20-57-14.jpg">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230813222634.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230813232317.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230826232551.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230826233231.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230903202528.png">
+<meta property="og:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230903210606.png">
 <meta property="article:published_time" content="2023-11-08T02:28:04.000Z">
-<meta property="article:modified_time" content="2023-11-08T02:30:28.711Z">
+<meta property="article:modified_time" content="2023-11-08T04:23:20.896Z">
 <meta property="article:author" content="Binisalegend">
 <meta property="article:tag" content="杂技学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230812001054.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -212,7 +221,11 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
@@ -332,6 +345,10 @@
 
                 
                 <!-- 文章字数统计 -->
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">11.4k</span>阅读时长: <span class="post-count reading-time">42 min</span></span>
+                    </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
@@ -518,7 +535,7 @@
 <li>可以借助 <code>|</code> 将一个程序的输出与另外一个程序的输入联系起来，例如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">missing:~$ <span class="built_in">ls</span> -l / | <span class="built_in">tail</span> -n1  <span class="comment">#第一个命令输出所包含全部文件夹的详细信息，第二个命令则输出文件中的最后&lt;number&gt;行</span></span><br><span class="line">drwxr-xr-x   2 root root       4096 12月 18  2022 work</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="课程视频部分-2"><a href="#课程视频部分-2" class="headerlink" title="课程视频部分"></a>课程视频部分</h3><ol>
-<li><code>&gt;</code> 相当于在进行一个覆盖操作，而 <code>&gt;&gt;</code> 则是在进行追加操作，具体演示如下：![[Pasted image 20230812001054.png]]</li>
+<li><code>&gt;</code> 相当于在进行一个覆盖操作，而 <code>&gt;&gt;</code> 则是在进行追加操作，具体演示如下：<img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230812001054.png"></li>
 <li>吐了吐了…老是看到老师在讲课的时候突然命令行里就能出现上一步的命令内容，查了半天发现最后就是一个上键…直接人傻掉，不过也顺便查到了很多常用的linux快捷键：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. Ctrl + L：清空终端中所有的内容并返回当前的目录</span><br><span class="line">2. Ctrl + C：强制中断某个程序的执行</span><br><span class="line">3. Ctrl + D：结束键盘输入（不知道和上面那个有啥区别）</span><br><span class="line">4. !!：重复执行上一步的命令</span><br><span class="line">5. Ctrl Shift C/V：复制粘贴</span><br><span class="line">6. Ctrl + A：快速回到当前行最左一个字符</span><br></pre></td></tr></table></figure></li>
 <li><code>|</code> 被称作”pipe characater”(管道字符)：将程序的输出放在左侧，将程序的输入放在右侧。这也可以对前面的<code>ls -l / | tail -n1</code>进行解释，即<code>ls -l</code>产生了一个输出，而<code>tail -2</code>则是一个需要输入的命令</li>
 </ol>
@@ -533,7 +550,7 @@
 <li>如果直接访问一个文件夹要用完整的路径例如<code>/home/binisalegend/missing/semester</code>，但是实际上发现好像<code>./semester</code>就可以</li>
 <li>~~写入文件的时候可以使用<code>&gt;&gt;</code>来写入文件，暂时看起来的作用是换行</li>
 <li><code>rm -rf &lt;文件路径&gt;</code>：删除文件</li>
-<li>在执行文件遇到权限不足的情况时可以用<code>ls -l &lt;文件名&gt;</code>来查看文件权限，然后用 <code>chmod [权限名称] &lt;文件名&gt;</code> 来更改文件权限，其中可读权限为4、可写权限为2、可执行权限为1，即如果想分别设置所有者、用户和其他人的权限为全部、可读可写、可读，则语句为 <code>chmod 764 semester</code>。具体相关细节详见以下：![[capture-2023-08-11-20-57-14.jpg]]</li>
+<li>在执行文件遇到权限不足的情况时可以用<code>ls -l &lt;文件名&gt;</code>来查看文件权限，然后用 <code>chmod [权限名称] &lt;文件名&gt;</code> 来更改文件权限，其中可读权限为4、可写权限为2、可执行权限为1，即如果想分别设置所有者、用户和其他人的权限为全部、可读可写、可读，则语句为 <code>chmod 764 semester</code>。具体相关细节详见以下 <img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/capture-2023-08-11-20-57-14.jpg"></li>
 <li>之后的这个问题很有意思，相当于把smester文件执行的内容输出中的一条拷贝到last-modified文件中，具体命令如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./semester | grep last-modified &gt; last-modified.txt</span><br></pre></td></tr></table></figure>
 可以理解成<code>./semester</code>是运行这个文件，用 <code>|</code> 让后面的<code>grep last-modified</code>同时执行，即注意<code>grep</code>命令抓取last-modified所在的输出并将其添加到<code>last-modified.txt</code>文件中</li>
 </ol>
@@ -556,9 +573,9 @@
 </ul>
 </li>
 <li>使用<code>echo $?</code>检查错误命令时，输出0表示一切正常没有错误，输出1表示前面的命令语句出现了问题，其中<code>true</code>后<code>echo $?</code>返回始终为0，<code>false</code>后始终返回1(这个感觉有点奇怪好像Linux里面true和false是小写)</li>
-<li>在bash中也有”或”和”与”运算符，它们都属于短路运算符。其中<code>||</code>或运算符在符号前语句没有0错误代码时(即<code>echo $?</code>返回不为0，语句有问题)便会执行符号后的语句，反之，如果符号前语句错误代码为0，则符号后语句会被短路不会被执行，同时如果错误代码均不为0则不输出且错误代码返回1；而<code>&amp;&amp;</code>与运算符则只在前后错误代码均为0时才会执行语句。示例如下：![[Pasted image 20230813222634.png]]</li>
+<li>在bash中也有”或”和”与”运算符，它们都属于短路运算符。其中<code>||</code>或运算符在符号前语句没有0错误代码时(即<code>echo $?</code>返回不为0，语句有问题)便会执行符号后的语句，反之，如果符号前语句错误代码为0，则符号后语句会被短路不会被执行，同时如果错误代码均不为0则不输出且错误代码返回1；而<code>&amp;&amp;</code>与运算符则只在前后错误代码均为0时才会执行语句。示例如下： <img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230813222634.png"></li>
 <li>可以使用分号在一行中打印多个语句，不管执行什么都会全部执行所有语句：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; false ; echo &quot;This will always print&quot;</span><br><span class="line">This will always print</span><br></pre></td></tr></table></figure></li>
-<li>我们可以以变量的形式获取一个命令的输出，这种方式通常被称作命令替换(command substitution), 例如：![[Pasted image 20230813232317.png]]<br> 其中，有一些点值得注意：在扩展字符串的时候记得用双引号而不是单引号，原因详见2.2；同时在调用的时候要使用<code>$ &lt;变量名称&gt;</code>，可以类比一下C语言中格式化赋予变量值的操作。 ^1f484b<br>  同时，还有一种相对冷门的类似特性被称为进程替换(process substitution)。其通过<code>&lt;(&lt;命令语句&gt;)</code>来将执行命令的结果保存到一个临时文件中，同时可以将两个命令所得结果进行串联，例如<code>cat &lt;(ls) &lt;(ls ..)</code>会打印当前文件目录和上级文件目录中的全部内容名称<br>  下面是一组应用命令替换和进程替换的例子：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/missing/example.sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Starting program at <span class="subst">$(date)</span>&quot;</span> <span class="comment"># date会被替换成日期和时间</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Running program <span class="variable">$0</span> with <span class="variable">$#</span> arguments with pid $$&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    grep foobar <span class="string">&quot;<span class="variable">$file</span>&quot;</span> &gt; /dev/null 2&gt; /dev/null <span class="comment">#grep用于在某个文件中中搜索子字符串</span></span><br><span class="line">    <span class="comment"># 如果模式没有找到，则grep退出状态为 1</span></span><br><span class="line">    <span class="comment"># 我们将标准输出流和标准错误流重定向到Null，因为我们并不关心这些信息</span></span><br><span class="line">    <span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span>  <span class="comment"># -ne表示不等于</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;File <span class="variable">$file</span> does not have any foobar, adding one&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;# foobar&quot;</span> &gt;&gt; <span class="string">&quot;<span class="variable">$file</span>&quot;</span>  </span><br><span class="line">    <span class="keyword">fi</span>  <span class="comment"># fi表示循环语句结束</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<li>我们可以以变量的形式获取一个命令的输出，这种方式通常被称作命令替换(command substitution), 例如：<img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230813232317.png"><br> 其中，有一些点值得注意：在扩展字符串的时候记得用双引号而不是单引号，原因详见2.2；同时在调用的时候要使用<code>$ &lt;变量名称&gt;</code>，可以类比一下C语言中格式化赋予变量值的操作。 ^1f484b<br>  同时，还有一种相对冷门的类似特性被称为进程替换(process substitution)。其通过<code>&lt;(&lt;命令语句&gt;)</code>来将执行命令的结果保存到一个临时文件中，同时可以将两个命令所得结果进行串联，例如<code>cat &lt;(ls) &lt;(ls ..)</code>会打印当前文件目录和上级文件目录中的全部内容名称<br>  下面是一组应用命令替换和进程替换的例子：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/missing/example.sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Starting program at <span class="subst">$(date)</span>&quot;</span> <span class="comment"># date会被替换成日期和时间</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Running program <span class="variable">$0</span> with <span class="variable">$#</span> arguments with pid $$&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    grep foobar <span class="string">&quot;<span class="variable">$file</span>&quot;</span> &gt; /dev/null 2&gt; /dev/null <span class="comment">#grep用于在某个文件中中搜索子字符串</span></span><br><span class="line">    <span class="comment"># 如果模式没有找到，则grep退出状态为 1</span></span><br><span class="line">    <span class="comment"># 我们将标准输出流和标准错误流重定向到Null，因为我们并不关心这些信息</span></span><br><span class="line">    <span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span>  <span class="comment"># -ne表示不等于</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;File <span class="variable">$file</span> does not have any foobar, adding one&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;# foobar&quot;</span> &gt;&gt; <span class="string">&quot;<span class="variable">$file</span>&quot;</span>  </span><br><span class="line">    <span class="keyword">fi</span>  <span class="comment"># fi表示循环语句结束</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 ^4dd971</li>
 </ol>
 <p>程序运行后得到：</p>
@@ -629,7 +646,7 @@
 </ul>
 <h1 id="5-命令行环境"><a href="#5-命令行环境" class="headerlink" title="5. 命令行环境"></a>5. 命令行环境</h1><h2 id="任务控制-Job-Control"><a href="#任务控制-Job-Control" class="headerlink" title="任务控制(Job Control)"></a><em>任务控制(Job Control)</em></h2><h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><p>当我们在命令行环境中按下 <code>Ctrl + C</code>，shell会为我们打断一个正在进行的进程。深层来讲，终端会向程序发送一个 <code>SIGINT --&gt; signal interrupt</code> 信号告诉程序自行停止。我们可以通过 <code>man signal</code> 指令来查看这些信号以及其对应的数字表示符和简短的描述。<br>我们可以使用以下代码来简单验证一下两个信号指令 <code>SIGINT</code> 和 <code>SIGQUIT</code> ：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> signal, time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handler</span>(<span class="params">signum, time</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nI got a SIGINT, but I am not stopping&quot;</span>)</span><br><span class="line"></span><br><span class="line">signal.signal(signal.SIGINT, handler)</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    time.sleep(<span class="number">.1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\r&#123;&#125;&quot;</span>.<span class="built_in">format</span>(i), end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>当我们按下 <code>Ctrl + C</code> 时，代码会捕获SIGINT指令并且返回语句，但是计数程序并不会停止运行；而当我们再次按下 <code>Ctrl + \</code> 时，程序并不会捕获到SIGQUIT指令，指令生效后程序会有如下提示并且立即停止：<br>![[Pasted image 20230826232551.png]]<br>而对于如下情况，当我们按下 <code>Ctrl + Z</code> 时，相当于终端发送了一个 SIGTSTP(Terminal Stop) 信号让正在运行的进程停止，但这个程序停止在后台并且可以通过 <code>fg</code> 让它在前台继续运行和 <code>bg</code> 让它在后台继续运行（也就是说可以通过 <code>Ctrl + Z</code> 和 <code>bg</code> 命令一起使用来让一个运行中的进程在后台运行<br>![[Pasted image 20230826233231.png]]</p>
+<p>当我们按下 <code>Ctrl + C</code> 时，代码会捕获SIGINT指令并且返回语句，但是计数程序并不会停止运行；而当我们再次按下 <code>Ctrl + \</code> 时，程序并不会捕获到SIGQUIT指令，指令生效后程序会有如下提示并且立即停止：  <img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230826232551.png"><br>而对于如下情况，当我们按下 <code>Ctrl + Z</code> 时，相当于终端发送了一个 SIGTSTP(Terminal Stop) 信号让正在运行的进程停止，但这个程序停止在后台并且可以通过 <code>fg</code> 让它在前台继续运行和 <code>bg</code> 让它在后台继续运行（也就是说可以通过 <code>Ctrl + Z</code> 和 <code>bg</code> 命令一起使用来让一个运行中的进程在后台运行 <img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230826233231.png"></p>
 <h3 id="暂停和后台执行进程"><a href="#暂停和后台执行进程" class="headerlink" title="暂停和后台执行进程"></a>暂停和后台执行进程</h3><p><code>jobs</code> 命令可以显示出当前正在运行和后台运行或者暂停的进程数并将它们标号，可以通过 <code>命令 + %&lt;命令编号&gt;</code> 来对某个进程进行操作(调用最近的进程也可以用 <code>$!</code>)<br>在进程命令后加 <code>&amp;</code> 符号也可以让一个进程直接在后台启动运行，这样我们就可以继续在shell的窗口进行一系列其他的操作<br>然而，进入后台的进程依然是这个终端的子进程，也就是在关闭终端的时候这个进程也会被终止，如果想要避免这种情况可以在进程命令前加上 <code>nohup</code> 指令来实现<br>我们也可以用 <code>kill &lt;-SIGHUP&gt; / &lt;-STOP&gt; %&lt;命令编号&gt;</code> 来终止一个进程</p>
 <h2 id="终端多路复用-Terminal-Multiplexers"><a href="#终端多路复用-Terminal-Multiplexers" class="headerlink" title="终端多路复用(Terminal Multiplexers)"></a><em>终端多路复用(Terminal Multiplexers)</em></h2><p>像 <code>tmux</code> 这样的终端多路复用器可以让我们分出多个终端窗口，这样我们可以同时与多个shell对话进行交互。 <code>tmux</code> 有三个基本思想分别是 “Sessions Windows Panes –&gt; 会话 窗口 窗格”<br>在shell中直接输入 <code>tmux</code> 命令就可以新建一个tmux会话( 可以通过 <code>tmux new -t &lt;窗口名&gt;</code> 命令来新建一个会话并给tmux会话进行命名)，看起来和我们平时使用的zsh没有什么不同，但我们可以在其中运行一些相关的进程，并通过 <code>Ctrl + B</code> 后再按下 <code>D</code> 来返回到原本的zsh窗口，在zsh中使用 <code>tmux a(ttach) -t &lt;tmux会话名称&gt;</code> 命令来返回到刚刚的tmux会话，也可以在tmux中使用 <code>exit</code> 命令或者是 <code>Ctrl + D</code> 快捷键来彻底退出当前的tmux会话<br>在一个tmux会话中，我们可以使用 <code>Ctrl + B</code> 再按下 <code>C(create)</code> 来新建一个窗口，这个操作相当于tmux为我们新建了一个与shell的对话窗口，我们可以在新的窗口中执行一系列其他命令。同时，我们还可以用 <code>Ctrl + B</code> 再按下 <code>P(privious) || N(next) || &lt;窗口编号&gt;</code> 来进行窗口之间的切换<br>同时，我们可以用 <code>Ctrl + B</code> 再按 <code>&quot;</code> 或者 <code>%</code> 来新建一个窗格，实现类似于上下和左右分屏的效果，可以使用 <code>Ctrl + B</code> 加上上下左右箭头键在一系列窗格中切换。使用 <code>Ctrl + B</code> 再按 <code>Z</code> 可以切换当前面板在全屏和普通模式， <code>Ctrl + B</code> 加上空格键可以在不同窗格排布中切换</p>
 <h2 id="别名-Aliases"><a href="#别名-Aliases" class="headerlink" title="别名(Aliases)"></a><em>别名(Aliases)</em></h2><p>alias是一种相当于可以自定义快捷键的的指令，可以为一个长命令设置一个别名，它的语法如下：</p>
@@ -669,7 +686,7 @@
 <li>不理解这个为什么不能早点教，害我一直看着很长一段log发愁：<code>git log --all --graph --decorate --oneline</code> 可以在一行中显示暂存日志，基本上是只显示哈希码和后面的暂存提交备注</li>
 <li>当我们在一个分支中对某个程序进行了修改，再使用 <code>git checkout &lt;分支名&gt;</code> 切换回其他分支时会发现发刚刚作出改动的内容并不会显示在当前的工作目录中，这样我们就可以实现在并行的开发线中来回跳转</li>
 <li>可以应用 <code>git branch &lt;分支名&gt; ; git checkout &lt;分支名&gt;</code> 来实现新建一个分支并且跳转到新建的工作表目录中去，简化版命令是 <code>git check -b &lt;分支名&gt;</code> （盲猜-b全拼是-branch）</li>
-<li>当我们在多个分支工作目录中对代码进行改动后，我们同通常会需要将功能进行合并，这是我们可以先切换回master分支中，应用 <code>git merge &lt;分支名&gt; ...</code> 来将不同分支中的内容进行合并，指向master的指针HEAD会指向master和cat，前后对比图如下：![[Pasted image 20230903202528.png]]<br>在执行合并操作的时候，Git可能会对一些合并不是太灵敏，这时会出现合并冲突问题（merge conflict），这是需要我们手动在文件中进行符合我们预期的修订后重新add更改，然后执行 <code>git merge --continue</code> 命令继续执行合并操作<br>![[Pasted image 20230903210606.png]]</li>
+<li>当我们在多个分支工作目录中对代码进行改动后，我们同通常会需要将功能进行合并，这是我们可以先切换回master分支中，应用 <code>git merge &lt;分支名&gt; ...</code> 来将不同分支中的内容进行合并，指向master的指针HEAD会指向master和cat，前后对比图如下：<img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230903202528.png"><br>在执行合并操作的时候，Git可能会对一些合并不是太灵敏，这时会出现合并冲突问题（merge conflict），这是需要我们手动在文件中进行符合我们预期的修订后重新add更改，然后执行 <code>git merge --continue</code> 命令继续执行合并操作 <img src="/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020230903210606.png"></li>
 </ol>
 <h3 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h3><p>实际上，对于Git的远程操作主要是为了能够和他人一起协作，以及将自己的本地储存库上传到像GitHub、gitee等云端仓库</p>
 <ol>
@@ -706,7 +723,7 @@
             <p>原文作者：<a href="https://binisalegend.github.io">Binisalegend</a>
             <p>原文链接：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
             <p>发表日期：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 10:28:04 am</a>
-            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 10:30:28 am</a>
+            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/08/Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 12:23:20 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -733,6 +750,21 @@
     
         <div class="post-comment">
             <!-- 来必力 City 版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC81OTE3Mi8zNTYzNA==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
+    </div>
 
 
             
@@ -900,7 +932,36 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -915,7 +976,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 3
+        Total : 6
         </div>
         <!-- search  -->
         
@@ -929,6 +990,24 @@
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Python学习笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E5%B0%8F%E5%AD%A6%E6%9C%9F%E7%A8%8B%E8%AE%BE%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">大二上小学期程设解题思路</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span>
+            <a class="archive-post-title" href="/2023/11/08/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">强化学习笔记</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/08</span>
@@ -966,6 +1045,16 @@
             <span class="sidebar-tag-name" data-tags="杂技学习">
                 <span class="iconfont-archer">&#xe606;</span>
                 杂技学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据结构">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据结构
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="强化学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                强化学习
             </span>
         
     </div>
