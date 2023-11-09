@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020231026235908.png">
 <meta property="og:image" content="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Pasted%20image%2020231027085858.png">
 <meta property="article:published_time" content="2023-11-07T15:58:22.000Z">
-<meta property="article:modified_time" content="2023-11-08T03:32:08.051Z">
+<meta property="article:modified_time" content="2023-11-09T14:13:50.704Z">
 <meta property="article:author" content="Binisalegend">
 <meta property="article:tag" content="Java语言学习">
 <meta name="twitter:card" content="summary">
@@ -308,7 +308,7 @@
     <!-- 404页  -->
     
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/2560x800/?programming)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
@@ -342,7 +342,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">7.9k</span>阅读时长: <span class="post-count reading-time">29 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">8.6k</span>阅读时长: <span class="post-count reading-time">32 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -567,7 +567,7 @@
 <li>在这里就已经能发现引用类内方法的迹象了 <code>Class ClassName = new Class()</code> ,具体的解释在[[#^bea8b9]]</li>
 <li>计算机不能精确的比较浮点数，因此在执行 <code>0.00001 == 0.00000000000001</code> 时会返回true，因此应该比较其差的绝对值是否在某个范围之内 <code>Math.Abs(i-j) &lt; 1e-10</code></li>
 </ul>
-<h2 id="Lesson5-Java中的类和对象"><a href="#Lesson5-Java中的类和对象" class="headerlink" title="Lesson5: Java中的类和对象"></a><em>Lesson5: Java中的类和对象</em></h2><hr>
+<h1 id="Class3"><a href="#Class3" class="headerlink" title="Class3"></a>Class3</h1><h2 id="Lesson5-Java中的类和对象"><a href="#Lesson5-Java中的类和对象" class="headerlink" title="Lesson5: Java中的类和对象"></a><em>Lesson5: Java中的类和对象</em></h2><hr>
 <ul>
 <li>Java中的类和对象可以理解成每个类都是为了某些特定对象而服务的方法集，在一个类中封装了面向一类对象的处理方法，而面向用户只开放特定的简单接口</li>
 </ul>
@@ -592,7 +592,7 @@
 <li>Java中提供了一系列的包装类（引用类型，可以创建相应对象），简单来说就是把基本变量类型首字母大写，具体作用是为基本数据类型提供了一些方法和字段，可以使用 <code>import package.class</code> 来引用一个包，也可以在文件前使用 <code>package &lt;包的路径(把/换成.)&gt;</code> 语句来将类加入到指定的包中<br>在对上述这种进行将类放入自定义包中操作的文件进行编译时，使用 <code>javac -d 文件相对路径 文件名.java</code> 命令，系统会自动按照 <code>package</code> 语句中的路径创建文件夹并将 <code>.class</code> 文件放在文件夹中，但注意执行可执行文件时需要在根目录执行类似这样 <code>java Try.test.Hello</code> 的命令才能偶正确运行</li>
 <li>学到了一个新的类：<code>StringBuffer / StringBuilder</code> 可以直接用 <code>.append() .insert() .delete()</code> 来对字符串进行一系列操作</li>
 </ol>
-<h1 id="Class3"><a href="#Class3" class="headerlink" title="Class3"></a>Class3</h1><h2 id="Lesson6-Java程序设计中的字符串"><a href="#Lesson6-Java程序设计中的字符串" class="headerlink" title="Lesson6: Java程序设计中的字符串"></a><em>Lesson6: Java程序设计中的字符串</em></h2><hr>
+<h1 id="Class4"><a href="#Class4" class="headerlink" title="Class4"></a>Class4</h1><h2 id="Lesson6-Java程序设计中的字符串"><a href="#Lesson6-Java程序设计中的字符串" class="headerlink" title="Lesson6: Java程序设计中的字符串"></a><em>Lesson6: Java程序设计中的字符串</em></h2><hr>
 <ol>
 <li>上来就是老生常谈好吧：<code>String</code> 类型比较相同不能使用 <code>==</code> ,用string自带的判定方式 <code>.equals()</code> 来进行判断（Java自带的内存压缩机制导致相同的变量可能被指向同一个地址，而如果 <code>new</code> 一个变量会导致指向一个全新分配的地址，<code>==</code> 比较的不是元素值而是地址，所以会返回 <code>false</code>）</li>
 <li><code>compareTo</code> :使用字典法进行比较,返回0表两字串相等,小于返回负值,大于返回正值</li>
@@ -795,7 +795,7 @@
 </ol>
 </li>
 </ol>
-<h2 id="Lesson8-Java中的继承、抽象类与接口"><a href="#Lesson8-Java中的继承、抽象类与接口" class="headerlink" title="Lesson8: Java中的继承、抽象类与接口"></a><em>Lesson8: Java中的继承、抽象类与接口</em></h2><hr>
+<h1 id="Class5"><a href="#Class5" class="headerlink" title="Class5"></a>Class5</h1><h2 id="Lesson8-Java中的继承、抽象类与接口"><a href="#Lesson8-Java中的继承、抽象类与接口" class="headerlink" title="Lesson8: Java中的继承、抽象类与接口"></a><em>Lesson8: Java中的继承、抽象类与接口</em></h2><hr>
 <ul>
 <li>继承<br>  <strong>指既具有父类的一切特性，同时又具有自己的独有特性，通常称为 <code>IS_A</code> 关系</strong><ol>
 <li><p>继承的语法：<code>class &lt;child class&gt; extends &lt;parent class&gt; &#123;&#125;</code>，其中parent class和super class通常指某一类的直接上级，而base class通常指公共的基类</p>
@@ -870,7 +870,7 @@
 </ol>
 </li>
 </ul>
-<h2 id="Lesson9-Java程序设计之多态"><a href="#Lesson9-Java程序设计之多态" class="headerlink" title="Lesson9: Java程序设计之多态"></a><em>Lesson9: Java程序设计之多态</em></h2><hr>
+<h1 id="Class6"><a href="#Class6" class="headerlink" title="Class6"></a>Class6</h1><h2 id="Lesson9-Java程序设计之多态"><a href="#Lesson9-Java程序设计之多态" class="headerlink" title="Lesson9: Java程序设计之多态"></a><em>Lesson9: Java程序设计之多态</em></h2><hr>
 <ul>
 <li><strong>多态(polymorphism)：指相同的一条语句在不同的类中进行不同的解释，在不同的运行环境中能够运行出不同的结果</strong></li>
 </ul>
@@ -982,7 +982,7 @@
 </ol>
 </li>
 </ol>
-<h1 id="Class4"><a href="#Class4" class="headerlink" title="Class4"></a>Class4</h1><h2 id="Lesson10-泛型程序设计"><a href="#Lesson10-泛型程序设计" class="headerlink" title="Lesson10: 泛型程序设计"></a><em>Lesson10: 泛型程序设计</em></h2><hr>
+<h2 id="Lesson10-泛型程序设计"><a href="#Lesson10-泛型程序设计" class="headerlink" title="Lesson10: 泛型程序设计"></a><em>Lesson10: 泛型程序设计</em></h2><hr>
 <h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><ol>
 <li>使用泛型的目的：限制集合能接收的数据类型，并且避免了类型转换的需要。语法一般为如 <ul>
 <li><input checked disabled type="checkbox"> <code>ArrayList&lt;String&gt; strList = new ArrayList&lt;String&gt;();</code></li>
@@ -1026,11 +1026,24 @@
 <ol>
 <li>一个值得注意的点是，<code>ArrayList&lt;Number&gt;</code> 对象可以直接赋值给 <code>List&lt;Number&gt;</code> 变量</li>
 <li><code>add()</code> 方法奏效的原因是因为 <code>Integer</code> 和 <code>Double</code> 类都是 <code>Number</code> 类的子类</li>
-<li><code>List&lt;Number&gt;</code> 不是 <code>List&lt;Integer&gt;</code> 的基类型，所以</li>
+<li><code>List&lt;Number&gt;</code> 不是 <code>List&lt;Integer&gt;</code> 的基类型，所以 <code>nums</code> 变量不能引用一个 <code>List&lt;Integer&gt;</code> 对象</li>
 </ol>
 </li>
 </ol>
-
+<h3 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h3><ul>
+<li>我们可以指定泛型参数具有某些特性，例如是某个类的子类、是某个接口等，这时就需要我们引入泛型约束这一概念</li>
+</ul>
+<ol>
+<li>首先，在泛型方法中指定泛型方法的泛型参数类型必须实现Comparable接口，例子如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Comparable</span>&gt; T <span class="title function_">min</span><span class="params">(T[] a)</span></span><br><span class="line">   &#123;</span><br><span class="line">	<span class="comment">// 可以有多个约束条件，但只有第一个可以是一个类</span></span><br><span class="line">   &#125;</span><br><span class="line">   ~~~  </span><br><span class="line">   在进行泛型约束限定类后，泛型参数就只能是限定类的子类，例如如果限定了 `&lt;T <span class="keyword">extends</span> <span class="title class_">Number</span>&gt;` 则可以以 `Integer` 和 `Double` 等类型作为泛型参数，但 `String` 就不能作为这个类中的泛型参数</span><br><span class="line"><span class="number">2.</span> 类型通配符 `?` </span><br><span class="line">   使用类型通配符可以解决父类集合变量引用子类集合对象的问题</span><br><span class="line">   <span class="number">1.</span> 在不适用类型通配符的情况下，假如 `Child` 类派生自 `Parent` 类，当我们定义了 `List&lt;Child&gt; ChildList = <span class="keyword">new</span> <span class="title class_">ChildList</span>&lt;&gt;()` 时，这个列表中只能添加子类 `Child` 类型对象，而像 `ChildList.add(<span class="keyword">new</span> <span class="title class_">Parent</span>())` 的操作是不合法的</span><br><span class="line">   <span class="number">2.</span> 我们为了让某个泛型同时引用父类和子类集合，可以使用这样的定义方式 `&lt;? extents Parent&gt;` 表示泛型参数必须是 `Parent` 的子类；相似的，`&lt;? <span class="built_in">super</span> T&gt;` 表示泛型参数必须是 `T` 的基类</span><br><span class="line">   <span class="number">3.</span> 泛型参数可以有多个约束，如 `&lt;T <span class="keyword">extends</span> <span class="title class_">Comparable</span> &amp; Serializable&gt; T <span class="title function_">mtd</span><span class="params">()</span>`</span><br><span class="line">### 泛型“擦除”原理</span><br><span class="line">受限于Java虚拟机本身不支持泛型，所以在JVM进行编译时会产生泛型擦除现象，示例如下</span><br><span class="line">~~~Java</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pair</span>&lt;T&gt; --&gt; Pair&lt;Object&gt;  <span class="comment">//没有泛型约束的直接擦除为Object</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Comparable</span>&gt; T <span class="title function_">min</span><span class="params">()</span> --&gt; <span class="keyword">public</span> <span class="keyword">static</span> Comparable <span class="title function_">min</span><span class="params">()</span>  <span class="comment">//有泛型约束擦除泛型参数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Comparable</span> &amp; Serializable&gt; T <span class="title function_">mtd</span><span class="params">()</span> --&gt; <span class="keyword">public</span> <span class="keyword">static</span> Comparable <span class="title function_">mtd</span><span class="params">()</span>  <span class="comment">//多个泛型约束只保留第一个约束，剩下全部擦除</span></span><br><span class="line">a <span class="keyword">instanceof</span> Pair&lt;String&gt; --&gt; a <span class="keyword">instanceof</span> Pair  <span class="comment">//instanceof 应用于泛型时，擦除泛型参数只保留原始类型</span></span><br></pre></td></tr></table></figure>
+泛型擦除可能会导致很多“奇怪”的编译现象，如下实例中，由于擦除现象会导致程序返回 <code>true</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">List&lt;Integer&gt; intList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">System.out.println(strList.getClass() == intList.getClass());</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Lesson11：Java中的内部类"><a href="#Lesson11：Java中的内部类" class="headerlink" title="Lesson11：Java中的内部类"></a><em>Lesson11：Java中的内部类</em></h2><ol>
+<li>内部类 (Inner Class) 的定义直接包容在另一个类内部，形象化来说就是</li>
+</ol>
+<h1 id="Class8"><a href="#Class8" class="headerlink" title="Class8"></a>Class8</h1><h2 id="Lesson12：Java中的lambda表达式"><a href="#Lesson12：Java中的lambda表达式" class="headerlink" title="Lesson12：Java中的lambda表达式"></a><em>Lesson12：Java中的lambda表达式</em></h2><ul>
+<li>lambda表达式</li>
+</ul>
+<h2 id="Lesson13：Java中的Stream-API"><a href="#Lesson13：Java中的Stream-API" class="headerlink" title="Lesson13：Java中的Stream API"></a><em>Lesson13：Java中的Stream API</em></h2>
     </article>
     <!-- license -->
     
@@ -1038,7 +1051,7 @@
             <p>原文作者：<a href="https://binisalegend.github.io">Binisalegend</a>
             <p>原文链接：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
             <p>发表日期：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 7th 2023, 11:58:22 pm</a>
-            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 8th 2023, 11:32:08 am</a>
+            <p>更新日期：<a href="https://binisalegend.github.io/2023/11/07/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">November 9th 2023, 10:13:50 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -1213,7 +1226,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Class1"><span class="toc-number">1.</span> <span class="toc-text">Class1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class2"><span class="toc-number">2.</span> <span class="toc-text">Class2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson3-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.</span> <span class="toc-text">Lesson3: Java程序设计语法基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson4-Java%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">Lesson4: Java中的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson5-Java%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.</span> <span class="toc-text">Lesson5: Java中的类和对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class3"><span class="toc-number">3.</span> <span class="toc-text">Class3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson6-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.1.</span> <span class="toc-text">Lesson6: Java程序设计中的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson7-Java%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">Lesson7: Java中的正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson8-Java%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.3.</span> <span class="toc-text">Lesson8: Java中的继承、抽象类与接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson9-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B9%8B%E5%A4%9A%E6%80%81"><span class="toc-number">3.4.</span> <span class="toc-text">Lesson9: Java程序设计之多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E4%B8%93%E9%A2%98%E4%B9%8B%E5%BF%AB%E9%80%9F%E5%B9%82%E5%92%8C%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95"><span class="toc-number">3.5.</span> <span class="toc-text">小专题之快速幂和矩阵快速算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E4%B8%93%E9%A2%98%E4%B9%8B%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3"><span class="toc-number">3.6.</span> <span class="toc-text">小专题之位运算相关</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class4"><span class="toc-number">4.</span> <span class="toc-text">Class4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson10-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.1.</span> <span class="toc-text">Lesson10: 泛型程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="toc-number">4.1.1.</span> <span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text">泛型方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7"><span class="toc-number">4.1.3.</span> <span class="toc-text">泛型的多态特性</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Class1"><span class="toc-number">1.</span> <span class="toc-text">Class1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class2"><span class="toc-number">2.</span> <span class="toc-text">Class2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson3-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.</span> <span class="toc-text">Lesson3: Java程序设计语法基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson4-Java%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">Lesson4: Java中的方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class3"><span class="toc-number">3.</span> <span class="toc-text">Class3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson5-Java%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.1.</span> <span class="toc-text">Lesson5: Java中的类和对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class4"><span class="toc-number">4.</span> <span class="toc-text">Class4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson6-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">4.1.</span> <span class="toc-text">Lesson6: Java程序设计中的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson7-Java%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.2.</span> <span class="toc-text">Lesson7: Java中的正则表达式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class5"><span class="toc-number">5.</span> <span class="toc-text">Class5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson8-Java%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3"><span class="toc-number">5.1.</span> <span class="toc-text">Lesson8: Java中的继承、抽象类与接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class6"><span class="toc-number">6.</span> <span class="toc-text">Class6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson9-Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B9%8B%E5%A4%9A%E6%80%81"><span class="toc-number">6.1.</span> <span class="toc-text">Lesson9: Java程序设计之多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E4%B8%93%E9%A2%98%E4%B9%8B%E5%BF%AB%E9%80%9F%E5%B9%82%E5%92%8C%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.</span> <span class="toc-text">小专题之快速幂和矩阵快速算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E4%B8%93%E9%A2%98%E4%B9%8B%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3"><span class="toc-number">6.3.</span> <span class="toc-text">小专题之位运算相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson10-%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">6.4.</span> <span class="toc-text">Lesson10: 泛型程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="toc-number">6.4.1.</span> <span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-number">6.4.2.</span> <span class="toc-text">泛型方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7"><span class="toc-number">6.4.3.</span> <span class="toc-text">泛型的多态特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%BA%A6%E6%9D%9F"><span class="toc-number">6.4.4.</span> <span class="toc-text">泛型约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson11%EF%BC%9AJava%E4%B8%AD%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">6.5.</span> <span class="toc-text">Lesson11：Java中的内部类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class8"><span class="toc-number">7.</span> <span class="toc-text">Class8</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson12%EF%BC%9AJava%E4%B8%AD%E7%9A%84lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text">Lesson12：Java中的lambda表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson13%EF%BC%9AJava%E4%B8%AD%E7%9A%84Stream-API"><span class="toc-number">7.2.</span> <span class="toc-text">Lesson13：Java中的Stream API</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
